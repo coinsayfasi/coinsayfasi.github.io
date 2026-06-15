@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://coinsayfasi.github.io/sitemap.xml
