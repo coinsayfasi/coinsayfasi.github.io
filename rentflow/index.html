@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>RentFlow — Property Management App for Landlords | Track Rent & Tenants</title>
+<meta name="description" content="RentFlow is the all-in-one property management app for landlords. Track rent payments, manage tenants and leases, automate reminders, log expenses, and give tenants their own portal. Available on iPhone & iPad.">
+<meta name="keywords" content="property management app, landlord app, rent tracker, tenant management, rental property, rent collection, lease management, landlord software, property manager, rental income">
+<link rel="canonical" href="https://coinsayfasi.github.io/rentflow/">
+
+<meta property="og:type" content="website">
+<meta property="og:title" content="RentFlow — Property Management for Landlords">
+<meta property="og:description" content="Track rent, manage tenants and leases, automate reminders, and stay organized — all in one app built for landlords.">
+<meta property="og:url" content="https://coinsayfasi.github.io/rentflow/">
+<meta property="og:site_name" content="RentFlow">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="RentFlow — Property Management for Landlords">
+<meta name="twitter:description" content="Track rent, manage tenants & leases, automate reminders. Built for landlords.">
+
+<script type="application/ld+json">
+{
+  "@context":"https://schema.org","@type":"SoftwareApplication",
+  "name":"RentFlow: Property Manager","operatingSystem":"iOS",
+  "applicationCategory":"BusinessApplication",
+  "offers":{"@type":"Offer","price":"0","priceCurrency":"USD"}
+}
+</script>
+<style>
+  :root{--em:#059669;--em-d:#047857;--em-l:#34d399;--gold:#CA8A04;
+        --bg:#F7F6F2;--ink:#0f2019;--muted:#566b61;--card:#fff;--line:#e5e9e6;}
+  *{margin:0;padding:0;box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Inter,sans-serif;background:var(--bg);color:var(--ink);line-height:1.6;-webkit-font-smoothing:antialiased}
+  .wrap{max-width:1040px;margin:0 auto;padding:0 22px}
+  a{color:var(--em);text-decoration:none}
+
+  .hero{background:linear-gradient(160deg,var(--em) 0%,var(--em-d) 100%);color:#fff;padding:70px 0 84px;text-align:center;position:relative;overflow:hidden}
+  .hero::after{content:"";position:absolute;inset:0;background:radial-gradient(circle at 82% -10%,rgba(52,211,153,.32),transparent 46%)}
+  .hero .wrap{position:relative;z-index:1}
+  .logo{display:inline-flex;align-items:center;gap:10px;font-weight:800;font-size:20px;letter-spacing:-.4px;margin-bottom:26px}
+  .logo .mark{width:34px;height:34px;border-radius:9px;background:rgba(255,255,255,.16);display:grid;place-items:center}
+  h1{font-size:clamp(30px,5vw,50px);font-weight:800;letter-spacing:-1px;line-height:1.1;margin-bottom:16px}
+  .hero p.lead{font-size:clamp(16px,2.4vw,20px);color:rgba(255,255,255,.87);max-width:640px;margin:0 auto 32px}
+  .stores{display:flex;gap:14px;justify-content:center;flex-wrap:wrap;align-items:center}
+  .store{display:inline-flex;align-items:center;gap:11px;background:#06241a;color:#fff;border:1px solid rgba(255,255,255,.18);padding:12px 20px;border-radius:13px;font-weight:600;transition:transform .15s,background .15s}
+  .store:hover{transform:translateY(-2px);background:#000}
+  .store small{display:block;font-size:10px;font-weight:500;opacity:.72;line-height:1.1}
+  .store span{font-size:16px;line-height:1.15}
+  .store svg{width:24px;height:24px;flex:none}
+  .soon{display:inline-flex;align-items:center;gap:11px;background:rgba(255,255,255,.1);color:rgba(255,255,255,.72);border:1px dashed rgba(255,255,255,.3);padding:12px 20px;border-radius:13px;font-weight:600;cursor:default}
+  .trust{margin-top:22px;font-size:13px;color:rgba(255,255,255,.72)}
+
+  section{padding:64px 0}
+  .eyebrow{color:var(--em-l);font-weight:700;font-size:13px;letter-spacing:1.5px;text-transform:uppercase;text-align:center;margin-bottom:10px}
+  h2{font-size:clamp(24px,3.6vw,34px);font-weight:800;letter-spacing:-.6px;text-align:center;margin-bottom:14px}
+  .sub{color:var(--muted);text-align:center;max-width:620px;margin:0 auto 44px}
+  .grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:18px}
+  .feat{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:26px 24px}
+  .feat .ic{width:46px;height:46px;border-radius:12px;background:#e7f3ed;display:grid;place-items:center;margin-bottom:16px;font-size:22px}
+  .feat h3{font-size:18px;margin-bottom:7px;letter-spacing:-.3px}
+  .feat p{color:var(--muted);font-size:14.5px}
+  .pro-tag{display:inline-block;background:var(--em);color:#fff;font-size:11px;font-weight:700;padding:2px 8px;border-radius:6px;margin-left:7px;vertical-align:middle}
+
+  .band{background:var(--em);color:#fff;border-radius:22px;padding:48px 32px;text-align:center}
+  .band h2{color:#fff}
+  .band .big{font-size:clamp(36px,7vw,58px);font-weight:800;letter-spacing:-1.5px;line-height:1.05}
+  .band p{color:rgba(255,255,255,.85);max-width:560px;margin:14px auto 0}
+
+  .faq{max-width:760px;margin:0 auto}
+  details{background:var(--card);border:1px solid var(--line);border-radius:13px;padding:18px 22px;margin-bottom:12px}
+  summary{font-weight:650;cursor:pointer;list-style:none;font-size:16px}
+  summary::-webkit-details-marker{display:none}
+  details[open] summary{color:var(--em)}
+  details p{color:var(--muted);margin-top:10px;font-size:14.5px}
+
+  footer{background:#06241a;color:rgba(255,255,255,.72);padding:42px 0;text-align:center;font-size:13.5px}
+  footer a{color:#9fe3c6}
+  footer .row{display:flex;gap:18px;justify-content:center;flex-wrap:wrap;margin-bottom:16px}
+</style>
+</head>
+<body>
+
+<header class="hero">
+  <div class="wrap">
+    <div class="logo"><span class="mark">🏠</span> RentFlow</div>
+    <h1>Run your rentals from your pocket.</h1>
+    <p class="lead">The all-in-one app for landlords — track rent, manage tenants and leases, automate reminders, and give every tenant their own portal.</p>
+    <div class="stores">
+      <a class="store" href="https://apps.apple.com/app/id6767179451" aria-label="Download on the App Store">
+        <svg viewBox="0 0 24 24" fill="#fff"><path d="M16.37 1.43c.06 1-.34 1.97-.94 2.66-.64.74-1.7 1.31-2.72 1.23-.12-.97.36-1.99.93-2.62.64-.72 1.76-1.26 2.73-1.27zM20 17.3c-.36.83-.53 1.2-1 1.94-.65 1.03-1.57 2.31-2.71 2.32-1.01.01-1.27-.66-2.64-.65-1.37 0-1.66.66-2.67.66-1.14.01-2.01-1.14-2.66-2.17C5.8 16.2 5.6 12.79 6.7 11c.78-1.28 2.02-2.03 3.18-2.03 1.18 0 1.92.66 2.9.66.95 0 1.53-.66 2.9-.66 1.04 0 2.14.57 2.92 1.55-2.57 1.41-2.15 5.08.4 6.18z"/></svg>
+        <span><small>Download on the</small>App Store</span>
+      </a>
+      <span class="soon">
+        <svg viewBox="0 0 24 24"><path fill="rgba(255,255,255,.5)" d="M3.6 1.8 13 11.2 3.6 20.6c-.3-.2-.5-.6-.5-1.1V2.9c0-.5.2-.9.5-1.1z"/><path fill="rgba(255,255,255,.5)" d="M16.8 7.9 13 11.2 3.7 1.7c.4-.2.9-.2 1.4.1l11.7 6.1z"/></svg>
+        <span><small>Coming soon to</small>Google Play</span>
+      </span>
+    </div>
+    <p class="trust">Free to download · Pro plan for unlimited properties · Works worldwide</p>
+  </div>
+</header>
+
+<section>
+  <div class="wrap">
+    <p class="eyebrow">Why RentFlow</p>
+    <h2>Everything a landlord needs, organized</h2>
+    <p class="sub">Stop juggling spreadsheets and group chats. RentFlow keeps every property, tenant, and payment in one place.</p>
+    <div class="grid">
+      <div class="feat"><div class="ic">💸</div><h3>Rent tracking</h3><p>See who's paid, who's late, and your collected vs. outstanding totals at a glance — across all your units.</p></div>
+      <div class="feat"><div class="ic">👤</div><h3>Tenant management</h3><p>Keep tenant details, contacts, and lease terms organized, with everything one tap away.</p></div>
+      <div class="feat"><div class="ic">🔔</div><h3>Automatic reminders</h3><p>Set a rent day and let RentFlow send timely reminders so payments don't slip through the cracks.</p></div>
+      <div class="feat"><div class="ic">🏢</div><h3>Multiple properties</h3><p>Manage a single rental or an entire portfolio — multi-currency support included for global landlords.</p></div>
+      <div class="feat"><div class="ic">🧾</div><h3>Expenses & finances</h3><p>Log expenses, track cash flow, and keep clean records ready for tax time.</p></div>
+      <div class="feat"><div class="ic">🛠️</div><h3>Maintenance requests</h3><p>Tenants report issues from their portal; you track and resolve them in one place.</p></div>
+      <div class="feat"><div class="ic">📄</div><h3>Leases & documents</h3><p>Store leases and important documents securely alongside each property and tenant.</p></div>
+      <div class="feat"><div class="ic">📊</div><h3>Analytics<span class="pro-tag">PRO</span></h3><p>Payment health, income trends, and tax-ready summaries to understand your portfolio.</p></div>
+    </div>
+  </div>
+</section>
+
+<section style="padding-top:0">
+  <div class="wrap">
+    <div class="band">
+      <p class="eyebrow" style="color:rgba(255,255,255,.8)">Your tenants, included</p>
+      <div class="big">A free portal for every tenant</div>
+      <p>Tenants get their own simple portal to view payments, upload documents, message you, and report maintenance — so you spend less time answering questions.</p>
+    </div>
+  </div>
+</section>
+
+<section style="padding-top:8px">
+  <div class="wrap">
+    <p class="eyebrow">Good to know</p>
+    <h2>Frequently asked questions</h2>
+    <p class="sub"></p>
+    <div class="faq">
+      <details open><summary>Is RentFlow free?</summary><p>Yes — RentFlow is free to download and manage your first property. A Pro plan unlocks unlimited properties, analytics, and more.</p></details>
+      <details><summary>Can my tenants use it too?</summary><p>Yes. Invite tenants to their own free portal where they can see payments, message you, upload documents, and submit maintenance requests.</p></details>
+      <details><summary>Does it support my currency?</summary><p>RentFlow supports 40+ currencies and is built for landlords worldwide, with country-aware rent rules.</p></details>
+      <details><summary>Is it available on Android?</summary><p>RentFlow is on the App Store now, with a Google Play release coming soon.</p></details>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <div class="row">
+      <a href="https://apps.apple.com/app/id6767179451">App Store</a>
+      <a href="https://rentflow.tabserve.com.tr/privacy.html">Privacy</a>
+      <a href="https://rentflow.tabserve.com.tr/terms.html">Terms</a>
+    </div>
+    <p>© 2026 RentFlow · The landlord operating system.</p>
+  </div>
+</footer>
+
+</body>
+</html>
