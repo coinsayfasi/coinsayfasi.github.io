@@ -1,66 +1,56 @@
 <!DOCTYPE html>
-<html lang="tr">
+<html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Yunus Gunes – Apps</title>
-  <style>
-    * { margin: 0; padding: 0; box-sizing: border-box; }
-    body {
-      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-      background: #0B1F3A;
-      color: #fff;
-      min-height: 100vh;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-    }
-    .container { max-width: 480px; padding: 40px 24px; text-align: center; }
-    h1 { font-size: 28px; margin-bottom: 8px; }
-    .subtitle { color: #94a3b8; margin-bottom: 40px; }
-    .app-card {
-      background: rgba(255,255,255,0.06);
-      border: 1px solid rgba(255,255,255,0.1);
-      border-radius: 16px;
-      padding: 24px;
-      margin-bottom: 16px;
-      text-align: left;
-    }
-    .app-card h2 { font-size: 20px; margin-bottom: 4px; }
-    .app-card p { color: #94a3b8; font-size: 14px; margin-bottom: 12px; }
-    .badge {
-      display: inline-block;
-      background: #14b8a6;
-      color: #fff;
-      font-size: 12px;
-      font-weight: 600;
-      padding: 4px 10px;
-      border-radius: 20px;
-    }
-    .footer { margin-top: 40px; color: #475569; font-size: 13px; }
-    a { color: #14b8a6; text-decoration: none; }
-  </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Yunus Güneş — Mobile Apps</title>
+<meta name="description" content="Mobile apps by Yunus Güneş: OneBag (smart travel packing list), Routevia (Türkiye gezilecek yerler & rota), and RentFlow (property management for landlords).">
+<style>
+  *{margin:0;padding:0;box-sizing:border-box}
+  body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Inter,sans-serif;
+       background:#0B1F3A;color:#fff;min-height:100vh;display:flex;align-items:center;justify-content:center;padding:40px 0}
+  .container{max-width:560px;width:100%;padding:0 24px;text-align:center}
+  h1{font-size:30px;letter-spacing:-.5px;margin-bottom:6px}
+  .subtitle{color:#94a3b8;margin-bottom:38px;font-size:15px}
+  .app-card{display:flex;align-items:center;gap:16px;background:rgba(255,255,255,.06);
+            border:1px solid rgba(255,255,255,.1);border-radius:16px;padding:18px 20px;margin-bottom:14px;
+            text-align:left;transition:transform .15s,border-color .15s,background .15s}
+  .app-card:hover{transform:translateY(-2px);border-color:rgba(255,255,255,.25);background:rgba(255,255,255,.09)}
+  .app-card .emoji{font-size:30px;width:52px;height:52px;flex:none;display:grid;place-items:center;
+                   background:rgba(255,255,255,.08);border-radius:13px}
+  .app-card .body{flex:1}
+  .app-card h2{font-size:18px;margin-bottom:2px}
+  .app-card p{color:#94a3b8;font-size:13.5px}
+  .app-card .arrow{color:#64748b;font-size:20px}
+  a.app-card{text-decoration:none;color:inherit}
+  .footer{margin-top:34px;color:#64748b;font-size:13px}
+  .footer a{color:#94a3b8;text-decoration:none}
+</style>
 </head>
 <body>
   <div class="container">
-    <h1>Yunus Gunes</h1>
+    <h1>Yunus Güneş</h1>
     <p class="subtitle">Mobile Apps</p>
 
-    <div class="app-card">
-      <h2>One Bag</h2>
-      <p>Travel Packing List – Akilli bavul hazirlama asistani</p>
-      <span class="badge">Google Play</span>
-    </div>
+    <a class="app-card" href="/onebag/">
+      <span class="emoji">🎒</span>
+      <span class="body"><h2>OneBag</h2><p>Smart travel packing list — pack light, never forget.</p></span>
+      <span class="arrow">→</span>
+    </a>
 
-    <div class="app-card">
-      <h2>Routevia</h2>
-      <p>AI destekli seyahat rota planlayici</p>
-      <span class="badge">Yakinda</span>
-    </div>
+    <a class="app-card" href="/routevia-app/">
+      <span class="emoji">🧭</span>
+      <span class="body"><h2>Routevia</h2><p>Türkiye'nin gezilecek yerleri & akıllı rota planlama.</p></span>
+      <span class="arrow">→</span>
+    </a>
 
-    <p class="footer">
-      <a href="mailto:routevia@tabserve.com.tr">routevia@tabserve.com.tr</a>
-    </p>
+    <a class="app-card" href="/rentflow/">
+      <span class="emoji">🏠</span>
+      <span class="body"><h2>RentFlow</h2><p>Property management for landlords — rent, tenants & more.</p></span>
+      <span class="arrow">→</span>
+    </a>
+
+    <p class="footer"><a href="mailto:teknopattv@gmail.com">teknopattv@gmail.com</a></p>
   </div>
 </body>
 </html>
