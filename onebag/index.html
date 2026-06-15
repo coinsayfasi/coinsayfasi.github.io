@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>OneBag — Smart Travel Packing List App | Pack Light, Never Forget</title>
+<meta name="description" content="OneBag is the smart travel packing list app for one-bag travelers. Destination-based packing suggestions, carry-on weight tracking for 82+ airlines, multi-bag limits, offline-first, and PDF export. Free on iOS & Android.">
+<meta name="keywords" content="travel packing list, carry on packing, one bag travel, packing list app, what to pack, carry-on weight, airline baggage limits, minimalist travel, packing checklist, travel essentials">
+<link rel="canonical" href="https://coinsayfasi.github.io/onebag/">
+
+<!-- Open Graph / Pinterest Rich Pins -->
+<meta property="og:type" content="website">
+<meta property="og:title" content="OneBag — Smart Travel Packing List App">
+<meta property="og:description" content="Pack light and never forget a thing. Destination-smart packing lists, carry-on weight tracking for 82+ airlines, offline-first. Free on iOS & Android.">
+<meta property="og:url" content="https://coinsayfasi.github.io/onebag/">
+<meta property="og:site_name" content="OneBag">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="OneBag — Smart Travel Packing List App">
+<meta name="twitter:description" content="Pack light and never forget a thing. Smart packing lists + carry-on weight tracking for 82+ airlines.">
+
+<!-- FAQ structured data for SEO -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "SoftwareApplication",
+  "name": "OneBag: Travel Packing List",
+  "operatingSystem": "iOS, Android",
+  "applicationCategory": "TravelApplication",
+  "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" }
+}
+</script>
+<style>
+  :root{
+    --green:#006241; --green-d:#004e34; --green-l:#10b981;
+    --bg:#F7F6F2; --ink:#13241d; --muted:#5b6b64; --card:#ffffff; --line:#e6e9e6;
+  }
+  *{margin:0;padding:0;box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Inter,sans-serif;background:var(--bg);color:var(--ink);line-height:1.6;-webkit-font-smoothing:antialiased}
+  .wrap{max-width:1040px;margin:0 auto;padding:0 22px}
+  a{color:var(--green);text-decoration:none}
+
+  /* Hero */
+  .hero{background:linear-gradient(160deg,var(--green) 0%,var(--green-d) 100%);color:#fff;padding:70px 0 84px;text-align:center;position:relative;overflow:hidden}
+  .hero::after{content:"";position:absolute;inset:0;background:radial-gradient(circle at 80% -10%,rgba(16,185,129,.35),transparent 45%)}
+  .hero .wrap{position:relative;z-index:1}
+  .logo{display:inline-flex;align-items:center;gap:10px;font-weight:800;font-size:20px;letter-spacing:-.4px;margin-bottom:26px}
+  .logo .mark{width:34px;height:34px;border-radius:9px;background:rgba(255,255,255,.16);display:grid;place-items:center}
+  h1{font-size:clamp(30px,5vw,50px);font-weight:800;letter-spacing:-1px;line-height:1.1;margin-bottom:16px}
+  .hero p.lead{font-size:clamp(16px,2.4vw,20px);color:rgba(255,255,255,.86);max-width:620px;margin:0 auto 32px}
+  .stores{display:flex;gap:14px;justify-content:center;flex-wrap:wrap}
+  .store{display:inline-flex;align-items:center;gap:11px;background:#0b1b14;color:#fff;border:1px solid rgba(255,255,255,.18);padding:12px 20px;border-radius:13px;font-weight:600;transition:transform .15s,background .15s}
+  .store:hover{transform:translateY(-2px);background:#000}
+  .store small{display:block;font-size:10px;font-weight:500;opacity:.72;line-height:1.1}
+  .store span{font-size:16px;line-height:1.15}
+  .store svg{width:24px;height:24px;flex:none}
+  .trust{margin-top:22px;font-size:13px;color:rgba(255,255,255,.7)}
+
+  /* Sections */
+  section{padding:64px 0}
+  .eyebrow{color:var(--green-l);font-weight:700;font-size:13px;letter-spacing:1.5px;text-transform:uppercase;text-align:center;margin-bottom:10px}
+  h2{font-size:clamp(24px,3.6vw,34px);font-weight:800;letter-spacing:-.6px;text-align:center;margin-bottom:14px}
+  .sub{color:var(--muted);text-align:center;max-width:600px;margin:0 auto 44px}
+  .grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:18px}
+  .feat{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:26px 24px}
+  .feat .ic{width:46px;height:46px;border-radius:12px;background:#e7f3ed;display:grid;place-items:center;margin-bottom:16px;font-size:22px}
+  .feat h3{font-size:18px;margin-bottom:7px;letter-spacing:-.3px}
+  .feat p{color:var(--muted);font-size:14.5px}
+  .pro-tag{display:inline-block;background:var(--green);color:#fff;font-size:11px;font-weight:700;padding:2px 8px;border-radius:6px;margin-left:7px;vertical-align:middle}
+
+  /* Highlight band */
+  .band{background:var(--green);color:#fff;border-radius:22px;padding:48px 32px;text-align:center;margin:0 auto}
+  .band h2{color:#fff}
+  .band .big{font-size:clamp(40px,8vw,68px);font-weight:800;letter-spacing:-2px;line-height:1}
+  .band p{color:rgba(255,255,255,.85);max-width:560px;margin:14px auto 0}
+
+  /* FAQ */
+  .faq{max-width:760px;margin:0 auto}
+  details{background:var(--card);border:1px solid var(--line);border-radius:13px;padding:18px 22px;margin-bottom:12px}
+  summary{font-weight:650;cursor:pointer;list-style:none;font-size:16px}
+  summary::-webkit-details-marker{display:none}
+  details[open] summary{color:var(--green)}
+  details p{color:var(--muted);margin-top:10px;font-size:14.5px}
+
+  footer{background:#0b1b14;color:rgba(255,255,255,.72);padding:42px 0;text-align:center;font-size:13.5px}
+  footer a{color:#9fe3c6}
+  footer .row{display:flex;gap:18px;justify-content:center;flex-wrap:wrap;margin-bottom:16px}
+</style>
+</head>
+<body>
+
+<header class="hero">
+  <div class="wrap">
+    <div class="logo"><span class="mark">🎒</span> OneBag</div>
+    <h1>Pack light. Never forget a thing.</h1>
+    <p class="lead">The smart packing list built for one-bag travelers — destination-aware suggestions, real carry-on weight tracking, and everything works offline.</p>
+    <div class="stores">
+      <a class="store" href="https://apps.apple.com/app/id6761047805" aria-label="Download on the App Store">
+        <svg viewBox="0 0 24 24" fill="#fff"><path d="M16.37 1.43c.06 1-.34 1.97-.94 2.66-.64.74-1.7 1.31-2.72 1.23-.12-.97.36-1.99.93-2.62.64-.72 1.76-1.26 2.73-1.27zM20 17.3c-.36.83-.53 1.2-1 1.94-.65 1.03-1.57 2.31-2.71 2.32-1.01.01-1.27-.66-2.64-.65-1.37 0-1.66.66-2.67.66-1.14.01-2.01-1.14-2.66-2.17C5.8 16.2 5.6 12.79 6.7 11c.78-1.28 2.02-2.03 3.18-2.03 1.18 0 1.92.66 2.9.66.95 0 1.53-.66 2.9-.66 1.04 0 2.14.57 2.92 1.55-2.57 1.41-2.15 5.08.4 6.18z"/></svg>
+        <span><small>Download on the</small>App Store</span>
+      </a>
+      <a class="store" href="https://play.google.com/store/apps/details?id=com.onebag.travel" aria-label="Get it on Google Play">
+        <svg viewBox="0 0 24 24"><path fill="#34d399" d="M3.6 1.8 13 11.2 3.6 20.6c-.3-.2-.5-.6-.5-1.1V2.9c0-.5.2-.9.5-1.1z"/><path fill="#60a5fa" d="M16.8 7.9 13 11.2 3.7 1.7c.4-.2.9-.2 1.4.1l11.7 6.1z"/><path fill="#f472b6" d="M16.8 14.5 5.1 20.6c-.5.3-1 .3-1.4.1L13 11.2l3.8 3.3z"/><path fill="#fbbf24" d="m16.8 7.9 3.4 1.8c.9.5.9 1.8 0 2.3l-3.4 1.8-3.8-3.3 3.8-3.4z"/></svg>
+        <span><small>Get it on</small>Google Play</span>
+      </a>
+    </div>
+    <p class="trust">Free to download · Offline-first · Available in 6 languages</p>
+  </div>
+</header>
+
+<section>
+  <div class="wrap">
+    <p class="eyebrow">Why OneBag</p>
+    <h2>Everything a light packer needs</h2>
+    <p class="sub">Stop over-packing and stop forgetting essentials. OneBag thinks about your trip so you don't have to.</p>
+    <div class="grid">
+      <div class="feat"><div class="ic">🧭</div><h3>Destination-smart lists</h3><p>Tell OneBag where you're headed and it suggests the right items — from Japan and Schengen to tropical, ski, and safari trips.</p></div>
+      <div class="feat"><div class="ic">⚖️</div><h3>Carry-on weight tracking</h3><p>Live weight bar against your real cabin limit. Know before the airport, not at the gate.</p></div>
+      <div class="feat"><div class="ic">✈️</div><h3>82+ airlines built in</h3><p>Pick your airline and OneBag sets the correct cabin and checked-bag limits automatically.</p></div>
+      <div class="feat"><div class="ic">🧳</div><h3>Multi-bag limits</h3><p>Separate carry-on and checked-bag bars so you can balance both at a glance.</p></div>
+      <div class="feat"><div class="ic">📴</div><h3>Works fully offline</h3><p>Built offline-first. Your lists are always with you — no signal needed at the airport or abroad.</p></div>
+      <div class="feat"><div class="ic">📄</div><h3>PDF export<span class="pro-tag">PRO</span></h3><p>Export a clean, branded packing checklist to print or share with travel companions.</p></div>
+      <div class="feat"><div class="ic">📊</div><h3>Packing insights<span class="pro-tag">PRO</span></h3><p>Your travel story: trips completed, days traveled, most-visited places, and items you frequently forget.</p></div>
+      <div class="feat"><div class="ic">🔔</div><h3>Smart reminders</h3><p>Get nudged to pack before departure so nothing important is left behind.</p></div>
+    </div>
+  </div>
+</section>
+
+<section style="padding-top:0">
+  <div class="wrap">
+    <div class="band">
+      <p class="eyebrow" style="color:rgba(255,255,255,.8)">Pack smarter</p>
+      <div class="big">82+</div>
+      <h2 style="margin-top:6px">airlines with exact cabin limits</h2>
+      <p>From Turkish Airlines and Ryanair to Emirates, ANA, and Delta — OneBag knows the rules so your bag is always within limits.</p>
+    </div>
+  </div>
+</section>
+
+<section style="padding-top:8px">
+  <div class="wrap">
+    <p class="eyebrow">Good to know</p>
+    <h2>Frequently asked questions</h2>
+    <p class="sub"></p>
+    <div class="faq">
+      <details open><summary>Is OneBag free?</summary><p>Yes. OneBag is free to download and use. A one-time-feel Pro upgrade unlocks extras like PDF export and packing insights.</p></details>
+      <details><summary>Does it work without internet?</summary><p>Absolutely. OneBag is offline-first — all your trips and lists are stored on your device and work with no connection.</p></details>
+      <details><summary>How does carry-on weight tracking work?</summary><p>Add weights to your items and OneBag shows a live bar against your airline's cabin limit, so you know if you're over before you reach the airport.</p></details>
+      <details><summary>Which languages are supported?</summary><p>OneBag is available in 6 languages, with localized item suggestions for destinations around the world.</p></details>
+      <details><summary>Which platforms is it on?</summary><p>OneBag is available on both iOS (App Store) and Android (Google Play).</p></details>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <div class="row">
+      <a href="https://apps.apple.com/app/id6761047805">App Store</a>
+      <a href="https://play.google.com/store/apps/details?id=com.onebag.travel">Google Play</a>
+      <a href="https://coinsayfasi.github.io/onebag-legal/privacy_en.html">Privacy</a>
+      <a href="https://coinsayfasi.github.io/onebag-legal/terms_en.html">Terms</a>
+    </div>
+    <p>© 2026 OneBag · Travel light, travel smart.</p>
+  </div>
+</footer>
+
+</body>
+</html>
