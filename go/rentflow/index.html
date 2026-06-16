@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Get RentFlow — Property Management for Landlords</title>
+<meta name="description" content="Download RentFlow: rent, tenants & property management. Available on the App Store (Android coming soon).">
+<meta property="og:title" content="Get RentFlow — Property Management for Landlords">
+<meta property="og:description" content="Manage rent, tenants and leases. Download RentFlow on iOS.">
+<meta property="og:type" content="website">
+<link rel="canonical" href="https://coinsayfasi.github.io/go/rentflow/">
+<script>
+  (function () {
+    // RentFlow is live on the App Store; Android is in closed testing (not public yet),
+    // so Android/desktop users see the buttons below instead of a broken Play link.
+    var APPSTORE = "https://apps.apple.com/app/id6767179451";
+    var ua = navigator.userAgent || "";
+    var ios = /iPad|iPhone|iPod/.test(ua) ||
+              (navigator.platform === "MacIntel" && navigator.maxTouchPoints > 1);
+    if (ios) location.replace(APPSTORE);
+  })();
+</script>
+<style>
+  body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;
+       background:#059669;color:#fff;min-height:100vh;display:flex;align-items:center;
+       justify-content:center;text-align:center;margin:0;padding:24px}
+  .c{max-width:380px}h1{font-size:26px;margin:0 0 8px}p{color:#d1fae5;margin:0 0 28px}
+  a.btn{display:block;background:#fff;color:#059669;text-decoration:none;font-weight:600;
+        padding:15px;border-radius:12px;margin:12px 0;font-size:16px}
+  .soon{color:#a7f3d0;font-size:14px;margin-top:14px}
+</style>
+</head>
+<body>
+  <div class="c">
+    <h1>🏠 RentFlow</h1>
+    <p>Property management for landlords — rent, tenants & more.</p>
+    <a class="btn" href="https://apps.apple.com/app/id6767179451">Download on the App Store</a>
+    <p class="soon">Google Play — coming soon</p>
+  </div>
+</body>
+</html>

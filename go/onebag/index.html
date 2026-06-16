@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Get OneBag — Smart Travel Packing List</title>
+<meta name="description" content="Download OneBag: smart travel packing lists. App Store & Google Play.">
+<meta property="og:title" content="Get OneBag — Smart Travel Packing List">
+<meta property="og:description" content="Pack light, never forget. Download OneBag on iOS or Android.">
+<meta property="og:type" content="website">
+<link rel="canonical" href="https://coinsayfasi.github.io/go/onebag/">
+<script>
+  (function () {
+    var APPSTORE = "https://apps.apple.com/app/id6761047805";
+    var PLAY = "https://play.google.com/store/apps/details?id=com.onebag.travel";
+    var ua = navigator.userAgent || "";
+    var ios = /iPad|iPhone|iPod/.test(ua) ||
+              (navigator.platform === "MacIntel" && navigator.maxTouchPoints > 1);
+    var android = /Android/.test(ua);
+    if (ios) location.replace(APPSTORE);
+    else if (android) location.replace(PLAY);
+    // desktop: stay and show both buttons below
+  })();
+</script>
+<style>
+  body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;
+       background:#006241;color:#fff;min-height:100vh;display:flex;align-items:center;
+       justify-content:center;text-align:center;margin:0;padding:24px}
+  .c{max-width:380px}h1{font-size:26px;margin:0 0 8px}p{color:#cfe8df;margin:0 0 28px}
+  a.btn{display:block;background:#fff;color:#006241;text-decoration:none;font-weight:600;
+        padding:15px;border-radius:12px;margin:12px 0;font-size:16px}
+</style>
+</head>
+<body>
+  <div class="c">
+    <h1>🎒 OneBag</h1>
+    <p>Smart travel packing list — pack light, never forget.</p>
+    <a class="btn" href="https://apps.apple.com/app/id6761047805">Download on the App Store</a>
+    <a class="btn" href="https://play.google.com/store/apps/details?id=com.onebag.travel">Get it on Google Play</a>
+  </div>
+</body>
+</html>

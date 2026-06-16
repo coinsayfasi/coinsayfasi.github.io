@@ -1,0 +1,48 @@
+name: Pinterest daily pins
+
+on:
+  # ⚠️ Cron KAPALI: PINTEREST_ACCESS_TOKEN + PEXELS_API_KEY secret'ları eklenince
+  # aşağıdaki 2 satırı yorumdan çıkar (token yokken dry-run her gün gereksiz commit üretir).
+  # schedule:
+  #   - cron: "0 9 * * *"   # her gün 09:00 UTC (~12:00 TR)
+  workflow_dispatch:        # manuel çalıştırma (Actions sekmesi) — şimdilik tek tetikleyici
+
+permissions:
+  contents: write           # to commit the updated state.json
+
+concurrency:
+  group: pinterest-daily
+  cancel-in-progress: false
+
+jobs:
+  pin:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Install deps
+        run: pip install -r _automation/pinterest/requirements.txt
+
+      - name: Post pins
+        env:
+          PINTEREST_ACCESS_TOKEN: ${{ secrets.PINTEREST_ACCESS_TOKEN }}
+          PEXELS_API_KEY: ${{ secrets.PEXELS_API_KEY }}
+          PINS_PER_RUN: "3"
+        working-directory: _automation/pinterest
+        run: python poster.py
+
+      - name: Commit updated state
+        run: |
+          if [[ -n "$(git status --porcelain _automation/pinterest/state.json)" ]]; then
+            git config user.name  "github-actions[bot]"
+            git config user.email "github-actions[bot]@users.noreply.github.com"
+            git add _automation/pinterest/state.json
+            git commit -m "chore(pinterest): update pinned state [skip ci]"
+            git push
+          else
+            echo "No state change to commit."
+          fi
