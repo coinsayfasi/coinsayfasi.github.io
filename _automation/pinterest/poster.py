@@ -172,7 +172,10 @@ def build_description(theme: dict, meta: dict) -> str:
     # Gövde: sayfa açıklaması + ilk paragraflar (gerçek içerik) + marka değer cümlesi.
     body_parts = [p for p in (meta["desc"], meta.get("intro"), theme["board_desc"]) if p]
     body = " ".join(dict.fromkeys(body_parts)) or meta["title"]
-    return f"{body}\n\n{cta}\n\n{tags}"[:800]  # Pinterest açıklama limiti = 800
+    # CTA + hashtag'ler HER ZAMAN korunur (SEO değeri); gövde 800'e sığacak şekilde kısalır.
+    suffix = f"\n\n{cta}\n\n{tags}"
+    max_body = 800 - len(suffix)
+    return (body[:max_body].rstrip() + suffix)  # Pinterest açıklama limiti = 800
 
 
 def pick_candidates(state: dict) -> list[dict]:
