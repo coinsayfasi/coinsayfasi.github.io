@@ -128,8 +128,17 @@ def page_meta(local: Path) -> dict:
                  r'<meta\s+name=["\']description["\']\s+content=["\'](.*?)["\']')
     keywords = _meta(html, r'<meta\s+name=["\']keywords["\']\s+content=["\'](.*?)["\']')
     # strip " | Routevia" / " — ... (2026)" style suffixes from <title> fallback
-    title = re.split(r"\s+[|]\s+", title)[0].strip()
-    return {"title": title, "desc": desc, "keywords": keywords}
+    title = re.split(r"\s+[|]\s+", title)[0].strip()[:100]  # Pinterest başlık limiti 100
+    # SEO-zengin gövde için sayfanın ilk anlamlı paragraflarını çek (gerçek içerik).
+    intro = ""
+    for p in re.findall(r"<p[^>]*>(.*?)</p>", html, re.S | re.I):
+        t = re.sub(r"\s+", " ", re.sub(r"<[^>]+>", " ", p)).strip()
+        t = (t.replace("&#x27;", "'").replace("&#39;", "'").replace("&amp;", "&"))
+        if len(t) > 50:
+            intro = (intro + " " + t).strip()
+            if len(intro) > 480:
+                break
+    return {"title": title, "desc": desc, "keywords": keywords, "intro": intro}
 
 
 def pexels_query(app: str, title: str) -> str:
@@ -144,18 +153,23 @@ def pexels_query(app: str, title: str) -> str:
 
 
 def build_description(theme: dict, meta: dict) -> str:
+    """SEO-zengin Pinterest açıklaması: gerçek sayfa içeriği + değer cümlesi +
+    keyword hashtag'leri + marka hashtag'leri + CTA. Pinterest limiti 800 → 790'da
+    kesilir. Junk/keyword-stuffing YOK; sadece sayfanın kendi içeriği kullanılır."""
     cta = random.choice(theme["ctas"])
-    # 3 hashtags from page keywords (slugified) + brand/theme tags.
+    # Sayfa keyword'lerinden 6'ya kadar hashtag (slug) + marka/tema hashtag'leri.
     kw_tags = []
     for kw in (meta["keywords"].split(",") if meta["keywords"] else []):
         slug = re.sub(r"[^0-9a-zçğıöşü]+", "", kw.strip().lower())
-        if 3 <= len(slug) <= 24 and f"#{slug}" not in kw_tags:
+        if 3 <= len(slug) <= 28 and f"#{slug}" not in kw_tags:
             kw_tags.append(f"#{slug}")
-        if len(kw_tags) >= 2:
+        if len(kw_tags) >= 6:
             break
-    tags = " ".join(dict.fromkeys(kw_tags + theme["tags"]))  # dedupe, keep order
-    body = meta["desc"] or meta["title"]
-    return f"{body}\n\n{cta}\n\n{tags}"[:780]
+    tags = " ".join(dict.fromkeys(kw_tags + theme["tags"]))  # dedupe, sıra korunur
+    # Gövde: sayfa açıklaması + ilk paragraflar (gerçek içerik) + marka değer cümlesi.
+    body_parts = [p for p in (meta["desc"], meta.get("intro"), theme["board_desc"]) if p]
+    body = " ".join(dict.fromkeys(body_parts)) or meta["title"]
+    return f"{body}\n\n{cta}\n\n{tags}"[:790]
 
 
 def pick_candidates(state: dict) -> list[dict]:
