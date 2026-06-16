@@ -36,6 +36,9 @@ PREVIEW_DIR = HERE / "preview"
 PINS_PER_RUN = int(os.environ.get("PINS_PER_RUN", "3"))
 PEXELS_KEY = os.environ.get("PEXELS_API_KEY", "").strip()
 PIN_TOKEN = os.environ.get("PINTEREST_ACCESS_TOKEN", "").strip()
+# Saat hedefleme: bu çalıştırmada sadece bu app'ler pinlenir (örn "routevia" ya da
+# "onebag,rentflow"). Boş = hepsi. Workflow cron'a göre set eder (kitleye uygun saat).
+PIN_APPS = {a.strip() for a in os.environ.get("PIN_APPS", "").split(",") if a.strip()}
 
 # ── Theme config: URL prefix -> app, board name, CTA + hashtag strategy ──────
 THEMES = [
@@ -169,7 +172,7 @@ def build_description(theme: dict, meta: dict) -> str:
     # Gövde: sayfa açıklaması + ilk paragraflar (gerçek içerik) + marka değer cümlesi.
     body_parts = [p for p in (meta["desc"], meta.get("intro"), theme["board_desc"]) if p]
     body = " ".join(dict.fromkeys(body_parts)) or meta["title"]
-    return f"{body}\n\n{cta}\n\n{tags}"[:790]
+    return f"{body}\n\n{cta}\n\n{tags}"[:800]  # Pinterest açıklama limiti = 800
 
 
 def pick_candidates(state: dict) -> list[dict]:
@@ -181,6 +184,8 @@ def pick_candidates(state: dict) -> list[dict]:
         theme = theme_for(url)
         if not theme:
             continue  # only content pages with a configured theme
+        if PIN_APPS and theme["app"] not in PIN_APPS:
+            continue  # saat hedefleme: bu çalıştırma bu app'i kapsamıyor
         local = url_to_local(url)
         if not local.exists():
             continue
