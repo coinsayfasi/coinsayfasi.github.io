@@ -25,7 +25,7 @@ from datetime import datetime, timezone
 from pathlib import Path
 
 from pin_image import build_pin_image, fetch_pexels_photo
-from pinterest_api import PinterestClient
+from pinterest_api import PinterestClient, refresh_access_token
 
 REPO_ROOT = Path(__file__).resolve().parents[2]
 HERE = Path(__file__).resolve().parent
@@ -35,7 +35,23 @@ PREVIEW_DIR = HERE / "preview"
 
 PINS_PER_RUN = int(os.environ.get("PINS_PER_RUN", "3"))
 PEXELS_KEY = os.environ.get("PEXELS_API_KEY", "").strip()
-PIN_TOKEN = os.environ.get("PINTEREST_ACCESS_TOKEN", "").strip()
+
+
+def resolve_token() -> str:
+    """Bir access token döndür. Tercih: refresh-token modu (hiç sönmez); yoksa
+    statik PINTEREST_ACCESS_TOKEN; ikisi de yoksa boş (= dry-run)."""
+    rt = os.environ.get("PINTEREST_REFRESH_TOKEN", "").strip()
+    app_id = os.environ.get("PINTEREST_APP_ID", "").strip()
+    app_secret = os.environ.get("PINTEREST_APP_SECRET", "").strip()
+    if rt and app_id and app_secret:
+        try:
+            return refresh_access_token(app_id, app_secret, rt)
+        except Exception as e:  # noqa: BLE001
+            print(f"⚠ refresh token başarısız ({e}); statik token'a düşülüyor.")
+    return os.environ.get("PINTEREST_ACCESS_TOKEN", "").strip()
+
+
+PIN_TOKEN = resolve_token()
 # Saat hedefleme: bu çalıştırmada sadece bu app'ler pinlenir (örn "routevia" ya da
 # "onebag,rentflow"). Boş = hepsi. Workflow cron'a göre set eder (kitleye uygun saat).
 PIN_APPS = {a.strip() for a in os.environ.get("PIN_APPS", "").split(",") if a.strip()}

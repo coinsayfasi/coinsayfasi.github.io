@@ -14,6 +14,25 @@ import requests
 API = "https://api.pinterest.com/v5"
 
 
+def refresh_access_token(app_id: str, app_secret: str, refresh_token: str) -> str:
+    """Exchange a long-lived refresh token for a fresh access token.
+
+    Lets the cron run forever without re-pasting a token every 30 days: store
+    PINTEREST_REFRESH_TOKEN + PINTEREST_APP_ID + PINTEREST_APP_SECRET as secrets.
+    """
+    basic = base64.b64encode(f"{app_id}:{app_secret}".encode()).decode()
+    r = requests.post(
+        f"{API}/oauth/token",
+        headers={"Authorization": f"Basic {basic}",
+                 "Content-Type": "application/x-www-form-urlencoded"},
+        data={"grant_type": "refresh_token", "refresh_token": refresh_token},
+        timeout=30,
+    )
+    if r.status_code >= 400:
+        raise RuntimeError(f"refresh_access_token {r.status_code}: {r.text[:300]}")
+    return r.json()["access_token"]
+
+
 class PinterestClient:
     def __init__(self, token: str):
         self.s = requests.Session()

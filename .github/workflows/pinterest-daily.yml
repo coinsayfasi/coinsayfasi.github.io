@@ -1,8 +1,11 @@
 name: Pinterest daily pins
 
 on:
-  # ⚠️ Cron KAPALI: PINTEREST_ACCESS_TOKEN + PEXELS_API_KEY eklenince aşağıdaki
-  # "schedule:" + 2 cron satırını yorumdan çıkar. Saat hedefleme KİTLEYE göre:
+  # ⚠️ Cron KAPALI. Pinterest write token onayı gelince:
+  #   1) python3 _automation/pinterest/get_token.py url   → izin ver, code al
+  #   2) PINTEREST_APP_SECRET=xxx python3 .../get_token.py token <KOD>
+  #   3) gh secret set PINTEREST_REFRESH_TOKEN / PINTEREST_APP_ID / PINTEREST_APP_SECRET
+  #   4) aşağıdaki "schedule:" + 2 cron satırını yorumdan çıkar. Saat hedefleme:
   # schedule:
   #   - cron: "0 18 * * *"   # 21:00 TR → Routevia (Türkiye akşam prime)
   #   - cron: "0 20 * * *"   # 22:00 CET / 15:00 EST → OneBag + RentFlow (AB+ABD)
@@ -39,6 +42,11 @@ jobs:
 
       - name: Post pins
         env:
+          # Tercih edilen: refresh-token modu (her çalışmada taze access token, hiç sönmez)
+          PINTEREST_REFRESH_TOKEN: ${{ secrets.PINTEREST_REFRESH_TOKEN }}
+          PINTEREST_APP_ID: ${{ secrets.PINTEREST_APP_ID }}
+          PINTEREST_APP_SECRET: ${{ secrets.PINTEREST_APP_SECRET }}
+          # Alternatif: tek seferlik statik token (30 günde söner)
           PINTEREST_ACCESS_TOKEN: ${{ secrets.PINTEREST_ACCESS_TOKEN }}
           PEXELS_API_KEY: ${{ secrets.PEXELS_API_KEY }}
           PIN_APPS: ${{ steps.t.outputs.apps }}
