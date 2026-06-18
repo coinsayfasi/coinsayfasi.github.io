@@ -4,8 +4,9 @@
    "how it works" steps and scroll-reveal. Loaded after the landing's own CSS. */
 
 /* Sticky nav (transparent over hero → solid on scroll) */
-.lnav{position:sticky;top:0;z-index:60;border-bottom:1px solid transparent;
+.lnav{position:sticky;top:0;z-index:60;margin-bottom:-60px;border-bottom:1px solid transparent;
   transition:background .25s ease,box-shadow .25s ease,border-color .25s ease}
+.lhero{padding-top:88px}
 .lnav .in{max-width:1040px;margin:0 auto;padding:13px 22px;display:flex;align-items:center;justify-content:space-between}
 .lnav .lbrand{display:flex;align-items:center;gap:9px;font-weight:800;font-size:17px;color:#fff;letter-spacing:-.3px;transition:color .25s ease}
 .lnav .lbrand .m{width:30px;height:30px;border-radius:9px;display:grid;place-items:center;background:rgba(255,255,255,.16);font-size:16px}
