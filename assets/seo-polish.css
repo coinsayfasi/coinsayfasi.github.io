@@ -1,0 +1,63 @@
+/* ── Tabserve SEO pages — modern polish layer ────────────────────────────────
+   Loaded AFTER each page's inline theme; purely additive (overrides, never
+   removes). One file controls the premium look of all SEO/content pages:
+   soft shadows, hover lift, hero glow, animated FAQ, micro-interactions.
+   Brand-agnostic: uses neutral shadows so navy/green/emerald all look right. */
+
+/* Hero: depth + subtle top-corner glow */
+.hero{position:relative;overflow:hidden}
+.hero::after{content:"";position:absolute;inset:0;pointer-events:none;
+  background:radial-gradient(circle at 85% -25%,rgba(255,255,255,.16),transparent 52%)}
+.hero > .wrap{position:relative;z-index:1}
+
+/* Card-like surfaces: hairline + soft elevation */
+.poi,.feat,ul.pack li,table.bag,details,.tip{
+  box-shadow:0 1px 2px rgba(16,31,46,.04), 0 8px 24px -16px rgba(16,31,46,.18)}
+
+/* Interactive surfaces lift on hover */
+.poi,.feat,.chips a,.cta a,.appbox a{
+  transition:transform .16s ease, box-shadow .16s ease, border-color .16s ease}
+.poi:hover,.feat:hover{transform:translateY(-3px);
+  box-shadow:0 1px 2px rgba(16,31,46,.05), 0 18px 34px -18px rgba(16,31,46,.30)}
+.chips a:hover{transform:translateY(-1px)}
+
+/* Buttons: lift + shadow */
+.cta a:hover,.appbox a:hover{transform:translateY(-2px);
+  box-shadow:0 12px 22px -12px rgba(0,0,0,.45)}
+
+/* FAQ: smoother, hover hint, animated open */
+details{transition:border-color .16s ease, box-shadow .16s ease}
+details:hover{border-color:rgba(16,31,46,.20)}
+details[open]{box-shadow:0 1px 2px rgba(16,31,46,.05), 0 14px 30px -18px rgba(16,31,46,.28)}
+details > p,details > ul{animation:faqIn .18s ease}
+@keyframes faqIn{from{opacity:0;transform:translateY(-3px)}to{opacity:1;transform:none}}
+
+/* App CTA box: gradient depth + glow */
+.appbox{position:relative;overflow:hidden;
+  box-shadow:0 18px 40px -22px rgba(16,31,46,.5)}
+.appbox::after{content:"";position:absolute;inset:0;pointer-events:none;
+  background:radial-gradient(circle at 80% -30%,rgba(255,255,255,.14),transparent 55%)}
+.appbox > *{position:relative;z-index:1}
+
+/* Tables: row hover */
+table.bag tr:hover td{background:rgba(16,31,46,.025)}
+
+/* Body links: hover underline */
+.more a:hover,.bc a:hover{text-decoration:underline}
+
+/* Accessibility: visible focus ring */
+a:focus-visible,summary:focus-visible,button:focus-visible{
+  outline:2px solid currentColor;outline-offset:2px;border-radius:6px}
+
+/* Text selection */
+::selection{background:rgba(34,211,238,.25)}
+
+/* Respect reduced-motion */
+@media (prefers-reduced-motion: reduce){
+  .poi,.feat,.chips a,.cta a,.appbox a{transition:none}
+  .poi:hover,.feat:hover,.cta a:hover,.appbox a:hover,.chips a:hover{transform:none}
+  details > p,details > ul{animation:none}
+}
+
+/* Small screens: tighter CTA box */
+@media (max-width:640px){ .appbox{padding:26px 20px} }
