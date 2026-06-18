@@ -84,6 +84,49 @@ THEMES = [
         "tags": ["#landlord", "#realestate", "#propertymanagement", "#rentflow", "#rentaltips"],
         "lang": "en",
     },
+    {
+        # 88 bagaj rehberi + 121 "A vs B" karşılaştırma (compare alt yolu da buraya düşer)
+        "match": "/onebag/baggage/",
+        "app": "onebag",
+        "store": "https://coinsayfasi.github.io/go/onebag/",
+        "board": "Airline Baggage Allowance",
+        "board_desc": "Carry-on & checked baggage size and weight limits by airline. Track your bag with OneBag.",
+        "ctas": [
+            "Check your airline's limit — OneBag →",
+            "Track carry-on weight — OneBag →",
+            "Avoid baggage fees — OneBag →",
+        ],
+        "tags": ["#carryon", "#baggage", "#flighttips", "#travel", "#onebag"],
+        "lang": "en",
+    },
+    {
+        "match": "/rentflow/rent-increase-laws/",
+        "app": "rentflow",
+        "store": "https://coinsayfasi.github.io/go/rentflow/",
+        "board": "Landlord & Rental Tips",
+        "board_desc": "Rent increase laws & caps by country for landlords. Stay compliant with RentFlow.",
+        "ctas": [
+            "Track rent increases — RentFlow →",
+            "Stay compliant — RentFlow →",
+            "Manage rentals smarter — RentFlow →",
+        ],
+        "tags": ["#landlord", "#rentincrease", "#realestate", "#rentaltips", "#rentflow"],
+        "lang": "en",
+    },
+    {
+        "match": "/rentflow/calculators/",
+        "app": "rentflow",
+        "store": "https://coinsayfasi.github.io/go/rentflow/",
+        "board": "Landlord & Rental Tips",
+        "board_desc": "Free calculators for landlords — yield, cash flow, rent increase. Run the numbers in RentFlow.",
+        "ctas": [
+            "Calculate real yield — RentFlow →",
+            "Track cash flow — RentFlow →",
+            "Run your numbers — RentFlow →",
+        ],
+        "tags": ["#realestateinvesting", "#landlord", "#rentalproperty", "#cashflow", "#rentflow"],
+        "lang": "en",
+    },
 ]
 
 
