@@ -1,9 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url><loc>https://coinsayfasi.github.io/</loc><lastmod>2026-06-18</lastmod><priority>1.0</priority></url>
-  <url><loc>https://coinsayfasi.github.io/go/onebag/</loc><lastmod>2026-06-18</lastmod><priority>0.8</priority></url>
-  <url><loc>https://coinsayfasi.github.io/go/rentflow/</loc><lastmod>2026-06-18</lastmod><priority>0.8</priority></url>
-  <url><loc>https://coinsayfasi.github.io/go/routevia/</loc><lastmod>2026-06-18</lastmod><priority>0.8</priority></url>
   <url><loc>https://coinsayfasi.github.io/onebag/</loc><lastmod>2026-06-18</lastmod><priority>0.9</priority></url>
   <url><loc>https://coinsayfasi.github.io/onebag/baggage/</loc><lastmod>2026-06-18</lastmod><priority>0.8</priority></url>
   <url><loc>https://coinsayfasi.github.io/onebag/baggage/aegean-airlines/</loc><lastmod>2026-06-18</lastmod><priority>0.6</priority></url>
@@ -304,14 +301,19 @@
   <url><loc>https://coinsayfasi.github.io/rentflow/</loc><lastmod>2026-06-18</lastmod><priority>0.9</priority></url>
   <url><loc>https://coinsayfasi.github.io/rentflow/calculators/</loc><lastmod>2026-06-18</lastmod><priority>0.8</priority></url>
   <url><loc>https://coinsayfasi.github.io/rentflow/calculators/cash-on-cash-return-calculator/</loc><lastmod>2026-06-18</lastmod><priority>0.6</priority></url>
+  <url><loc>https://coinsayfasi.github.io/rentflow/calculators/gross-rent-multiplier-calculator/</loc><lastmod>2026-06-18</lastmod><priority>0.6</priority></url>
   <url><loc>https://coinsayfasi.github.io/rentflow/calculators/late-rent-fee-calculator/</loc><lastmod>2026-06-18</lastmod><priority>0.6</priority></url>
   <url><loc>https://coinsayfasi.github.io/rentflow/calculators/mortgage-payment-calculator/</loc><lastmod>2026-06-18</lastmod><priority>0.6</priority></url>
+  <url><loc>https://coinsayfasi.github.io/rentflow/calculators/net-operating-income-calculator/</loc><lastmod>2026-06-18</lastmod><priority>0.6</priority></url>
   <url><loc>https://coinsayfasi.github.io/rentflow/calculators/one-percent-rule-calculator/</loc><lastmod>2026-06-18</lastmod><priority>0.6</priority></url>
+  <url><loc>https://coinsayfasi.github.io/rentflow/calculators/operating-expense-ratio-calculator/</loc><lastmod>2026-06-18</lastmod><priority>0.6</priority></url>
   <url><loc>https://coinsayfasi.github.io/rentflow/calculators/prorated-rent-calculator/</loc><lastmod>2026-06-18</lastmod><priority>0.6</priority></url>
   <url><loc>https://coinsayfasi.github.io/rentflow/calculators/rent-increase-calculator/</loc><lastmod>2026-06-18</lastmod><priority>0.6</priority></url>
+  <url><loc>https://coinsayfasi.github.io/rentflow/calculators/rent-to-income-ratio-calculator/</loc><lastmod>2026-06-18</lastmod><priority>0.6</priority></url>
   <url><loc>https://coinsayfasi.github.io/rentflow/calculators/rental-cash-flow-calculator/</loc><lastmod>2026-06-18</lastmod><priority>0.6</priority></url>
   <url><loc>https://coinsayfasi.github.io/rentflow/calculators/rental-yield-calculator/</loc><lastmod>2026-06-18</lastmod><priority>0.6</priority></url>
   <url><loc>https://coinsayfasi.github.io/rentflow/calculators/security-deposit-calculator/</loc><lastmod>2026-06-18</lastmod><priority>0.6</priority></url>
+  <url><loc>https://coinsayfasi.github.io/rentflow/calculators/vacancy-rate-calculator/</loc><lastmod>2026-06-18</lastmod><priority>0.6</priority></url>
   <url><loc>https://coinsayfasi.github.io/rentflow/guides/</loc><lastmod>2026-06-18</lastmod><priority>0.8</priority></url>
   <url><loc>https://coinsayfasi.github.io/rentflow/guides/first-time-landlord-checklist/</loc><lastmod>2026-06-18</lastmod><priority>0.6</priority></url>
   <url><loc>https://coinsayfasi.github.io/rentflow/guides/how-to-be-a-good-landlord/</loc><lastmod>2026-06-18</lastmod><priority>0.6</priority></url>
