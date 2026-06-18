@@ -3,55 +3,191 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Tabserve — Mobile Apps</title>
+<title>Tabserve — Mobile Apps for Travel, Trips & Landlords</title>
 <meta name="google-site-verification" content="i9AU1Rv4CrAKWStE_hx_07L5e71ZDwwQ2jgeGy1Ak34" />
-<meta name="description" content="Mobile apps by Tabserve: OneBag (smart travel packing list), Routevia (Türkiye gezilecek yerler & rota), and RentFlow (property management for landlords).">
+<meta name="description" content="Tabserve builds focused mobile apps: OneBag (smart travel packing list & carry-on weight tracker), Routevia (Türkiye trip planner & places to visit), and RentFlow (property management for landlords). Plus free guides, calculators and tools.">
+<meta name="keywords" content="tabserve, mobile apps, OneBag, Routevia, RentFlow, travel packing list, trip planner, property management app, landlord app, free calculators">
+<link rel="canonical" href="https://coinsayfasi.github.io/">
+
+<meta property="og:type" content="website">
+<meta property="og:title" content="Tabserve — Mobile Apps for Travel, Trips & Landlords">
+<meta property="og:description" content="OneBag, Routevia and RentFlow — focused mobile apps, plus free guides, calculators and tools.">
+<meta property="og:url" content="https://coinsayfasi.github.io/">
+<meta property="og:site_name" content="Tabserve">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Tabserve — Mobile Apps">
+<meta name="twitter:description" content="OneBag, Routevia and RentFlow — focused mobile apps, plus free guides, calculators and tools.">
+
+<script type="application/ld+json">
+{
+  "@context":"https://schema.org","@type":"Organization",
+  "name":"Tabserve","url":"https://coinsayfasi.github.io/",
+  "email":"teknopattv@gmail.com",
+  "makesOffer":[
+    {"@type":"Offer","itemOffered":{"@type":"MobileApplication","name":"OneBag","applicationCategory":"TravelApplication"}},
+    {"@type":"Offer","itemOffered":{"@type":"MobileApplication","name":"Routevia","applicationCategory":"TravelApplication"}},
+    {"@type":"Offer","itemOffered":{"@type":"MobileApplication","name":"RentFlow","applicationCategory":"BusinessApplication"}}
+  ]
+}
+</script>
 <style>
+  :root{
+    --navy:#0B1F3A; --navy-d:#081628;
+    --ink:#0e1b2e; --muted:#5a6b80; --bg:#F5F7FA; --card:#fff; --line:#e6eaf0;
+    --onebag:#006241; --routevia:#0B1F3A; --rentflow:#059669;
+  }
   *{margin:0;padding:0;box-sizing:border-box}
+  html{scroll-behavior:smooth}
   body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Inter,sans-serif;
-       background:#0B1F3A;color:#fff;min-height:100vh;display:flex;align-items:center;justify-content:center;padding:40px 0}
-  .container{max-width:560px;width:100%;padding:0 24px;text-align:center}
-  h1{font-size:30px;letter-spacing:-.5px;margin-bottom:6px}
-  .subtitle{color:#94a3b8;margin-bottom:38px;font-size:15px}
-  .app-card{display:flex;align-items:center;gap:16px;background:rgba(255,255,255,.06);
-            border:1px solid rgba(255,255,255,.1);border-radius:16px;padding:18px 20px;margin-bottom:14px;
-            text-align:left;transition:transform .15s,border-color .15s,background .15s}
-  .app-card:hover{transform:translateY(-2px);border-color:rgba(255,255,255,.25);background:rgba(255,255,255,.09)}
-  .app-card .emoji{font-size:30px;width:52px;height:52px;flex:none;display:grid;place-items:center;
-                   background:rgba(255,255,255,.08);border-radius:13px}
-  .app-card .body{flex:1}
-  .app-card h2{font-size:18px;margin-bottom:2px}
-  .app-card p{color:#94a3b8;font-size:13.5px}
-  .app-card .arrow{color:#64748b;font-size:20px}
-  a.app-card{text-decoration:none;color:inherit}
-  .footer{margin-top:34px;color:#64748b;font-size:13px}
-  .footer a{color:#94a3b8;text-decoration:none}
+       background:var(--bg);color:var(--ink);line-height:1.6;-webkit-font-smoothing:antialiased}
+  .wrap{max-width:980px;margin:0 auto;padding:0 22px}
+  a{color:inherit;text-decoration:none}
+
+  /* Hero */
+  .hero{background:linear-gradient(160deg,var(--navy) 0%,var(--navy-d) 100%);color:#fff;
+        padding:72px 0 88px;text-align:center;position:relative;overflow:hidden}
+  .hero::after{content:"";position:absolute;inset:0;
+        background:radial-gradient(circle at 78% -12%,rgba(34,211,238,.22),transparent 46%),
+                   radial-gradient(circle at 12% 8%,rgba(16,185,129,.18),transparent 42%)}
+  .hero .wrap{position:relative;z-index:1}
+  .brand{display:inline-flex;align-items:center;gap:10px;font-weight:800;font-size:19px;
+         letter-spacing:-.3px;margin-bottom:30px}
+  .brand .dot{width:30px;height:30px;border-radius:8px;
+        background:linear-gradient(135deg,#22d3ee,#10b981);display:grid;place-items:center;
+        font-size:16px;box-shadow:0 6px 18px rgba(34,211,238,.35)}
+  .hero h1{font-size:clamp(30px,5.4vw,52px);font-weight:800;letter-spacing:-1.2px;line-height:1.08;
+        margin-bottom:16px}
+  .hero h1 .grad{background:linear-gradient(90deg,#22d3ee,#34d399);
+        -webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent}
+  .hero p.lead{font-size:clamp(16px,2.4vw,20px);color:rgba(255,255,255,.84);
+        max-width:560px;margin:0 auto}
+
+  /* App cards */
+  .apps{margin-top:-50px;position:relative;z-index:2;padding-bottom:8px}
+  .apps .wrap{display:grid;gap:16px}
+  .app{display:flex;align-items:center;gap:18px;background:var(--card);border:1px solid var(--line);
+       border-radius:20px;padding:22px 24px;box-shadow:0 12px 34px -18px rgba(11,31,58,.35);
+       transition:transform .18s,box-shadow .18s}
+  .app:hover{transform:translateY(-3px);box-shadow:0 22px 44px -20px rgba(11,31,58,.45)}
+  .app .ic{width:58px;height:58px;border-radius:16px;flex:none;display:grid;place-items:center;
+       font-size:30px;color:#fff}
+  .app.onebag .ic{background:linear-gradient(140deg,#10b981,var(--onebag))}
+  .app.routevia .ic{background:linear-gradient(140deg,#3b82f6,var(--routevia))}
+  .app.rentflow .ic{background:linear-gradient(140deg,#34d399,var(--rentflow))}
+  .app .body{flex:1;min-width:0}
+  .app h2{font-size:19px;letter-spacing:-.4px;margin-bottom:3px}
+  .app p{color:var(--muted);font-size:14px}
+  .app .tag{display:inline-block;font-size:11px;font-weight:700;letter-spacing:.4px;
+       text-transform:uppercase;color:var(--muted);margin-top:7px}
+  .app .arrow{color:#b6c1d2;font-size:22px;flex:none;transition:transform .18s,color .18s}
+  .app:hover .arrow{transform:translateX(4px);color:var(--routevia)}
+
+  /* Resources */
+  section.res{padding:60px 0 24px}
+  .eyebrow{color:#0ea5a3;font-weight:700;font-size:12.5px;letter-spacing:1.5px;
+       text-transform:uppercase;text-align:center;margin-bottom:9px}
+  h3.title{font-size:clamp(22px,3.4vw,30px);font-weight:800;letter-spacing:-.6px;
+       text-align:center;margin-bottom:8px}
+  .res .sub{color:var(--muted);text-align:center;max-width:560px;margin:0 auto 38px;font-size:15px}
+  .rgrid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:14px}
+  .rcard{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:22px 22px 18px}
+  .rcard .rh{display:flex;align-items:center;gap:9px;font-weight:800;font-size:15.5px;
+       letter-spacing:-.3px;margin-bottom:12px}
+  .rcard .rh .b{width:9px;height:9px;border-radius:3px}
+  .rcard.c1 .b{background:var(--onebag)} .rcard.c2 .b{background:#3b82f6} .rcard.c3 .b{background:var(--rentflow)}
+  .rcard a.link{display:block;color:var(--ink);font-size:14px;padding:7px 0;
+       border-top:1px solid var(--line);transition:color .15s,padding-left .15s}
+  .rcard a.link:first-of-type{border-top:none}
+  .rcard a.link:hover{color:#0ea5a3;padding-left:4px}
+  .rcard a.link span{color:#9aa7b8;font-size:12px}
+
+  footer{margin-top:46px;background:var(--navy-d);color:rgba(255,255,255,.66);
+       padding:40px 0;text-align:center;font-size:13.5px}
+  footer a{color:#9fe3c6}
+  footer .frow{display:flex;gap:18px;justify-content:center;flex-wrap:wrap;margin-bottom:14px}
 </style>
 </head>
 <body>
-  <div class="container">
-    <h1>Tabserve</h1>
-    <p class="subtitle">Mobile Apps</p>
 
-    <a class="app-card" href="/onebag/">
-      <span class="emoji">🎒</span>
-      <span class="body"><h2>OneBag</h2><p>Smart travel packing list — pack light, never forget.</p></span>
-      <span class="arrow">→</span>
-    </a>
-
-    <a class="app-card" href="/routevia-app/">
-      <span class="emoji">🧭</span>
-      <span class="body"><h2>Routevia</h2><p>Türkiye'nin gezilecek yerleri & akıllı rota planlama.</p></span>
-      <span class="arrow">→</span>
-    </a>
-
-    <a class="app-card" href="/rentflow/">
-      <span class="emoji">🏠</span>
-      <span class="body"><h2>RentFlow</h2><p>Property management for landlords — rent, tenants & more.</p></span>
-      <span class="arrow">→</span>
-    </a>
-
-    <p class="footer"><a href="mailto:teknopattv@gmail.com">teknopattv@gmail.com</a></p>
+<header class="hero">
+  <div class="wrap">
+    <div class="brand"><span class="dot">◆</span> Tabserve</div>
+    <h1>Focused apps that<br><span class="grad">solve real problems.</span></h1>
+    <p class="lead">Three carefully built mobile apps for travel, trip planning and landlords — plus free guides, calculators and tools.</p>
   </div>
+</header>
+
+<section class="apps">
+  <div class="wrap">
+    <a class="app onebag" href="/onebag/">
+      <span class="ic">🎒</span>
+      <span class="body">
+        <h2>OneBag</h2>
+        <p>Smart travel packing list & carry-on weight tracker — pack light, never forget a thing.</p>
+        <span class="tag">iOS · Android · Free</span>
+      </span>
+      <span class="arrow">→</span>
+    </a>
+
+    <a class="app routevia" href="/routevia-app/">
+      <span class="ic">🧭</span>
+      <span class="body">
+        <h2>Routevia</h2>
+        <p>Türkiye'nin gezilecek yerleri & yapay zekâ ile akıllı rota planlama.</p>
+        <span class="tag">iOS · Android · Ücretsiz</span>
+      </span>
+      <span class="arrow">→</span>
+    </a>
+
+    <a class="app rentflow" href="/rentflow/">
+      <span class="ic">🏠</span>
+      <span class="body">
+        <h2>RentFlow</h2>
+        <p>Property management for landlords — track rent, tenants, leases & expenses in one app.</p>
+        <span class="tag">iOS · Free</span>
+      </span>
+      <span class="arrow">→</span>
+    </a>
+  </div>
+</section>
+
+<section class="res">
+  <div class="wrap">
+    <p class="eyebrow">Free resources</p>
+    <h3 class="title">Guides, tools & calculators</h3>
+    <p class="sub">Hundreds of free, no-sign-up pages built from our apps' own data — packing lists, baggage limits, places to visit, landlord guides and calculators.</p>
+    <div class="rgrid">
+      <div class="rcard c1">
+        <div class="rh"><span class="b"></span> OneBag — Travel</div>
+        <a class="link" href="/onebag/packing-list/">Packing lists by destination <span>→</span></a>
+        <a class="link" href="/onebag/baggage/">Airline baggage allowance <span>→</span></a>
+        <a class="link" href="/onebag/baggage/compare/">Compare airline baggage <span>→</span></a>
+      </div>
+      <div class="rcard c2">
+        <div class="rh"><span class="b"></span> Routevia — Gezi</div>
+        <a class="link" href="/routevia-app/gezilecek-yerler/">Gezilecek yerler rehberi <span>→</span></a>
+        <a class="link" href="/routevia-app/">Akıllı rota planlama <span>→</span></a>
+      </div>
+      <div class="rcard c3">
+        <div class="rh"><span class="b"></span> RentFlow — Landlords</div>
+        <a class="link" href="/rentflow/calculators/">Free landlord calculators <span>→</span></a>
+        <a class="link" href="/rentflow/rent-increase-laws/">Rent increase laws by country <span>→</span></a>
+        <a class="link" href="/rentflow/guides/">Landlord guides <span>→</span></a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <div class="frow">
+      <a href="/onebag/">OneBag</a>
+      <a href="/routevia-app/">Routevia</a>
+      <a href="/rentflow/">RentFlow</a>
+    </div>
+    <p>© 2026 Tabserve · <a href="mailto:teknopattv@gmail.com">teknopattv@gmail.com</a></p>
+  </div>
+</footer>
+
 </body>
 </html>
