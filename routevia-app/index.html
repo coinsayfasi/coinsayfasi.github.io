@@ -1,12 +1,15 @@
 <!DOCTYPE html>
 <html lang="tr">
-<head>
+<head><!-- Google tag (gtag.js) --><script async src="https://www.googletagmanager.com/gtag/js?id=G-EDZWXP6EEG"></script><script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-EDZWXP6EEG');</script>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Routevia — Türkiye'nin Gezilecek Yerler ve Rota Planlama Uygulaması</title>
 <meta name="description" content="Routevia ile Türkiye'deki binlerce gezilecek yeri keşfet, yakınındaki yerleri gör, yapay zekâ ile rota planla ve etkinlikleri kaçırma. iOS ve Android'de ücretsiz.">
 <meta name="keywords" content="gezilecek yerler, türkiye gezi rehberi, rota planlama, yakınımdaki yerler, seyahat uygulaması, gezi planı, tatil rotası, şehir gezisi, yapay zeka rota, keşfet">
 <link rel="canonical" href="https://coinsayfasi.github.io/routevia-app/">
+<meta name="apple-itunes-app" content="app-id=6761003117">
+<link rel="stylesheet" href="/assets/landing.css">
+<script defer src="/assets/landing.js"></script>
 
 <meta property="og:type" content="website">
 <meta property="og:title" content="Routevia — Gezilecek Yerler & Akıllı Rota Planlama">
@@ -31,7 +34,8 @@
 </script>
 <style>
   :root{--navy:#0B1F3A;--navy-d:#081628;--blue:#3b82f6;--teal:#22d3ee;--gold:#fbbf24;
-        --bg:#F5F7FA;--ink:#0e1b2e;--muted:#5a6b80;--card:#fff;--line:#e6eaf0;}
+        --bg:#F5F7FA;--ink:#0e1b2e;--muted:#5a6b80;--card:#fff;--line:#e6eaf0;
+        --accent:#0B1F3A;--accent-d:#081628;--accent-2:#22d3ee;--accent-soft:#e8f0fe;}
   *{margin:0;padding:0;box-sizing:border-box}
   html{scroll-behavior:smooth}
   body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Inter,sans-serif;background:var(--bg);color:var(--ink);line-height:1.6;-webkit-font-smoothing:antialiased}
@@ -83,24 +87,62 @@
 <script defer src="/assets/analytics.js"></script></head>
 <body>
 
-<header class="hero">
-  <div class="wrap">
-    <div class="logo"><span class="mark">🧭</span> Routevia</div>
-    <h1>Türkiye'yi keşfet, rotanı akıllıca planla.</h1>
-    <p class="lead">Binlerce gezilecek yeri il ve ilçe bazında keşfet, yakınındakileri gör, yapay zekâ ile rotanı oluştur ve etkinlikleri kaçırma.</p>
-    <div class="stores">
-      <a class="store" href="https://apps.apple.com/app/id6761003117" aria-label="App Store'dan indir">
-        <svg viewBox="0 0 24 24" fill="#fff"><path d="M16.37 1.43c.06 1-.34 1.97-.94 2.66-.64.74-1.7 1.31-2.72 1.23-.12-.97.36-1.99.93-2.62.64-.72 1.76-1.26 2.73-1.27zM20 17.3c-.36.83-.53 1.2-1 1.94-.65 1.03-1.57 2.31-2.71 2.32-1.01.01-1.27-.66-2.64-.65-1.37 0-1.66.66-2.67.66-1.14.01-2.01-1.14-2.66-2.17C5.8 16.2 5.6 12.79 6.7 11c.78-1.28 2.02-2.03 3.18-2.03 1.18 0 1.92.66 2.9.66.95 0 1.53-.66 2.9-.66 1.04 0 2.14.57 2.92 1.55-2.57 1.41-2.15 5.08.4 6.18z"/></svg>
-        <span><small>App Store'dan</small>İndir</span>
-      </a>
-      <a class="store" href="https://play.google.com/store/apps/details?id=com.yunusgunes.routevia" aria-label="Google Play'den al">
-        <svg viewBox="0 0 24 24"><path fill="#34d399" d="M3.6 1.8 13 11.2 3.6 20.6c-.3-.2-.5-.6-.5-1.1V2.9c0-.5.2-.9.5-1.1z"/><path fill="#60a5fa" d="M16.8 7.9 13 11.2 3.7 1.7c.4-.2.9-.2 1.4.1l11.7 6.1z"/><path fill="#f472b6" d="M16.8 14.5 5.1 20.6c-.5.3-1 .3-1.4.1L13 11.2l3.8 3.3z"/><path fill="#fbbf24" d="m16.8 7.9 3.4 1.8c.9.5.9 1.8 0 2.3l-3.4 1.8-3.8-3.3 3.8-3.4z"/></svg>
-        <span><small>Google Play'den</small>Al</span>
-      </a>
+<nav class="lnav">
+  <div class="in">
+    <a class="lbrand" href="/routevia-app/"><span class="m">🧭</span> Routevia</a>
+    <a class="dl" href="https://apps.apple.com/app/id6761003117">İndir</a>
+  </div>
+</nav>
+
+<header class="hero lhero">
+  <div class="in">
+    <div class="htext">
+      <div class="rate"><span class="stars">★★★★★</span> <b>4.9</b> <span>· 25 değerlendirme</span></div>
+      <h1>Türkiye'yi keşfet, rotanı akıllıca planla.</h1>
+      <p class="lead">Binlerce gezilecek yeri il ve ilçe bazında keşfet, yakınındakileri gör, yapay zekâ ile rotanı oluştur ve etkinlikleri kaçırma.</p>
+      <div class="stores">
+        <a class="store" href="https://apps.apple.com/app/id6761003117" aria-label="App Store'dan indir">
+          <svg viewBox="0 0 24 24" fill="#fff"><path d="M16.37 1.43c.06 1-.34 1.97-.94 2.66-.64.74-1.7 1.31-2.72 1.23-.12-.97.36-1.99.93-2.62.64-.72 1.76-1.26 2.73-1.27zM20 17.3c-.36.83-.53 1.2-1 1.94-.65 1.03-1.57 2.31-2.71 2.32-1.01.01-1.27-.66-2.64-.65-1.37 0-1.66.66-2.67.66-1.14.01-2.01-1.14-2.66-2.17C5.8 16.2 5.6 12.79 6.7 11c.78-1.28 2.02-2.03 3.18-2.03 1.18 0 1.92.66 2.9.66.95 0 1.53-.66 2.9-.66 1.04 0 2.14.57 2.92 1.55-2.57 1.41-2.15 5.08.4 6.18z"/></svg>
+          <span><small>App Store'dan</small>İndir</span>
+        </a>
+        <a class="store" href="https://play.google.com/store/apps/details?id=com.yunusgunes.routevia" aria-label="Google Play'den al">
+          <svg viewBox="0 0 24 24"><path fill="#34d399" d="M3.6 1.8 13 11.2 3.6 20.6c-.3-.2-.5-.6-.5-1.1V2.9c0-.5.2-.9.5-1.1z"/><path fill="#60a5fa" d="M16.8 7.9 13 11.2 3.7 1.7c.4-.2.9-.2 1.4.1l11.7 6.1z"/><path fill="#f472b6" d="M16.8 14.5 5.1 20.6c-.5.3-1 .3-1.4.1L13 11.2l3.8 3.3z"/><path fill="#fbbf24" d="m16.8 7.9 3.4 1.8c.9.5.9 1.8 0 2.3l-3.4 1.8-3.8-3.3 3.8-3.4z"/></svg>
+          <span><small>Google Play'den</small>Al</span>
+        </a>
+      </div>
+      <p class="trust">İndirmesi ücretsiz · 7 gün ücretsiz Pro deneme · Türkiye geneli</p>
     </div>
-    <p class="trust">İndirmesi ücretsiz · 7 gün ücretsiz Pro deneme · Türkiye geneli</p>
+    <div class="hmock">
+      <div class="phone"><div class="scr">
+        <div class="stop">
+          <div class="k">Gezi rotası · 2 gün</div>
+          <div class="v">İstanbul</div>
+          <div class="stat"><div class="lab"><span>Rota</span><span>12 yer</span></div><div class="bar"><i style="width:80%"></i></div></div>
+        </div>
+        <div class="body">
+          <div class="row"><span class="ic">📍</span><div class="tx"><b>Ayasofya</b><s>Tarihi · 1. durak</s></div></div>
+          <div class="row"><span class="ic">📍</span><div class="tx"><b>Topkapı Sarayı</b><s>Müze · 2. durak</s></div></div>
+          <div class="row"><span class="ic">📍</span><div class="tx"><b>Kapalıçarşı</b><s>Çarşı · 3. durak</s></div></div>
+          <div class="row"><span class="ic">⭐</span><div class="tx"><b>Galata Kulesi</b><s>Manzara · favori</s></div></div>
+        </div>
+        <div class="pill">🤖 Rotayı oluştur</div>
+      </div></div>
+    </div>
   </div>
 </header>
+
+<section class="hiw">
+  <div class="wrap">
+    <p class="eyebrow">Nasıl çalışır</p>
+    <h2>Üç adımda gezi rotan hazır</h2>
+    <p class="sub">Keşfet, seç, yapay zekâ rotanı kursun — gerisini sen yaşa.</p>
+    <div class="steps">
+      <div class="step reveal"><h3>Keşfet</h3><p>İl ve ilçe bazında binlerce gezilecek yeri ve yakınındakileri gör.</p></div>
+      <div class="step reveal"><h3>Seç</h3><p>İlgini çeken yerleri favorilerine ekle, gezi listeni oluştur.</p></div>
+      <div class="step reveal"><h3>Rotanı al</h3><p>Yapay zekâ sürene ve ilgine göre en mantıklı rotayı çıkarsın.</p></div>
+    </div>
+  </div>
+</section>
 
 <section>
   <div class="wrap">
@@ -108,14 +150,14 @@
     <h2>Gezini planlamanın en akıllı yolu</h2>
     <p class="sub">Nereye gideceğini bilmiyor musun? Routevia senin için keşfeder, planlar ve yol gösterir.</p>
     <div class="grid">
-      <div class="feat"><div class="ic">📍</div><h3>Binlerce gezilecek yer</h3><p>Türkiye'nin dört bir yanındaki tarihi, doğal ve popüler noktaları il ve ilçe bazında keşfet.</p></div>
-      <div class="feat"><div class="ic">🧭</div><h3>Yakınındakiler</h3><p>Bulunduğun konuma göre çevredeki gezilecek yerleri anında gör — yeni şehirde kaybolma.</p></div>
-      <div class="feat"><div class="ic">🤖</div><h3>Yapay zekâ ile rota</h3><p>İlgi alanına ve süreye göre yapay zekâ sana özel bir gezi rotası oluştursun.</p></div>
-      <div class="feat"><div class="ic">🎉</div><h3>Etkinlikler</h3><p>Gideceğin yerdeki güncel etkinlikleri ve önemli günleri kaçırma.</p></div>
-      <div class="feat"><div class="ic">🔔</div><h3>Konum hatırlatmaları</h3><p>İlgilendiğin bir yerin yakınına geldiğinde Routevia seni nazikçe uyarır.</p></div>
-      <div class="feat"><div class="ic">⭐</div><h3>Favoriler & listeler</h3><p>Gitmek istediğin yerleri kaydet, kendi gezi listeni oluştur ve planına ekle.</p></div>
-      <div class="feat"><div class="ic">🗺️</div><h3>Sınırsız rota<span class="pro-tag">PRO</span></h3><p>Pro ile sınırsız rota planla, gelişmiş öneriler ve reklamsız deneyimin keyfini çıkar.</p></div>
-      <div class="feat"><div class="ic">👥</div><h3>Topluluk</h3><p>Diğer gezginlerin keşiflerinden ilham al, sen de katkıda bulun.</p></div>
+      <div class="feat reveal"><div class="ic">📍</div><h3>Binlerce gezilecek yer</h3><p>Türkiye'nin dört bir yanındaki tarihi, doğal ve popüler noktaları il ve ilçe bazında keşfet.</p></div>
+      <div class="feat reveal"><div class="ic">🧭</div><h3>Yakınındakiler</h3><p>Bulunduğun konuma göre çevredeki gezilecek yerleri anında gör — yeni şehirde kaybolma.</p></div>
+      <div class="feat reveal"><div class="ic">🤖</div><h3>Yapay zekâ ile rota</h3><p>İlgi alanına ve süreye göre yapay zekâ sana özel bir gezi rotası oluştursun.</p></div>
+      <div class="feat reveal"><div class="ic">🎉</div><h3>Etkinlikler</h3><p>Gideceğin yerdeki güncel etkinlikleri ve önemli günleri kaçırma.</p></div>
+      <div class="feat reveal"><div class="ic">🔔</div><h3>Konum hatırlatmaları</h3><p>İlgilendiğin bir yerin yakınına geldiğinde Routevia seni nazikçe uyarır.</p></div>
+      <div class="feat reveal"><div class="ic">⭐</div><h3>Favoriler & listeler</h3><p>Gitmek istediğin yerleri kaydet, kendi gezi listeni oluştur ve planına ekle.</p></div>
+      <div class="feat reveal"><div class="ic">🗺️</div><h3>Sınırsız rota<span class="pro-tag">PRO</span></h3><p>Pro ile sınırsız rota planla, gelişmiş öneriler ve reklamsız deneyimin keyfini çıkar.</p></div>
+      <div class="feat reveal"><div class="ic">👥</div><h3>Topluluk</h3><p>Diğer gezginlerin keşiflerinden ilham al, sen de katkıda bulun.</p></div>
     </div>
   </div>
 </section>
