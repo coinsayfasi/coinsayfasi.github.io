@@ -1,10 +1,13 @@
 name: Pinterest daily pins
 
 on:
-  # ✅ Cron AÇIK (2026-06-22, token + secret'lar yerinde). Isınma fazı: 12 pin/gün.
-  schedule:
-    - cron: "0 18 * * *"   # 21:00 TR → Routevia (Türkiye akşam prime)
-    - cron: "0 20 * * *"   # 22:00 CET / 15:00 EST → OneBag + RentFlow (AB+ABD)
+  # ⚠️ Cron KAPALI — Trial erişimi production'da pin atmıyor (API err code 29).
+  # Pinterest "Upgrade access" (Standard) ONAYI gelince schedule'ı yorumdan çıkar:
+  #   token + secret'lar (REFRESH_TOKEN/APP_ID/APP_SECRET/PEXELS) ZATEN yerinde,
+  #   başka iş yok → 12 pin/gün başlar.
+  # schedule:
+  #   - cron: "0 18 * * *"   # 21:00 TR → Routevia (Türkiye akşam prime)
+  #   - cron: "0 20 * * *"   # 22:00 CET / 15:00 EST → OneBag + RentFlow (AB+ABD)
   workflow_dispatch:        # manuel çalıştırma — PIN_APPS boş = hepsi
 
 permissions:
