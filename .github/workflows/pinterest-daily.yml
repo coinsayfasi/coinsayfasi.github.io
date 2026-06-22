@@ -1,14 +1,10 @@
 name: Pinterest daily pins
 
 on:
-  # ⚠️ Cron KAPALI. Pinterest write token onayı gelince:
-  #   1) python3 _automation/pinterest/get_token.py url   → izin ver, code al
-  #   2) PINTEREST_APP_SECRET=xxx python3 .../get_token.py token <KOD>
-  #   3) gh secret set PINTEREST_REFRESH_TOKEN / PINTEREST_APP_ID / PINTEREST_APP_SECRET
-  #   4) aşağıdaki "schedule:" + 2 cron satırını yorumdan çıkar. Saat hedefleme:
-  # schedule:
-  #   - cron: "0 18 * * *"   # 21:00 TR → Routevia (Türkiye akşam prime)
-  #   - cron: "0 20 * * *"   # 22:00 CET / 15:00 EST → OneBag + RentFlow (AB+ABD)
+  # ✅ Cron AÇIK (2026-06-22, token + secret'lar yerinde). Isınma fazı: 12 pin/gün.
+  schedule:
+    - cron: "0 18 * * *"   # 21:00 TR → Routevia (Türkiye akşam prime)
+    - cron: "0 20 * * *"   # 22:00 CET / 15:00 EST → OneBag + RentFlow (AB+ABD)
   workflow_dispatch:        # manuel çalıştırma — PIN_APPS boş = hepsi
 
 permissions:
@@ -35,9 +31,9 @@ jobs:
         id: t
         run: |
           case "${{ github.event.schedule }}" in
-            "0 18 * * *") echo "apps=routevia"        >> "$GITHUB_OUTPUT"; echo "n=2" >> "$GITHUB_OUTPUT" ;;  # TR akşam
-            "0 20 * * *") echo "apps=onebag,rentflow" >> "$GITHUB_OUTPUT"; echo "n=2" >> "$GITHUB_OUTPUT" ;;  # AB+ABD
-            *)            echo "apps="                >> "$GITHUB_OUTPUT"; echo "n=3" >> "$GITHUB_OUTPUT" ;;  # manuel = hepsi
+            "0 18 * * *") echo "apps=routevia"        >> "$GITHUB_OUTPUT"; echo "n=5" >> "$GITHUB_OUTPUT" ;;  # TR akşam → Routevia 5
+            "0 20 * * *") echo "apps=onebag,rentflow" >> "$GITHUB_OUTPUT"; echo "n=7" >> "$GITHUB_OUTPUT" ;;  # AB+ABD → OneBag ~4 + RentFlow ~3
+            *)            echo "apps="                >> "$GITHUB_OUTPUT"; echo "n=1" >> "$GITHUB_OUTPUT" ;;  # manuel = TEK deneme pini
           esac
 
       - name: Post pins
