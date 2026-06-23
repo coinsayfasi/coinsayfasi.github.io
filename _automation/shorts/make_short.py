@@ -58,9 +58,9 @@ THEMES = {
         "store": f"{GO}/routevia/",
         "intro": "{place}'da görmeniz gereken en güzel {n} yer.",
         "item": "{i}. {name}.",
-        "cta_say": "Tüm rotayı planlamak için Routevia'yı ücretsiz indir.",
-        "cta_card": "Tüm rotayı\nRoutevia'da keşfet",
-        "cta_sub": "Ücretsiz indir → App Store & Google Play",
+        "cta_say": "{place}'da gezilecek yerlerin tamamı ve rota yorumlarda. Routevia'yı ücretsiz indir.",
+        "cta_card": "Tüm liste\nyorumlarda",
+        "cta_sub": "Routevia — ücretsiz indir",
         "title": "{place} Gezilecek Yerler 🚗 En Güzel {n} Yer | Routevia #shorts",
         "intro_sub": "Gezilecek En Güzel {n} Yer",
         "tags": ["{place} gezilecek yerler", "{place} gezi rehberi", "{place} tatil",
@@ -77,9 +77,9 @@ THEMES = {
         "store": f"{GO}/onebag/",
         "intro": "What to pack for {place} — the essentials.",
         "item": "{i}. {name}.",
-        "cta_say": "Build your full packing list free with OneBag.",
-        "cta_card": "Pack smart\nwith OneBag",
-        "cta_sub": "Free download → App Store & Google Play",
+        "cta_say": "The full {place} packing list is in the comments. Download OneBag free.",
+        "cta_card": "Full list\nin comments",
+        "cta_sub": "OneBag — free download",
         "title": "What to Pack for {place} 🧳 Carry-On Essentials | OneBag #shorts",
         "intro_sub": "Carry-On Packing Essentials",
         "tags": ["what to pack for {place}", "{place} packing list", "{place} travel",
@@ -96,9 +96,9 @@ THEMES = {
         "store": f"{GO}/rentflow/",
         "intro": "{place} — {n} key steps for landlords.",
         "item": "{i}. {name}.",
-        "cta_say": "Manage rent, tenants and leases in one app with RentFlow.",
-        "cta_card": "Manage rentals\nwith RentFlow",
-        "cta_sub": "Free download → App Store",
+        "cta_say": "The full landlord checklist is in the comments. Download RentFlow free.",
+        "cta_card": "Full checklist\nin comments",
+        "cta_sub": "RentFlow — free download",
         "title": "{place} 🏠 {n} Tips for Landlords | RentFlow #shorts",
         "intro_sub": "{n} Tips for Landlords",
         "tags": ["{place}", "landlord tips", "property management", "rental tips",
@@ -286,14 +286,15 @@ def dur(path):
 
 
 def segment(card_png, audio, idx):
-    d = dur(audio) + 0.7
+    # Konuşmaya baş (0.5s) + son (0.8s) sessizlik payı → crossfade konuşmayı YEMESİN.
+    d = dur(audio) + 1.3
     fr = int(d * 30)
     out = SCRATCH / f"seg_{idx}.mp4"
     vf = (f"scale=1188:2112,zoompan=z='min(1+0.0007*on,1.12)':d={fr}"
           f":x='iw/2-(iw/zoom/2)':y='ih/2-(ih/zoom/2)':s={W}x{H}:fps=30,format=yuv420p")
     subprocess.run(["ffmpeg", "-y", "-loop", "1", "-i", card_png, "-i", audio, "-t", f"{d:.2f}",
-                    "-vf", vf, "-c:v", "libx264", "-crf", "20", "-c:a", "aac", "-ar", "44100",
-                    "-ac", "2", "-pix_fmt", "yuv420p", "-shortest", str(out)],
+                    "-vf", vf, "-af", "adelay=500|500,apad", "-c:v", "libx264", "-crf", "20",
+                    "-c:a", "aac", "-ar", "44100", "-ac", "2", "-pix_fmt", "yuv420p", str(out)],
                    check=True, capture_output=True)
     return str(out), d
 
@@ -433,7 +434,7 @@ def build(theme, page_path, out, source_url=None):
         segs.append(segment(card(theme, "poi", place, name=name, num=i, total=len(points), photo=bg),
                             tts(theme, theme["item"].format(i=i, name=name), idx), idx)); idx += 1
     segs.append(segment(card(theme, "cta", place),
-                        tts(theme, theme["cta_say"], idx), idx)); idx += 1
+                        tts(theme, theme["cta_say"].format(place=place), idx), idx)); idx += 1
 
     voice = str(SCRATCH / "voice.mp4")
     total = assemble(segs, voice)
