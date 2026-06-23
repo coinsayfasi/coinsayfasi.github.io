@@ -437,9 +437,13 @@ def build(theme, page_path, out, source_url=None):
 
     voice = str(SCRATCH / "voice.mp4")
     total = assemble(segs, voice)
-    music = str(SCRATCH / "music.wav")
-    make_music(total, music)
-    mix_music(voice, music, out)
+    user_music = HERE / "assets" / "music.mp3"
+    if user_music.exists():                       # SADECE telif-temiz gerçek müzik varsa
+        music = str(SCRATCH / "music.wav")
+        make_music(total, music)
+        mix_music(voice, music, out)
+    else:                                         # müzik yok → temiz seslendirme (sentetik bip YOK)
+        shutil.copy(voice, out)
 
     meta = build_meta(theme, place, points, attrs)
     Path(out).with_suffix(".meta.json").write_text(json.dumps(meta, ensure_ascii=False), encoding="utf-8")
