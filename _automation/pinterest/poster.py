@@ -230,7 +230,18 @@ def pexels_query(app: str, title: str) -> str:
     if app == "onebag":
         q = re.split(r"\s+(?:Packing|packing|—|-)", title)[0].strip()
         return f"{q} travel" if q else "travel"
-    return "apartment real estate"  # rentflow
+    # rentflow — başlığa göre alakalı + çeşitli görsel (hep aynı foto olmasın)
+    tl = title.lower()
+    if any(k in tl for k in ("calculat", "yield", "cash flow", "cap rate", "roi")):
+        return random.choice(["real estate finance", "house money calculator", "property investment"])
+    if "tax" in tl:
+        return random.choice(["tax paperwork desk", "accounting documents"])
+    if any(k in tl for k in ("tenant", "screen", "lease")):
+        return random.choice(["apartment living room", "modern apartment interior", "renting home"])
+    if any(k in tl for k in ("law", "increase", "rent control")):
+        return random.choice(["apartment building exterior", "city apartments"])
+    return random.choice(["rental property", "modern apartment", "house keys real estate",
+                          "real estate investing", "for rent sign", "landlord property"])
 
 
 def _tr_loc(name: str) -> str:
@@ -246,7 +257,25 @@ def _tr_loc(name: str) -> str:
     return f"{name}'{d}{v}"
 
 
-def _extract_entity(theme: dict, title: str) -> str:
+def _routevia_province(url: str) -> str:
+    """Routevia ilçe URL'sinden (.../gezilecek-yerler/<il>/<ilçe>/) il'in DOĞRU
+    (Türkçe) adını il index sayfasının başlığından çek. İl sayfasıysa/bulamazsa ''."""
+    parts = re.sub(r"^https?://[^/]+/", "", url).strip("/").split("/")
+    if "gezilecek-yerler" not in parts:
+        return ""
+    i = parts.index("gezilecek-yerler")
+    sub = parts[i + 1:]
+    if len(sub) < 2:           # tek segment = il sayfası (ilçe değil)
+        return ""
+    prov_local = REPO_ROOT.joinpath(*parts[:i + 1], sub[0], "index.html")
+    if prov_local.exists():
+        m = re.search(r"<title>(.*?)</title>", prov_local.read_text(encoding="utf-8", errors="ignore"), re.I | re.S)
+        if m:
+            return re.split(r"\s+Gezilecek\b", _html.unescape(m.group(1)), flags=re.I)[0].strip()
+    return ""
+
+
+def _extract_entity(theme: dict, title: str, url: str = "") -> str:
     """Sayfa başlığından niş varlığı çıkar (ülke/havayolu/şehir). Bulamazsa ''."""
     m = theme["match"]
     if "packing-list" in m:
@@ -255,11 +284,17 @@ def _extract_entity(theme: dict, title: str) -> str:
     if "baggage" in m:
         return re.split(r"\s+Baggage\b", title, flags=re.I)[0].strip()
     if "gezilecek-yerler" in m:
-        return re.split(r"\s+Gezilecek\b", title, flags=re.I)[0].strip()
+        base = re.split(r"\s+Gezilecek\b", title, flags=re.I)[0].strip()
+        # Generic ilçe ("Merkez") tek başına anlamsız → il adını başına koy.
+        if base.lower() in ("merkez", "merkez i̇lçesi", "merkez ilçesi"):
+            prov = _routevia_province(url)
+            if prov:
+                return f"{prov} {base}"
+        return base
     return ""
 
 
-def build_title(theme: dict, meta: dict) -> str:
+def build_title(theme: dict, meta: dict, url: str = "") -> str:
     """Dönüşümlü, SEO-zengin pin başlığı: niş varlık (ülke/havayolu/şehir) +
     dönen yüksek-hacim head keyword şablonu. Şablon yoksa / varlık çıkmazsa sayfa
     başlığına düşer. Sayfanın kendi (sayı-zengin) başlığı da rotasyona dahildir."""
@@ -267,7 +302,7 @@ def build_title(theme: dict, meta: dict) -> str:
     templates = theme.get("titles")
     if not templates:
         return title[:100]
-    entity = _extract_entity(theme, title)
+    entity = _extract_entity(theme, title, url)
     if not entity or len(entity) > 40:
         return title[:100]
     # Sayfanın orijinal başlığı da seçeneklerden biri (çeşitlilik + sayı-zengin varyant).
@@ -289,7 +324,7 @@ def build_description(theme: dict, meta: dict, title: str | None = None) -> str:
         slug = re.sub(r"[^0-9a-zçğıöşü]+", "", kw.strip().lower())
         if 3 <= len(slug) <= 28 and f"#{slug}" not in kw_tags:
             kw_tags.append(f"#{slug}")
-        if len(kw_tags) >= 8:
+        if len(kw_tags) >= 6:
             break
     tags = " ".join(dict.fromkeys(kw_tags + theme["tags"]))  # dedupe, sıra korunur
     # Gövde: BAŞLIK (ana keyword, öne) + sayfa açıklaması + gerçek paragraflar + değer.
@@ -304,8 +339,8 @@ def build_description(theme: dict, meta: dict, title: str | None = None) -> str:
     body = f"{title}. {rest}".strip() if rest else title
     # CTA + hashtag'ler HER ZAMAN korunur (keşif değeri); gövde sığacak şekilde kısalır.
     suffix = f"\n\n{cta}\n\n{tags}"
-    max_body = 790 - len(suffix)
-    return (body[:max_body].rstrip() + suffix)  # Pinterest açıklama limiti = 800
+    max_body = 490 - len(suffix)
+    return (body[:max_body].rstrip() + suffix)  # hedef ≤500 karakter (etiket dahil)
 
 
 def pick_candidates(state: dict) -> list[dict]:
@@ -364,7 +399,7 @@ def main() -> None:
         theme, meta = c["theme"], page_meta(c["local"])
         if not meta["title"]:
             continue
-        pin_title = build_title(theme, meta)          # dönüşümlü SEO başlık
+        pin_title = build_title(theme, meta, c["url"])  # dönüşümlü SEO başlık
         desc = build_description(theme, meta, pin_title)
         photo = fetch_pexels_photo(pexels_query(theme["app"], meta["title"]), PEXELS_KEY)
         img = build_pin_image(pin_title, theme["app"],

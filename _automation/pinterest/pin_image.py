@@ -8,6 +8,7 @@ from __future__ import annotations
 
 import io
 import os
+import random
 import textwrap
 from typing import Optional
 
@@ -52,14 +53,15 @@ def fetch_pexels_photo(query: str, api_key: Optional[str]) -> Optional[Image.Ima
         r = requests.get(
             "https://api.pexels.com/v1/search",
             headers={"Authorization": api_key},
-            params={"query": query, "orientation": "portrait", "per_page": 5, "size": "large"},
+            params={"query": query, "orientation": "portrait", "per_page": 15, "size": "large"},
             timeout=20,
         )
         r.raise_for_status()
         photos = r.json().get("photos", [])
         if not photos:
             return None
-        src = photos[0]["src"].get("portrait") or photos[0]["src"].get("large")
+        photo = random.choice(photos)  # aynı sorgu bile gelse görsel çeşitlensin
+        src = photo["src"].get("portrait") or photo["src"].get("large")
         img = requests.get(src, timeout=20)
         img.raise_for_status()
         return Image.open(io.BytesIO(img.content)).convert("RGB")
