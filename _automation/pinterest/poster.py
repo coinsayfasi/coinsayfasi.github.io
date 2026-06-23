@@ -72,6 +72,12 @@ THEMES = [
         ],
         "tags": ["#gezilecekyerler", "#seyahat", "#tatil", "#türkiye", "#routevia"],
         "lang": "tr",
+        "titles": [
+            "{e} Gezilecek Yerler — Gezi Rehberi",
+            "{e} Gezilecek Yerler — En Güzel Rotalar",
+            "{eloc} Nereye Gidilir? Gezi Rehberi",
+            "{e} Gezi Rotası — Görülecek Yerler",
+        ],
     },
     {
         "match": "/onebag/packing-list/",
@@ -86,6 +92,13 @@ THEMES = [
         ],
         "tags": ["#packinglist", "#travel", "#traveltips", "#onebag", "#packing"],
         "lang": "en",
+        "titles": [
+            "What to Pack for {e} — Carry-On Packing List",
+            "{e} Packing List — Carry-On Essentials",
+            "What to Pack for {e}: Carry-On Only Guide",
+            "{e} Travel Packing List — Pack Light",
+            "{e} Travel Checklist — Carry-On Packing Tips",
+        ],
     },
     {
         "match": "/rentflow/guides/",
@@ -115,6 +128,12 @@ THEMES = [
         ],
         "tags": ["#carryon", "#baggage", "#flighttips", "#travel", "#onebag"],
         "lang": "en",
+        "titles": [
+            "{e} Baggage Allowance — Carry-On & Checked Limits",
+            "{e} Carry-On Size & Weight Limit",
+            "{e} Hand Luggage Rules — Avoid Baggage Fees",
+            "{e} Cabin Bag Allowance Guide",
+        ],
     },
     {
         "match": "/rentflow/rent-increase-laws/",
@@ -214,7 +233,50 @@ def pexels_query(app: str, title: str) -> str:
     return "apartment real estate"  # rentflow
 
 
-def build_description(theme: dict, meta: dict) -> str:
+def _tr_loc(name: str) -> str:
+    """Türkçe bulunma hâli eki (ünlü+ünsüz uyumlu): Adana→Adana'da, İzmir→İzmir'de,
+    Sinop→Sinop'ta. Proper-noun apostrof + da/de/ta/te."""
+    low = name.replace("İ", "i").replace("I", "ı").lower()
+    back, front = "aıou", "eiöü"
+    last_vowel = next((c for c in reversed(low) if c in back or c in front), "")
+    if not last_vowel:
+        return f"{name}'de"
+    d = "t" if low[-1] in "fstkçşhp" else "d"
+    v = "a" if last_vowel in back else "e"
+    return f"{name}'{d}{v}"
+
+
+def _extract_entity(theme: dict, title: str) -> str:
+    """Sayfa başlığından niş varlığı çıkar (ülke/havayolu/şehir). Bulamazsa ''."""
+    m = theme["match"]
+    if "packing-list" in m:
+        mm = re.search(r"(?:What to Pack for|Pack for)\s+(.+?)\s*(?:[—\-(]|$)", title, re.I)
+        return mm.group(1).strip() if mm else ""
+    if "baggage" in m:
+        return re.split(r"\s+Baggage\b", title, flags=re.I)[0].strip()
+    if "gezilecek-yerler" in m:
+        return re.split(r"\s+Gezilecek\b", title, flags=re.I)[0].strip()
+    return ""
+
+
+def build_title(theme: dict, meta: dict) -> str:
+    """Dönüşümlü, SEO-zengin pin başlığı: niş varlık (ülke/havayolu/şehir) +
+    dönen yüksek-hacim head keyword şablonu. Şablon yoksa / varlık çıkmazsa sayfa
+    başlığına düşer. Sayfanın kendi (sayı-zengin) başlığı da rotasyona dahildir."""
+    title = _html.unescape(meta["title"]).strip()
+    templates = theme.get("titles")
+    if not templates:
+        return title[:100]
+    entity = _extract_entity(theme, title)
+    if not entity or len(entity) > 40:
+        return title[:100]
+    # Sayfanın orijinal başlığı da seçeneklerden biri (çeşitlilik + sayı-zengin varyant).
+    choice = random.choice(list(templates) + ["{__orig__}"])
+    out = title if choice == "{__orig__}" else choice.format(e=entity, eloc=_tr_loc(entity))
+    return out[:100]  # Pinterest başlık limiti 100
+
+
+def build_description(theme: dict, meta: dict, title: str | None = None) -> str:
     """SEO-maks Pinterest açıklaması. Hem Pinterest aramasında hem Google'da (pin
     sayfası indeksli) sıralatmak için: ANA keyword'ü (başlık) başa al → doğal,
     keyword-zengin okunaklı gövde (gerçek sayfa içeriği) → makul hashtag seti.
@@ -231,7 +293,7 @@ def build_description(theme: dict, meta: dict) -> str:
             break
     tags = " ".join(dict.fromkeys(kw_tags + theme["tags"]))  # dedupe, sıra korunur
     # Gövde: BAŞLIK (ana keyword, öne) + sayfa açıklaması + gerçek paragraflar + değer.
-    title = _html.unescape(meta["title"]).strip()
+    title = _html.unescape(title or meta["title"]).strip()
     rest_parts, seen = [], {title.lower()}
     for p in (meta["desc"], meta.get("intro"), theme["board_desc"]):
         p = _html.unescape(p or "").strip()
@@ -302,25 +364,26 @@ def main() -> None:
         theme, meta = c["theme"], page_meta(c["local"])
         if not meta["title"]:
             continue
-        desc = build_description(theme, meta)
+        pin_title = build_title(theme, meta)          # dönüşümlü SEO başlık
+        desc = build_description(theme, meta, pin_title)
         photo = fetch_pexels_photo(pexels_query(theme["app"], meta["title"]), PEXELS_KEY)
-        img = build_pin_image(meta["title"], theme["app"],
+        img = build_pin_image(pin_title, theme["app"],
                               subtitle=random.choice(theme["ctas"]), photo=photo)
 
         store_link = theme["store"]
-        print(f"\n• [{theme['app']}] {meta['title']}")
+        print(f"\n• [{theme['app']}] {pin_title}")
         print(f"  board : {theme['board']}")
         print(f"  link  : {store_link}  (source page: {c['url']})")
         print(f"  desc  : {desc[:120]}...")
 
         if dry:
-            slug = re.sub(r"[^a-z0-9]+", "-", meta["title"].lower())[:50]
+            slug = re.sub(r"[^a-z0-9]+", "-", pin_title.lower())[:50]
             (PREVIEW_DIR / f"{theme['app']}-{slug}.png").write_bytes(img)
         else:
             if theme["board"] not in board_ids:
                 board_ids[theme["board"]] = client.ensure_board(theme["board"], theme["board_desc"])
             try:
-                pid = client.create_pin(board_ids[theme["board"]], meta["title"], desc,
+                pid = client.create_pin(board_ids[theme["board"]], pin_title, desc,
                                         store_link, img, alt_text=meta["desc"])
                 print(f"  ✓ pinned: {pid}")
                 state["pinned"].append(c["url"])
