@@ -1,0 +1,50 @@
+name: Pinterest cleanup
+
+on:
+  workflow_dispatch:        # sadece manuel — eski/test pinlerini sil + state sıfırla
+    inputs:
+      pin_ids:
+        description: "Silinecek pin id'leri (virgüllü)"
+        default: ""
+      reset_state:
+        description: "state.json sıfırla (1 = evet)"
+        default: "1"
+
+permissions:
+  contents: write
+
+concurrency:
+  group: pinterest-daily      # poster ile aynı grup → çakışmasın
+  cancel-in-progress: false
+
+jobs:
+  cleanup:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Install deps
+        run: pip install -r _automation/pinterest/requirements.txt
+      - name: Delete pins + reset state
+        env:
+          PINTEREST_REFRESH_TOKEN: ${{ secrets.PINTEREST_REFRESH_TOKEN }}
+          PINTEREST_APP_ID: ${{ secrets.PINTEREST_APP_ID }}
+          PINTEREST_APP_SECRET: ${{ secrets.PINTEREST_APP_SECRET }}
+          PINTEREST_ACCESS_TOKEN: ${{ secrets.PINTEREST_ACCESS_TOKEN }}
+          CLEANUP_PIN_IDS: ${{ github.event.inputs.pin_ids }}
+          RESET_STATE: ${{ github.event.inputs.reset_state }}
+        working-directory: _automation/pinterest
+        run: python cleanup_pins.py
+      - name: Commit state
+        run: |
+          if [[ -n "$(git status --porcelain _automation/pinterest/state.json)" ]]; then
+            git config user.name  "github-actions[bot]"
+            git config user.email "github-actions[bot]@users.noreply.github.com"
+            git add _automation/pinterest/state.json
+            git commit -m "chore(pinterest): cleanup pins + reset state [skip ci]"
+            git push
+          else
+            echo "state değişmedi."
+          fi

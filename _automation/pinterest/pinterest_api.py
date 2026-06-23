@@ -65,6 +65,11 @@ class PinterestClient:
         r.raise_for_status()
         return r.json()["id"]
 
+    def delete_pin(self, pin_id: str) -> None:
+        r = self.s.delete(f"{API}/pins/{pin_id}", timeout=20)
+        if r.status_code not in (200, 204):
+            raise RuntimeError(f"delete_pin {r.status_code}: {r.text[:200]}")
+
     def create_pin(self, board_id: str, title: str, description: str, link: str,
                    image_png: bytes, alt_text: str = "") -> Optional[str]:
         payload = {
