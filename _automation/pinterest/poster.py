@@ -16,6 +16,7 @@ Anti-spam by design: few pins/day, unique image+content per page, no duplicates.
 """
 from __future__ import annotations
 
+import html as _html
 import json
 import os
 import re
@@ -194,11 +195,10 @@ def page_meta(local: Path) -> dict:
     # SEO-zengin gövde için sayfanın ilk anlamlı paragraflarını çek (gerçek içerik).
     intro = ""
     for p in re.findall(r"<p[^>]*>(.*?)</p>", html, re.S | re.I):
-        t = re.sub(r"\s+", " ", re.sub(r"<[^>]+>", " ", p)).strip()
-        t = (t.replace("&#x27;", "'").replace("&#39;", "'").replace("&amp;", "&"))
+        t = _html.unescape(re.sub(r"\s+", " ", re.sub(r"<[^>]+>", " ", p)).strip())
         if len(t) > 50:
             intro = (intro + " " + t).strip()
-            if len(intro) > 480:
+            if len(intro) > 640:
                 break
     return {"title": title, "desc": desc, "keywords": keywords, "intro": intro}
 
@@ -215,25 +215,34 @@ def pexels_query(app: str, title: str) -> str:
 
 
 def build_description(theme: dict, meta: dict) -> str:
-    """SEO-zengin Pinterest açıklaması: gerçek sayfa içeriği + değer cümlesi +
-    keyword hashtag'leri + marka hashtag'leri + CTA. Pinterest limiti 800 → 790'da
-    kesilir. Junk/keyword-stuffing YOK; sadece sayfanın kendi içeriği kullanılır."""
+    """SEO-maks Pinterest açıklaması. Hem Pinterest aramasında hem Google'da (pin
+    sayfası indeksli) sıralatmak için: ANA keyword'ü (başlık) başa al → doğal,
+    keyword-zengin okunaklı gövde (gerçek sayfa içeriği) → makul hashtag seti.
+    ~790'a doldurulur (limit 800). Keyword-stuffing YOK (Pinterest'te spam sinyali);
+    sadece sayfanın kendi içeriği + ilgili hashtag'ler."""
     cta = random.choice(theme["ctas"])
-    # Sayfa keyword'lerinden 6'ya kadar hashtag (slug) + marka/tema hashtag'leri.
+    # Hashtag: sayfa keyword'lerinden 8'e kadar (slug) + tema hashtag'leri, dedupe.
     kw_tags = []
     for kw in (meta["keywords"].split(",") if meta["keywords"] else []):
         slug = re.sub(r"[^0-9a-zçğıöşü]+", "", kw.strip().lower())
         if 3 <= len(slug) <= 28 and f"#{slug}" not in kw_tags:
             kw_tags.append(f"#{slug}")
-        if len(kw_tags) >= 6:
+        if len(kw_tags) >= 8:
             break
     tags = " ".join(dict.fromkeys(kw_tags + theme["tags"]))  # dedupe, sıra korunur
-    # Gövde: sayfa açıklaması + ilk paragraflar (gerçek içerik) + marka değer cümlesi.
-    body_parts = [p for p in (meta["desc"], meta.get("intro"), theme["board_desc"]) if p]
-    body = " ".join(dict.fromkeys(body_parts)) or meta["title"]
-    # CTA + hashtag'ler HER ZAMAN korunur (SEO değeri); gövde 800'e sığacak şekilde kısalır.
+    # Gövde: BAŞLIK (ana keyword, öne) + sayfa açıklaması + gerçek paragraflar + değer.
+    title = _html.unescape(meta["title"]).strip()
+    rest_parts, seen = [], {title.lower()}
+    for p in (meta["desc"], meta.get("intro"), theme["board_desc"]):
+        p = _html.unescape(p or "").strip()
+        if p and p.lower() not in seen:
+            seen.add(p.lower())
+            rest_parts.append(p)
+    rest = " ".join(rest_parts)
+    body = f"{title}. {rest}".strip() if rest else title
+    # CTA + hashtag'ler HER ZAMAN korunur (keşif değeri); gövde sığacak şekilde kısalır.
     suffix = f"\n\n{cta}\n\n{tags}"
-    max_body = 800 - len(suffix)
+    max_body = 790 - len(suffix)
     return (body[:max_body].rstrip() + suffix)  # Pinterest açıklama limiti = 800
 
 
