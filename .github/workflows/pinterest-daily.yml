@@ -6,7 +6,14 @@ on:
   schedule:
     - cron: "0 18 * * *"   # 21:00 TR → Routevia (Türkiye akşam prime)
     - cron: "0 20 * * *"   # 22:00 CET / 15:00 EST → OneBag + RentFlow (AB+ABD)
-  workflow_dispatch:        # manuel çalıştırma — PIN_APPS boş = hepsi
+  workflow_dispatch:        # manuel çalıştırma — apps/count ile hedefli
+    inputs:
+      apps:
+        description: "Virgülle app listesi (boş = hepsi). örn: onebag,rentflow"
+        default: ""
+      count:
+        description: "Atılacak pin sayısı"
+        default: "1"
 
 permissions:
   contents: write           # to commit the updated state.json
@@ -34,7 +41,7 @@ jobs:
           case "${{ github.event.schedule }}" in
             "0 18 * * *") echo "apps=routevia"        >> "$GITHUB_OUTPUT"; echo "n=5" >> "$GITHUB_OUTPUT" ;;  # TR akşam → Routevia 5
             "0 20 * * *") echo "apps=onebag,rentflow" >> "$GITHUB_OUTPUT"; echo "n=7" >> "$GITHUB_OUTPUT" ;;  # AB+ABD → OneBag ~4 + RentFlow ~3
-            *)            echo "apps="                >> "$GITHUB_OUTPUT"; echo "n=1" >> "$GITHUB_OUTPUT" ;;  # manuel = TEK deneme pini
+            *)            echo "apps=${{ github.event.inputs.apps }}" >> "$GITHUB_OUTPUT"; echo "n=${{ github.event.inputs.count }}" >> "$GITHUB_OUTPUT" ;;  # manuel = input'lar (boş app=hepsi, varsayılan 1)
           esac
 
       - name: Post pins
