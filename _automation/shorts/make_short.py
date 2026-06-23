@@ -11,8 +11,10 @@ from __future__ import annotations
 
 import html
 import io
+import json
 import os
 import re
+import shutil
 import subprocess
 import sys
 import textwrap
@@ -200,8 +202,15 @@ def card(kind: str, place: str, name: str = "", num: int = 0, total: int = 0, ph
 
 
 def tts(text: str, idx: int) -> str:
-    p = SCRATCH / f"tts_{idx}.aiff"
-    subprocess.run(["say", "-v", "Yelda", "-o", str(p), text], check=True)
+    """Seslendirme: macOS'ta `say` (Yelda), Linux/runner'da edge-tts (TTS_VOICE)."""
+    if shutil.which("say"):                       # macOS — yerel, internetsiz
+        p = SCRATCH / f"tts_{idx}.aiff"
+        subprocess.run(["say", "-v", os.environ.get("SAY_VOICE", "Yelda"), "-o", str(p), text], check=True)
+        return str(p)
+    # Linux (GitHub Actions) — edge-tts (Microsoft, ücretsiz, çok dilli)
+    p = SCRATCH / f"tts_{idx}.mp3"
+    voice = os.environ.get("TTS_VOICE", "tr-TR-EmelNeural")
+    subprocess.run(["edge-tts", "--voice", voice, "--text", text, "--write-media", str(p)], check=True)
     return str(p)
 
 
@@ -301,14 +310,19 @@ def build_youtube_meta(place: str, pois: list[str], attrs: list[str]) -> dict:
     poi_lines = "\n".join(f"📍 {p}" for p in pois)
     hashtags = f"#shorts #{place.replace(' ', '')} #gezilecekyerler #gezi #tatil #seyahat #routevia"
     credits = ("\n\nGörseller (CC/serbest lisans):\n" + "\n".join(f"• {a}" for a in dict.fromkeys(attrs))) if attrs else ""
+    apps = (
+        "\n\n📲 Tabserve uygulamaları (ücretsiz):\n"
+        "🗺️ Routevia — gezi & rota planlama: https://coinsayfasi.github.io/go/routevia/\n"
+        "🧳 OneBag — akıllı bavul listesi: https://coinsayfasi.github.io/go/onebag/\n"
+        "🏠 RentFlow — kira & emlak yönetimi: https://coinsayfasi.github.io/go/rentflow/"
+    )
     desc = (
         f"{place} gezilecek yerler — en güzel {n} yer! 🚗 {place} gezi rehberi, "
         f"rotanı Routevia ile planla.\n\n{poi_lines}\n\n"
         f"🗺️ Tüm rotayı haritada gör + ücretsiz planla → Routevia\n"
-        f"App Store & Google Play: https://coinsayfasi.github.io/go/routevia/\n\n"
-        f"{hashtags}{credits}"
+        f"{apps}\n\n{hashtags}{credits}"
     )[:4900]
-    return {"title": title, "description": desc, "tags": tags}
+    return {"title": title, "description": desc, "tags": tags, "categoryId": "19"}
 
 
 def main() -> None:
@@ -351,6 +365,7 @@ def main() -> None:
         f"DESCRIPTION ({len(meta['description'])} krk):\n{meta['description']}\n\n"
         f"TAGS ({sum(len(t)+1 for t in meta['tags'])}/500 krk):\n{', '.join(meta['tags'])}\n",
         encoding="utf-8")
+    Path(out).with_suffix(".meta.json").write_text(json.dumps(meta, ensure_ascii=False), encoding="utf-8")
     print(f"✓ Short hazır: {out}")
     print(f"✓ SEO meta: {metap}")
 

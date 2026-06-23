@@ -68,7 +68,8 @@ def main() -> None:
         raise SystemExit("HATA: YT_CLIENT_ID / YT_CLIENT_SECRET / YT_REFRESH_TOKEN gerekli.")
     tok = access_token()
     if os.environ.get("YT_TEST") == "1":
-        print(f"✓ Bağlantı OK. Kanal: {channel_title(tok)}")
+        # upload izni kanal OKUMA vermez (403 normal) → token alındıysa bağlantı OK
+        print(f"✓ Bağlantı OK — access token yenilendi (len {len(tok)}). Yükleme hazır.")
         return
     if len(sys.argv) < 2:
         raise SystemExit("Kullanım: python3 youtube_upload.py <video.mp4>")

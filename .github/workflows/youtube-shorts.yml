@@ -1,0 +1,47 @@
+name: YouTube Shorts
+
+on:
+  workflow_dispatch:
+    inputs:
+      page:
+        description: "Sayfa yolu (repo köküne göre, index.html)"
+        default: "routevia-app/gezilecek-yerler/mugla/bodrum/index.html"
+      privacy:
+        description: "private | unlisted | public (audit'e kadar private)"
+        default: "private"
+      voice:
+        description: "edge-tts ses (TR: tr-TR-EmelNeural, EN: en-US-AriaNeural)"
+        default: "tr-TR-EmelNeural"
+
+jobs:
+  short:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: System deps (ffmpeg + fonts)
+        run: sudo apt-get update && sudo apt-get install -y ffmpeg fonts-dejavu-core
+      - name: Python deps
+        run: pip install requests Pillow edge-tts
+      - name: Generate Short
+        env:
+          PEXELS_API_KEY: ${{ secrets.PEXELS_API_KEY }}
+          TTS_VOICE: ${{ github.event.inputs.voice }}
+          SHORTS_TMP: ${{ runner.temp }}/shorts_tmp
+        run: python _automation/shorts/make_short.py "${{ github.event.inputs.page }}" "${{ runner.temp }}/short.mp4"
+      - name: Upload to YouTube
+        env:
+          YT_CLIENT_ID: ${{ secrets.YT_CLIENT_ID }}
+          YT_CLIENT_SECRET: ${{ secrets.YT_CLIENT_SECRET }}
+          YT_REFRESH_TOKEN: ${{ secrets.YT_REFRESH_TOKEN }}
+          YT_PRIVACY: ${{ github.event.inputs.privacy }}
+        run: python _automation/shorts/youtube_upload.py "${{ runner.temp }}/short.mp4"
+      - name: Save video + meta (artifact)
+        uses: actions/upload-artifact@v4
+        with:
+          name: short
+          path: |
+            ${{ runner.temp }}/short.mp4
+            ${{ runner.temp }}/short.meta.txt
