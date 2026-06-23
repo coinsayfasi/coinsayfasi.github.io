@@ -1,17 +1,26 @@
 name: YouTube Shorts
 
 on:
+  # ✅ Günlük otomatik Short — saat hedefleme (kitleye göre)
+  schedule:
+    - cron: "0 18 * * *"   # 21:00 TR  → Routevia (Türkiye akşam prime)
+    - cron: "0 20 * * *"   # 22:00 CET → OneBag  (Avrupa akşam)
+    - cron: "0 1 * * *"    # 20:00 EST → RentFlow (ABD akşam prime)
   workflow_dispatch:
     inputs:
-      page:
-        description: "Sayfa yolu (repo köküne göre, index.html)"
-        default: "routevia-app/gezilecek-yerler/mugla/bodrum/index.html"
+      app:
+        description: "routevia | onebag | rentflow"
+        default: "routevia"
       privacy:
         description: "private | unlisted | public (audit'e kadar private)"
         default: "private"
-      voice:
-        description: "edge-tts ses (TR: tr-TR-EmelNeural, EN: en-US-AriaNeural)"
-        default: "tr-TR-EmelNeural"
+
+permissions:
+  contents: write           # shorts_state.json (dedup) geri commit
+
+concurrency:
+  group: youtube-shorts
+  cancel-in-progress: false
 
 jobs:
   short:
@@ -25,23 +34,39 @@ jobs:
         run: sudo apt-get update && sudo apt-get install -y ffmpeg fonts-dejavu-core
       - name: Python deps
         run: pip install requests Pillow edge-tts
+      - name: Hedef app (cron saatine göre)
+        id: pick
+        run: |
+          case "${{ github.event.schedule }}" in
+            "0 18 * * *") echo "app=routevia" >> "$GITHUB_OUTPUT" ;;
+            "0 20 * * *") echo "app=onebag"   >> "$GITHUB_OUTPUT" ;;
+            "0 1 * * *")  echo "app=rentflow" >> "$GITHUB_OUTPUT" ;;
+            *)            echo "app=${{ github.event.inputs.app }}" >> "$GITHUB_OUTPUT" ;;
+          esac
       - name: Generate Short
         env:
           PEXELS_API_KEY: ${{ secrets.PEXELS_API_KEY }}
-          TTS_VOICE: ${{ github.event.inputs.voice }}
-          SHORTS_TMP: ${{ runner.temp }}/shorts_tmp
-        run: python _automation/shorts/make_short.py "${{ github.event.inputs.page }}" "${{ runner.temp }}/short.mp4"
+        run: python _automation/shorts/make_short.py app "${{ steps.pick.outputs.app }}" "${{ runner.temp }}/short.mp4"
       - name: Upload to YouTube
         env:
           YT_CLIENT_ID: ${{ secrets.YT_CLIENT_ID }}
           YT_CLIENT_SECRET: ${{ secrets.YT_CLIENT_SECRET }}
           YT_REFRESH_TOKEN: ${{ secrets.YT_REFRESH_TOKEN }}
-          YT_PRIVACY: ${{ github.event.inputs.privacy }}
+          YT_PRIVACY: ${{ github.event.inputs.privacy || 'private' }}
         run: python _automation/shorts/youtube_upload.py "${{ runner.temp }}/short.mp4"
-      - name: Save video + meta (artifact)
+      - name: Commit dedup state
+        run: |
+          if [[ -n "$(git status --porcelain _automation/shorts/shorts_state.json)" ]]; then
+            git config user.name  "github-actions[bot]"
+            git config user.email "github-actions[bot]@users.noreply.github.com"
+            git add _automation/shorts/shorts_state.json
+            git commit -m "chore(shorts): update dedup state [skip ci]"
+            git push
+          fi
+      - name: Save artifact
         uses: actions/upload-artifact@v4
         with:
-          name: short
+          name: short-${{ steps.pick.outputs.app }}
           path: |
             ${{ runner.temp }}/short.mp4
             ${{ runner.temp }}/short.meta.txt
