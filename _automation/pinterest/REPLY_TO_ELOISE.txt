@@ -1,32 +1,30 @@
 Hi Eloise,
 
-Thank you for the detailed feedback — that was very helpful. I have recorded a new
-screen-capture demo (not a slideshow this time) and resubmitted the Standard access
-request for app 1581587. The video shows the complete flow end to end:
+Thank you — that was exactly the guidance I needed. I have recorded a new, complete
+screen-capture demo and resubmitted the Standard access request for app 1581587.
+It is a single uncut video and shows the full integration end to end:
 
 1. OAuth flow (in the browser):
-   - The authorization URL with our client_id, redirect_uri and the requested scopes
+   - Our app page initiates the flow with the requested scopes
      (boards:read, boards:write, pins:read, pins:write).
    - The Pinterest "Authorize app" consent screen and clicking "Give access".
-   - The redirect back to our registered website
-     (https://coinsayfasi.github.io/) with the authorization "code" visible in the
-     address bar.
+   - The redirect back to our registered redirect URI with the authorization code.
 
-2. Token exchange (API call):
-   - POST /v5/oauth/token with Authorization: Basic base64(app_id:app_secret),
-     grant_type=authorization_code, the code from step 1, and the same redirect_uri,
-     returning a valid access token with the granted scopes.
+2. How the Pin is created (the API integration):
+   - Token exchange: POST /v5/oauth/token (Authorization: Basic base64(app_id:app_secret)).
+   - Create Pin: POST /v5/pins — returning a 201 with the new Pin id.
+   - Read back: GET /v5/pins/{id} — confirming the created Pin.
+   Each request and response is shown on screen.
 
-3. Live API usage:
-   - Creating a board and a Pin (POST /v5/pins), then reading the Pin back
-     (GET /v5/pins/{id}) to confirm it was created — showing the Pin id, title,
-     board, link and created_at.
+3. The newly created Pin on the Pinterest platform:
+   - At the end of the video the page opens the new Pin live on Pinterest
+     (pinterest.com/pin/{id}) in my profile, showing the same Pin id and title that
+     were just created via the API.
 
-As you advised, the Pin creation is performed in the Sandbox environment
+As you advised, Pin creation is done in the Sandbox environment
 (api-sandbox.pinterest.com), since Trial access cannot create Pins in production.
+The video is under 5 minutes.
 
-The video is under 5 minutes. Please let me know if anything else is needed —
-happy to record additional detail.
+Please let me know if anything else is needed. Thank you for your patience and help.
 
-Thank you,
 Yunus

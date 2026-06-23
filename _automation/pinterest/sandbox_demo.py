@@ -35,6 +35,7 @@ import os
 import sys
 import urllib.parse
 import warnings
+from datetime import datetime
 
 warnings.filterwarnings("ignore")  # kayıt için temiz çıktı (urllib3/LibreSSL uyarısı vs.)
 
@@ -129,6 +130,10 @@ def run(code: str) -> None:
     print(f"API host: {API}")
     board_id = ensure_board(s, DEMO_BOARD)
 
+    # Benzersiz başlık: reviewer terminalde oluşan başlığı profilde birebir eşleştirir.
+    stamp = datetime.now().strftime("%Y-%m-%d %H:%M")
+    pin_title = f"OneBag API demo — {stamp}"
+    print(f"Bu çalıştırmanın BENZERSİZ pin başlığı: {pin_title}")
     img = build_pin_image(
         title="Travel lighter, stress less",
         app="onebag",
@@ -136,7 +141,7 @@ def run(code: str) -> None:
     )
     payload = {
         "board_id": board_id,
-        "title": "OneBag — pack carry-on only",
+        "title": pin_title,
         "description": "Carry-on packing tips with OneBag. #travel #onebag #packinglight",
         "link": DEMO_LINK,
         "alt_text": "OneBag packing tips pin",
