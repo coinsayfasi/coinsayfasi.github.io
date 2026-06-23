@@ -42,10 +42,16 @@ _NONFREE = ("fair use", "non-free", "fairuse", "copyright", "all rights reserved
 
 GO = "https://coinsayfasi.github.io/go"
 APPS_FOOTER = (
-    "\n\n📲 Tabserve apps (free):\n"
-    f"🗺️ Routevia — trips & route planning: {GO}/routevia/\n"
-    f"🧳 OneBag — smart packing checklist: {GO}/onebag/\n"
-    f"🏠 RentFlow — rent & property manager: {GO}/rentflow/"
+    "\n\n📲 Download our free apps:\n\n"
+    "🗺️ Routevia — trips & route planning\n"
+    "   iOS: https://apps.apple.com/app/id6761003117\n"
+    "   Android: https://play.google.com/store/apps/details?id=com.yunusgunes.routevia\n\n"
+    "🧳 OneBag — smart packing checklist\n"
+    "   iOS: https://apps.apple.com/app/id6761047805\n"
+    "   Android: https://play.google.com/store/apps/details?id=com.onebag.travel\n\n"
+    "🏠 RentFlow — rent & property manager\n"
+    "   iOS: https://apps.apple.com/app/id6767179451\n"
+    "   (Android coming soon)"
 )
 
 # ── App temaları ─────────────────────────────────────────────────────────────
