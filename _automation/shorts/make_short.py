@@ -417,7 +417,7 @@ def mark_used(url):
 def build(theme, page_path, out, source_url=None):
     htmlstr = Path(page_path).read_text(encoding="utf-8", errors="ignore")
     place = place_of(theme, htmlstr)
-    points = extract_points(htmlstr, theme["heading"], 5)
+    points = extract_points(htmlstr, theme["heading"], 7)   # daha uzun video (içerik elverdiğince)
     print(f"[{theme['label']}] {place} | {points}")
     if len(points) < 3:
         raise SystemExit("Yetersiz içerik (3'ten az nokta).")
