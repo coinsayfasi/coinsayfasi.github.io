@@ -60,7 +60,9 @@ jobs:
           TIKTOK_CLIENT_KEY: ${{ secrets.TIKTOK_SB_CLIENT_KEY }}
           TIKTOK_CLIENT_SECRET: ${{ secrets.TIKTOK_SB_CLIENT_SECRET }}
           TIKTOK_REFRESH_TOKEN: ${{ secrets.TIKTOK_SB_REFRESH_TOKEN }}
-        run: python _automation/shorts/tiktok_upload.py "${{ runner.temp }}/short.mp4"
+          TIKTOK_PRIVACY: PUBLIC_TO_EVERYONE   # direct mod için; audit onayı sonrası geçerli
+        # mod: 'inbox' (audit'siz, taslak) | 'direct' (audit sonrası otomatik public). Onay gelince 'direct' yap.
+        run: python _automation/shorts/tiktok_upload.py "${{ runner.temp }}/short.mp4" "${{ steps.pick.outputs.app }}" inbox
       - name: Commit dedup state
         run: |
           if [[ -n "$(git status --porcelain _automation/shorts/shorts_state.json)" ]]; then
