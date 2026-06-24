@@ -64,12 +64,8 @@ jobs:
           TIKTOK_PRIVACY: PUBLIC_TO_EVERYONE   # direct mod için; audit onayı sonrası geçerli
         # mod: 'inbox' (audit'siz, taslak) | 'direct' (audit sonrası otomatik public). Onay gelince 'direct' yap.
         run: python _automation/shorts/tiktok_upload.py "${{ runner.temp }}/short.mp4" "${{ steps.pick.outputs.app }}" inbox
-      - name: Rotated TikTok refresh token'ı kaydet (1 yıl sayacını sıfırlar → hiç re-auth gerekmez)
-        if: steps.tiktok.outputs.new_refresh_token != ''
-        continue-on-error: true
-        env:
-          GH_TOKEN: ${{ secrets.GH_PAT }}
-        run: gh secret set TIKTOK_SB_REFRESH_TOKEN --body "${{ steps.tiktok.outputs.new_refresh_token }}" --repo "$GITHUB_REPOSITORY"
+      # NOT: TikTok refresh token'ı ROTE ETMİYOR + 1 yıllık süre refresh'te sıfırlanmıyor (test edildi).
+      # Bu yüzden otomatik uzatma mümkün değil → ~yılda 1 kez manuel re-auth gerekiyor (tiktok_review_submission.md'deki authorize linki).
       - name: Commit dedup state
         run: |
           if [[ -n "$(git status --porcelain _automation/shorts/shorts_state.json)" ]]; then
