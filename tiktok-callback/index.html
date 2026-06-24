@@ -1,0 +1,34 @@
+<!doctype html>
+<html lang="tr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="robots" content="noindex,nofollow">
+<title>TikTok Yetkilendirme — Tabserve</title>
+<style>
+body{margin:0;background:#0a0b12;color:#fff;font:16px/1.6 -apple-system,Segoe UI,Roboto,Arial,sans-serif;
+  display:flex;min-height:100vh;align-items:center;justify-content:center;text-align:center;padding:24px}
+.box{max-width:620px;background:#141622;border-radius:16px;padding:32px;box-shadow:0 8px 30px rgba(0,0,0,.4)}
+h1{margin:0 0 8px;font-size:22px}
+code{display:block;word-break:break-all;background:#0a0b12;border:1px solid #2a2d3d;border-radius:10px;
+  padding:16px;margin:16px 0;font-size:14px;color:#5fe0b0}
+button{background:#5fe0b0;color:#04221a;border:0;border-radius:10px;padding:12px 22px;font-weight:800;
+  font-size:15px;cursor:pointer}
+.muted{opacity:.7;font-size:14px}
+</style>
+</head>
+<body>
+<div class="box">
+<h1>TikTok Yetkilendirme Kodu</h1>
+<p class="muted">Aşağıdaki kodu kopyalayıp kuruluma yapıştır. (Bu sayfa public değildir, kodu kimseyle paylaşma.)</p>
+<code id="code">Kod bulunamadı — bu sayfaya TikTok izin akışından gelmelisin.</code>
+<button onclick="navigator.clipboard.writeText(document.getElementById('code').textContent);this.textContent='Kopyalandı ✓'">Kodu Kopyala</button>
+</div>
+<script>
+  var p=new URLSearchParams(location.search);
+  var code=p.get('code'), err=p.get('error');
+  if(code) document.getElementById('code').textContent=code;
+  else if(err) document.getElementById('code').textContent='Hata: '+err+' — '+(p.get('error_description')||'');
+</script>
+</body>
+</html>
