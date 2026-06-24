@@ -212,7 +212,7 @@ def add_to_sitemap(url):
 
 
 def main():
-    ms.STATE = REPO_ROOT / "webstory_state.json"   # Shorts'tan AYRI dedup
+    ms.STATE = ms.HERE / "webstory_state.json"   # Shorts'tan AYRI dedup (_automation/shorts/)
     mode, arg, slug = sys.argv[1], sys.argv[2], sys.argv[3]
     if mode == "app":
         theme = ms.THEMES[arg]

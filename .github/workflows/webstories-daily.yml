@@ -37,10 +37,12 @@ jobs:
           done
       - name: Commit stories + sitemap
         run: |
-          if [[ -n "$(git status --porcelain web-stories sitemap.xml _automation/shorts/webstory_state.json)" ]]; then
-            git config user.name  "github-actions[bot]"
-            git config user.email "github-actions[bot]@users.noreply.github.com"
-            git add web-stories sitemap.xml _automation/shorts/webstory_state.json assets/storylogo_*.png
+          git config user.name  "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add -A web-stories sitemap.xml _automation/shorts/webstory_state.json assets 2>/dev/null || true
+          if git diff --cached --quiet; then
+            echo "değişiklik yok"
+          else
             git commit -m "chore(webstories): günlük web story + sitemap [skip ci]"
             git push
           fi
