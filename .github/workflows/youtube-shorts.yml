@@ -54,6 +54,13 @@ jobs:
           YT_REFRESH_TOKEN: ${{ secrets.YT_REFRESH_TOKEN }}
           YT_PRIVACY: ${{ github.event.inputs.privacy || 'public' }}
         run: python _automation/shorts/youtube_upload.py "${{ runner.temp }}/short.mp4"
+      - name: Upload to TikTok (inbox/draft)
+        continue-on-error: true        # TikTok hatası YouTube akışını bozmasın
+        env:
+          TIKTOK_CLIENT_KEY: ${{ secrets.TIKTOK_SB_CLIENT_KEY }}
+          TIKTOK_CLIENT_SECRET: ${{ secrets.TIKTOK_SB_CLIENT_SECRET }}
+          TIKTOK_REFRESH_TOKEN: ${{ secrets.TIKTOK_SB_REFRESH_TOKEN }}
+        run: python _automation/shorts/tiktok_upload.py "${{ runner.temp }}/short.mp4"
       - name: Commit dedup state
         run: |
           if [[ -n "$(git status --porcelain _automation/shorts/shorts_state.json)" ]]; then
