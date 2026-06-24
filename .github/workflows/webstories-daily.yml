@@ -1,0 +1,46 @@
+name: Web Stories
+
+on:
+  schedule:
+    - cron: "0 6 * * *"        # 09:00 TR — günlük 3 web story (routevia/onebag/rentflow)
+  workflow_dispatch:
+    inputs:
+      app:
+        description: "tek app üret (boş=3'ü de)"
+        default: ""
+
+permissions:
+  contents: write
+
+concurrency:
+  group: webstories
+  cancel-in-progress: false
+
+jobs:
+  stories:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Python deps
+        run: pip install requests Pillow
+      - name: Generate Web Stories
+        env:
+          PEXELS_API_KEY: ${{ secrets.PEXELS_API_KEY }}
+        run: |
+          APPS="${{ github.event.inputs.app }}"
+          [ -z "$APPS" ] && APPS="routevia onebag rentflow"
+          for app in $APPS; do
+            python _automation/shorts/make_webstory.py app "$app" auto || echo "skip $app (içerik bitti olabilir)"
+          done
+      - name: Commit stories + sitemap
+        run: |
+          if [[ -n "$(git status --porcelain web-stories sitemap.xml _automation/shorts/webstory_state.json)" ]]; then
+            git config user.name  "github-actions[bot]"
+            git config user.email "github-actions[bot]@users.noreply.github.com"
+            git add web-stories sitemap.xml _automation/shorts/webstory_state.json assets/storylogo_*.png
+            git commit -m "chore(webstories): günlük web story + sitemap [skip ci]"
+            git push
+          fi
