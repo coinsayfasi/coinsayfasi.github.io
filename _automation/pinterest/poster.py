@@ -340,7 +340,25 @@ def build_description(theme: dict, meta: dict, title: str | None = None) -> str:
     # CTA + hashtag'ler HER ZAMAN korunur (keşif değeri); gövde sığacak şekilde kısalır.
     suffix = f"\n\n{cta}\n\n{tags}"
     max_body = 490 - len(suffix)
-    return (body[:max_body].rstrip() + suffix)  # hedef ≤500 karakter (etiket dahil)
+    return (_clip_clean(body, max_body) + suffix)  # hedef ≤500 karakter (etiket dahil)
+
+
+def _clip_clean(text: str, limit: int) -> str:
+    """Gövdeyi limit içinde TEMİZ bitir: önce tam cümle sınırı (. ! ?), olmazsa
+    tam kelime sınırı + '…'. Asla kelime/cümle ortasından kesilmez ('In ... (M' gibi)."""
+    text = text.strip()
+    if len(text) <= limit:
+        return text
+    clipped = text[:limit]
+    # 1) Limit içindeki son cümle sonu — gövdenin çoğunu koruyorsa orada bitir.
+    sentence_end = max(clipped.rfind(". "), clipped.rfind("! "), clipped.rfind("? "),
+                       clipped.rfind(".\n"), clipped.rfind("!\n"), clipped.rfind("?\n"))
+    if sentence_end >= limit * 0.6:
+        return clipped[:sentence_end + 1].rstrip()
+    # 2) Aksi halde son tam kelimede kes, açık parantez/noktalama bırakma, '…' ekle.
+    word_end = clipped.rfind(" ")
+    snippet = (clipped[:word_end] if word_end > 0 else clipped).rstrip(" ,;:.-([{\"'")
+    return snippet + "…"
 
 
 def pick_candidates(state: dict) -> list[dict]:
