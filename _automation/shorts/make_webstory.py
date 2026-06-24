@@ -29,7 +29,7 @@ STORIES_DIR = REPO_ROOT / "web-stories"
 ASSETS = REPO_ROOT / "assets"
 BASE = "https://coinsayfasi.github.io"
 GA4 = "G-EDZWXP6EEG"                              # site geneli GA4 (go/ sayfalarıyla aynı)
-INDEXNOW_KEY = "bf53dc71723b441dafc099b8432667fe"  # /<key>.txt kök dosyasıyla eşleşir
+INDEXNOW_KEY = "6b2c33a8ee47462a9c217f29a99ada33"  # site-geneli IndexNow anahtarı (/<key>.txt kökte)
 
 # Web Story analytics (GA4/gtag) — görüntülenme, tamamlanma ve CTA(İndir) tıklaması
 ANALYTICS = (
