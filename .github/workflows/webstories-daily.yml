@@ -39,7 +39,7 @@ jobs:
         run: |
           git config user.name  "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
-          for p in web-stories sitemap.xml _automation/shorts/webstory_state.json assets; do
+          for p in web-stories stories sitemap.xml _automation/shorts/webstory_state.json assets; do
             [ -e "$p" ] && git add -A "$p" || true
           done
           if git diff --cached --quiet; then
