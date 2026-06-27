@@ -129,20 +129,39 @@ def font(sz, bold=True):
 
 
 # ── Görsel: telif-güvenli Wikipedia + Pexels ─────────────────────────────────
+def _clean_artist(raw):
+    """Atfı temiz, İngilizce ve profesyonel tut: HTML/çok-dilli 'own work' kalıplarını at,
+    prose/uzun/yabancı görünüyorsa düş → 'Wikimedia Commons' kullanılır (Almanca sızıntısı engellenir)."""
+    a = re.sub(r"<[^>]+>", " ", raw or "")
+    a = re.sub(r"&[a-z]+;", " ", a)
+    a = re.sub(r"https?://\S+", "", a)
+    a = re.sub(r"\s+", " ", a).strip(" ,.-–—|")
+    # çok dilli "own work / self" kalıpları
+    a = re.sub(r"(?i)\b(eigenes werk|own work|self[- ]?photographed|own photograph|travail personnel|trabajo propio|self made|photo personnelle)\b", "", a)
+    a = re.sub(r"\s+", " ", a).strip(" ,.-–—|()")
+    # hâlâ cümle gibi (uzun / çok kelime / Almanca prose izleri) → düş
+    if not a or len(a) > 40 or a.count(" ") > 4:
+        return None
+    if re.search(r"(?i)\b(und|der|die|das|von|für|mit|aufnahme|datei|foto|bild|el|la|los|de|del|une|le|du|des|et|tourisme|ville|stadt)\b", a):
+        return None
+    return a
+
 def _commons_license(filename):
     try:
         r = requests.get("https://commons.wikimedia.org/w/api.php",
                          params={"action": "query", "titles": f"File:{filename}",
-                                 "prop": "imageinfo", "iiprop": "extmetadata", "format": "json"},
+                                 "prop": "imageinfo", "iiprop": "extmetadata",
+                                 "uselang": "en", "format": "json"},
                          headers=UA, timeout=15)
         for p in r.json().get("query", {}).get("pages", {}).values():
             ii = (p.get("imageinfo") or [{}])[0].get("extmetadata", {})
-            lic = (ii.get("LicenseShortName", {}).get("value", "") or "").lower()
-            artist = re.sub(r"<[^>]+>", "", ii.get("Artist", {}).get("value", "") or "").strip()
+            lic_name = ii.get("LicenseShortName", {}).get("value", "") or ""
+            lic = lic_name.lower()
+            artist = _clean_artist(ii.get("Artist", {}).get("value", ""))
             if not lic or any(n in lic for n in _NONFREE):
                 return None
             if any(f in lic for f in _FREE):
-                return f"{(artist or 'Wikimedia Commons')[:60]} / {ii.get('LicenseShortName', {}).get('value', '')} (Wikimedia Commons)"
+                return f"{artist or 'Wikimedia Commons'} / {lic_name} (Wikimedia Commons)"
         return None
     except Exception:
         return None
