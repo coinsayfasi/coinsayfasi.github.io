@@ -199,7 +199,9 @@
   "https://coinsayfasi.github.io/es/onebag/baggage/ethiopian-airlines/": "2026-06-27",
   "https://coinsayfasi.github.io/es/onebag/baggage/etihad-airways/": "2026-06-27",
   "https://coinsayfasi.github.io/es/onebag/baggage/eurowings/": "2026-06-27",
-  "https://coinsayfasi.github.io/es/onebag/baggage/finnair/": "2026-06-27"
+  "https://coinsayfasi.github.io/es/onebag/baggage/finnair/": "2026-06-27",
+  "https://coinsayfasi.github.io/es/onebag/baggage/flydubai/": "2026-06-27",
+  "https://coinsayfasi.github.io/es/onebag/baggage/flynas/": "2026-06-27"
  },
  "history": [
   {
@@ -207,6 +209,13 @@
    "mode": "yeni",
    "ok": 200,
    "quota_hit": false,
+   "errors": 0
+  },
+  {
+   "date": "2026-06-27",
+   "mode": "yeni",
+   "ok": 2,
+   "quota_hit": true,
    "errors": 0
   }
  ]
