@@ -1,0 +1,48 @@
+name: Google Indexing
+
+on:
+  schedule:
+    - cron: "30 5 * * *"        # 08:30 TR — günde 200 URL Google Indexing API'ye push
+  workflow_dispatch:
+    inputs:
+      daily_limit:
+        description: "Günlük URL limiti (default 200)"
+        default: "200"
+      reping:
+        description: "1 = hepsi gönderilince en eskiyi tazele"
+        default: "0"
+
+permissions:
+  contents: write
+
+concurrency:
+  group: google-indexing
+  cancel-in-progress: false
+
+jobs:
+  index:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Install deps
+        run: pip install -r _automation/google_indexing/requirements.txt
+      - name: Submit URLs to Google Indexing API
+        env:
+          GOOGLE_INDEXING_SA: ${{ secrets.GOOGLE_INDEXING_SA }}
+          DAILY_LIMIT: ${{ github.event.inputs.daily_limit || '200' }}
+          REPING: ${{ github.event.inputs.reping || '0' }}
+        run: python _automation/google_indexing/submit.py
+      - name: Commit state
+        run: |
+          git config user.name  "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          if [[ -n "$(git status --porcelain _automation/google_indexing/state.json)" ]]; then
+            git add _automation/google_indexing/state.json
+            git commit -m "chore(indexing): günlük Google Indexing API push state [skip ci]"
+            git push
+          else
+            echo "state değişmedi"
+          fi
