@@ -180,7 +180,9 @@ def save_state(state: dict) -> None:
 def sitemap_urls() -> list[str]:
     if not SITEMAP.exists():
         raise SystemExit(f"sitemap not found: {SITEMAP}")
-    return re.findall(r"<loc>\s*(.*?)\s*</loc>", SITEMAP.read_text(encoding="utf-8"))
+    urls = re.findall(r"<loc>\s*(.*?)\s*</loc>", SITEMAP.read_text(encoding="utf-8"))
+    # çok dilli (/de//es//fr/) sayfaları pinleme dışı bırak → sadece kanonik TR/EN pinlenir
+    return [u for u in urls if not re.search(r"://[^/]+/(de|es|fr)/", u)]
 
 
 def theme_for(url: str) -> dict | None:

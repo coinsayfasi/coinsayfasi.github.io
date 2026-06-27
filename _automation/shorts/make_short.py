@@ -408,7 +408,9 @@ def build_meta(theme, place, points, attrs):
 
 # ── Rotasyon (benzersiz içerik, tekrar yok) ──────────────────────────────────
 def sitemap_urls():
-    return re.findall(r"<loc>\s*(.*?)\s*</loc>", SITEMAP.read_text(encoding="utf-8"))
+    urls = re.findall(r"<loc>\s*(.*?)\s*</loc>", SITEMAP.read_text(encoding="utf-8"))
+    # çok dilli (/de//es//fr/) sayfaları sosyal paylaşımdan HARİÇ tut → sadece kanonik TR/EN paylaşılır
+    return [u for u in urls if not re.search(r"://[^/]+/(de|es|fr)/", u)]
 
 
 def load_state():
