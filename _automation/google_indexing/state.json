@@ -201,7 +201,8 @@
   "https://coinsayfasi.github.io/es/onebag/baggage/eurowings/": "2026-06-27",
   "https://coinsayfasi.github.io/es/onebag/baggage/finnair/": "2026-06-27",
   "https://coinsayfasi.github.io/es/onebag/baggage/flydubai/": "2026-06-27",
-  "https://coinsayfasi.github.io/es/onebag/baggage/flynas/": "2026-06-27"
+  "https://coinsayfasi.github.io/es/onebag/baggage/flynas/": "2026-06-27",
+  "https://coinsayfasi.github.io/de/onebag/what-to-pack/": "2026-06-27"
  },
  "history": [
   {
@@ -215,6 +216,13 @@
    "date": "2026-06-27",
    "mode": "yeni",
    "ok": 2,
+   "quota_hit": true,
+   "errors": 0
+  },
+  {
+   "date": "2026-06-27",
+   "mode": "yeni",
+   "ok": 1,
    "quota_hit": true,
    "errors": 0
   }
