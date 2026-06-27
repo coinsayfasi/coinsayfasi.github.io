@@ -401,7 +401,9 @@ def build_meta(theme, place, points, attrs):
             tags.append(t); tot += len(t) + 1
     plist = "\n".join(f"📍 {p}" for p in points)
     hashtags = theme["hashtags"].format(slug=slug)
-    credits = ("\n\nImages (free license):\n" + "\n".join(f"• {a}" for a in dict.fromkeys(attrs))) if attrs else ""
+    # Per-foto atıf KALDIRILDI (Commons Artist alanı Almanca/yabancı prose sızdırıyordu) →
+    # sabit, temiz, dile-bağımsız tek satır. Görseller serbest lisans (Wikimedia Commons / Pexels).
+    credits = "\n\nImages: Wikimedia Commons & Pexels (free license)" if attrs else ""
     desc = (f"{theme['desc_head'].format(place=place, n=n)}\n\n{plist}{APPS_FOOTER}\n\n{hashtags}{credits}")[:4900]
     return {"title": title, "description": desc, "tags": tags, "categoryId": "19"}
 
