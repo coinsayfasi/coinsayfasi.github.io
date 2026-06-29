@@ -46,5 +46,6 @@ jobs:
             echo "değişiklik yok"
           else
             git commit -m "chore(webstories): günlük web story + sitemap [skip ci]"
-            git push
+            git pull --rebase origin main || true
+            git push || (git pull --rebase origin main && git push)
           fi
