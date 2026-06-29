@@ -47,6 +47,8 @@ jobs:
           else
             git commit -m "chore(webstories): günlük web story + sitemap [skip ci]"
             for i in 1 2 3 4 5; do
-              git pull --rebase origin main && git push && break || sleep $((RANDOM % 5 + 2))
+              git push && break
+              git pull --rebase -X ours origin main || git rebase --abort 2>/dev/null || true
+              sleep $((RANDOM % 5 + 3))
             done
           fi

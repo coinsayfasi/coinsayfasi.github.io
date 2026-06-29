@@ -68,15 +68,19 @@ jobs:
       # Bu yüzden otomatik uzatma mümkün değil → ~yılda 1 kez manuel re-auth gerekiyor (tiktok_review_submission.md'deki authorize linki).
       - name: Commit dedup state
         run: |
-          if [[ -n "$(git status --porcelain _automation/shorts/shorts_state.json)" ]]; then
-            git config user.name  "github-actions[bot]"
-            git config user.email "github-actions[bot]@users.noreply.github.com"
-            git add _automation/shorts/shorts_state.json
-            git commit -m "chore(shorts): update dedup state [skip ci]"
-            for i in 1 2 3 4 5; do
-              git pull --rebase origin main && git push && break || sleep $((RANDOM % 5 + 2))
-            done
-          fi
+          F=_automation/shorts/shorts_state.json
+          [ -n "$(git status --porcelain $F)" ] || { echo "değişiklik yok"; exit 0; }
+          git config user.name  "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          cp "$F" /tmp/ours.json
+          for i in 1 2 3 4 5; do
+            git fetch origin main && git reset --hard origin/main   # state-only iş; video zaten yüklü, reset güvenli
+            python3 -c "import json;f='$F';c=json.load(open(f));o=json.load(open('/tmp/ours.json'));c['used']=list(dict.fromkeys(c.get('used',[])+o.get('used',[])));json.dump(c,open(f,'w'),ensure_ascii=False)"
+            git add "$F"
+            git commit -m "chore(shorts): update dedup state [skip ci]" || exit 0
+            git push && exit 0 || sleep $((RANDOM % 5 + 3))
+          done
+          echo "::warning::shorts state push başarısız (dedup tekrar seçebilir; ölümcül değil)"
       - name: Save artifact
         uses: actions/upload-artifact@v4
         with:
