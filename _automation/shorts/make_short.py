@@ -491,8 +491,10 @@ def url_to_local(url):
 def pick_page(app):
     theme = THEMES[app]
     used = set(load_state()["used"])
+    m = theme["match"]
     cands = [u for u in sitemap_urls()
-             if theme["match"] in u and u not in used and url_to_local(u).exists()]
+             # HUB sayfalarını ATLA (match'ten sonra path yoksa = hub, ülke/içerik maddesi yok)
+             if m in u and u.split(m, 1)[1].strip("/") and u not in used and url_to_local(u).exists()]
     if not cands:
         raise SystemExit(f"{app}: pinlenecek yeni sayfa yok (hepsi kullanıldı).")
     rng = random.Random(os.environ.get("SHORTS_SEED") or None)

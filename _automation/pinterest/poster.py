@@ -412,6 +412,8 @@ def pick_candidates(state: dict) -> list[dict]:
         theme = theme_for(url)
         if not theme:
             continue  # only content pages with a configured theme
+        if not url.split(theme["match"], 1)[1].strip("/"):
+            continue  # HUB sayfası — pinleme (içeriğe özel madde yok)
         if PIN_APPS and theme["app"] not in PIN_APPS:
             continue  # saat hedefleme: bu çalıştırma bu app'i kapsamıyor
         local = url_to_local(url)
