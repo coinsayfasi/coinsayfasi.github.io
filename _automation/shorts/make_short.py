@@ -380,6 +380,70 @@ def extract_points(htmlstr, tag, n=5):
     return pts
 
 
+def extract_onebag_points(htmlstr, n=7):
+    """OneBag: genel h2 başlıkları ('Clothing', 'Tech & power' her ülkede aynı) yerine
+    ÜLKEYE ÖZEL maddeleri çek (Clothing + ülke-özel essentials) → her ülke gerçekten
+    farklı, iklim/coğrafyaya uygun bilgi-zengini içerik (Japonya≠Mısır≠Norveç)."""
+    def items(label, k):
+        m = re.search(rf'<h2[^>]*>[^<]*{label}[^<]*</h2>\s*<ul[^>]*>(.*?)</ul>', htmlstr, re.S | re.I)
+        out = []
+        if m:
+            for li in re.findall(r"<li>(.*?)</li>", m.group(1), re.S):
+                t = html.unescape(re.sub(r"<[^>]+>", "", li))
+                t = re.sub(r"\([^)]*\)", "", t)          # "(temples/homes)" gibi ekleri at
+                t = re.sub(r"[×xX]\s*\d[\d–\-]*", "", t)  # "×4–5" miktarını at
+                t = t.replace(" / ", ", ").replace("/", ", ")
+                t = re.sub(r"\s+", " ", t).strip(" .,&")
+                if 3 <= len(t) <= 38 and t.lower() not in {x.lower() for x in out}:
+                    out.append(t)
+                if len(out) >= k:
+                    break
+        return out
+    pts, seen = [], set()
+    for p in items("Clothing", 4) + items("essentials", 3) + items("season", 3):
+        if p.lower() not in seen:
+            seen.add(p.lower()); pts.append(p)
+    return pts[:n]
+
+
+def extract_li_points(htmlstr, n=7):
+    """RentFlow rehberleri vb.: bölüm başlığı yerine asıl ZENGİN li tiplerini çek
+    ('Prepare a clear written lease', 'Screen and verify your tenant' ...)."""
+    out, seen = [], set()
+    for li in re.findall(r"<li>(.*?)</li>", htmlstr, re.S):
+        t = html.unescape(re.sub(r"<[^>]+>", "", li))
+        t = re.sub(r"\([^)]*\)", "", t)
+        t = re.sub(r"\s+", " ", t).strip(" .,&")
+        if 6 <= len(t) <= 46 and not any(s in t.lower() for s in _SKIP) and t.lower() not in seen:
+            seen.add(t.lower()); out.append(t)
+        if len(out) >= n:
+            break
+    return out
+
+
+def _fix_caps(s):
+    """ALL-CAPS POI adlarını düzelt (ALTUNCAN HATUN PLAJI → Altuncan Hatun Plajı)."""
+    letters = [c for c in s if c.isalpha()]
+    if letters and sum(c.isupper() for c in letters) / len(letters) > 0.7:
+        return " ".join(w.capitalize() for w in s.split())
+    return s
+
+
+def points_for(theme, htmlstr, n=7):
+    """Tema bazlı ZENGİN içerik çıkarımı (3 app, içeriğe uygun):
+    OneBag → ülkeye-özel kıyafet/eşya; RentFlow → rehber tipleri (li); Routevia → POI adları."""
+    m = theme["match"]
+    if m.startswith("/onebag"):
+        p = extract_onebag_points(htmlstr, n)
+        if len(p) >= 3:
+            return p
+    if m.startswith("/rentflow"):
+        p = extract_li_points(htmlstr, n)
+        if len(p) >= 3:
+            return p
+    return [_fix_caps(x) for x in extract_points(htmlstr, theme["heading"], n)]
+
+
 def place_of(theme, htmlstr):
     title = html.unescape(re.search(r"<title>(.*?)</title>", htmlstr, re.S | re.I).group(1))
     if theme["match"].startswith("/routevia"):
@@ -446,7 +510,7 @@ def mark_used(url):
 def build(theme, page_path, out, source_url=None):
     htmlstr = Path(page_path).read_text(encoding="utf-8", errors="ignore")
     place = place_of(theme, htmlstr)
-    points = extract_points(htmlstr, theme["heading"], 7)   # daha uzun video (içerik elverdiğince)
+    points = points_for(theme, htmlstr, 7)   # OneBag: ülkeye-özel maddeler; diğerleri: başlık
     print(f"[{theme['label']}] {place} | {points}")
     if len(points) < 3:
         raise SystemExit("Yetersiz içerik (3'ten az nokta).")

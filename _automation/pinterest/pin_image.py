@@ -85,10 +85,12 @@ def _cover(img: Image.Image, w: int, h: int) -> Image.Image:
 
 
 def build_pin_image(title: str, app: str, subtitle: str = "",
-                    photo: Optional[Image.Image] = None) -> bytes:
-    """Compose a 1000x1500 PNG. If `photo` given, it becomes a darkened backdrop."""
+                    photo: Optional[Image.Image] = None, bullets: Optional[list] = None) -> bytes:
+    """Compose a 1000x1500 PNG. If `photo` given, it becomes a darkened backdrop.
+    `bullets`: ülkeye/sayfaya özel maddeler → görselde ✓ liste (bilgi-zengini pin)."""
     brand = BRAND.get(app, BRAND["default"])
     canvas = Image.new("RGB", (PIN_W, PIN_H), brand["bg"])
+    bullets = [b for b in (bullets or []) if b][:4]
 
     if photo is not None:
         bg = _cover(photo, PIN_W, PIN_H)
@@ -106,24 +108,28 @@ def build_pin_image(title: str, app: str, subtitle: str = "",
     draw.rectangle([(70, 90), (130, 102)], fill=brand["accent"])
     draw.text((150, 78), brand["label"], font=_font(34, bold=True), fill=brand["accent"])
 
-    # Title — wrapped, bottom-anchored.
+    # ── Alttan yukarı yerleşim: footer → bullets/subtitle → title ──
+    draw.text((70, PIN_H - 110), "tabserve.com.tr", font=_font(30, bold=False), fill=brand["accent"])
+    cur = PIN_H - 140
+    if bullets:
+        bfont = _font(37, bold=False)
+        for b in reversed(bullets):
+            cur -= 52
+            draw.text((70, cur), f"✓ {b}", font=bfont, fill=(237, 242, 247))
+        cur -= 22
+    elif subtitle:
+        cur -= 60
+        draw.text((70, cur), subtitle, font=_font(38, bold=False), fill=(226, 232, 240))
+        cur -= 10
+
+    # Title — wrapped, bottom-anchored above the list.
     title_font = _font(76, bold=True)
-    wrapped = textwrap.wrap(title, width=18)[:5]
+    wrapped = textwrap.wrap(title, width=18)[:4]
     line_h = 92
-    total_h = len(wrapped) * line_h
-    y = PIN_H - 230 - total_h
+    y = cur - 24 - len(wrapped) * line_h
     for line in wrapped:
         draw.text((70, y), line, font=title_font, fill=(255, 255, 255))
         y += line_h
-
-    # Subtitle / CTA.
-    if subtitle:
-        draw.text((70, PIN_H - 200), subtitle, font=_font(38, bold=False),
-                  fill=(226, 232, 240))
-
-    # Footer domain.
-    draw.text((70, PIN_H - 120), "tabserve.com.tr", font=_font(30, bold=False),
-              fill=brand["accent"])
 
     out = io.BytesIO()
     canvas.save(out, format="PNG")

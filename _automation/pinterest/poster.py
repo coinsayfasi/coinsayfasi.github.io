@@ -313,7 +313,44 @@ def build_title(theme: dict, meta: dict, url: str = "") -> str:
     return out[:100]  # Pinterest başlık limiti 100
 
 
-def build_description(theme: dict, meta: dict, title: str | None = None) -> str:
+def extract_items(theme: dict, html: str, n: int = 4) -> list[str]:
+    """Pin'i BİLGİ-ZENGİNİ yap: sayfaya/uygulamaya özel maddeler.
+    OneBag → ülkeye-özel kıyafet/eşya; Routevia → POI adları; RentFlow → rehber tipleri."""
+    m = theme["match"]
+    def clean(t):
+        t = _html.unescape(re.sub(r"<[^>]+>", "", t))
+        t = re.sub(r"\([^)]*\)", "", t)
+        t = re.sub(r"[×xX]\s*\d[\d–\-]*", "", t)
+        t = t.replace(" / ", ", ").replace("/", ", ")
+        return re.sub(r"\s+", " ", t).strip(" .,&")
+    items, seen = [], set()
+    def add(t, lo=3, hi=34):
+        if lo <= len(t) <= hi and t.lower() not in seen and not any(s in t.lower() for s in ("download", "app store", "google play", "faq")):
+            seen.add(t.lower()); items.append(t)
+    if "/onebag/packing-list/" in m:
+        for label in ("Clothing", "essentials"):
+            mm = re.search(rf'<h2[^>]*>[^<]*{label}[^<]*</h2>\s*<ul[^>]*>(.*?)</ul>', html, re.S | re.I)
+            if mm:
+                for li in re.findall(r"<li>(.*?)</li>", mm.group(1), re.S):
+                    add(clean(li))
+                    if len(items) >= n: break
+            if len(items) >= n: break
+    elif "/routevia-app/gezilecek-yerler/" in m:
+        for h3 in re.findall(r'<div class="poi"><h3>(.*?)</h3>', html, re.S):
+            t = clean(h3)
+            ltr = [c for c in t if c.isalpha()]
+            if ltr and sum(c.isupper() for c in ltr) / len(ltr) > 0.7:
+                t = " ".join(w.capitalize() for w in t.split())
+            add(t)
+            if len(items) >= n: break
+    elif "/rentflow/guides/" in m:
+        for li in re.findall(r"<li>(.*?)</li>", html, re.S):
+            add(clean(li), 6, 42)
+            if len(items) >= n: break
+    return items[:n]
+
+
+def build_description(theme: dict, meta: dict, title: str | None = None, items: list | None = None) -> str:
     """SEO-maks Pinterest açıklaması. Hem Pinterest aramasında hem Google'da (pin
     sayfası indeksli) sıralatmak için: ANA keyword'ü (başlık) başa al → doğal,
     keyword-zengin okunaklı gövde (gerçek sayfa içeriği) → makul hashtag seti.
@@ -332,6 +369,9 @@ def build_description(theme: dict, meta: dict, title: str | None = None) -> str:
     # Gövde: BAŞLIK (ana keyword, öne) + sayfa açıklaması + gerçek paragraflar + değer.
     title = _html.unescape(title or meta["title"]).strip()
     rest_parts, seen = [], {title.lower()}
+    if items:  # sayfaya özel maddeler (bilgi-zengini + keyword) öne
+        rest_parts.append(", ".join(items) + ".")
+        seen.add(rest_parts[0].lower())
     for p in (meta["desc"], meta.get("intro"), theme["board_desc"]):
         p = _html.unescape(p or "").strip()
         if p and p.lower() not in seen:
@@ -420,10 +460,11 @@ def main() -> None:
         if not meta["title"]:
             continue
         pin_title = build_title(theme, meta, c["url"])  # dönüşümlü SEO başlık
-        desc = build_description(theme, meta, pin_title)
+        items = extract_items(theme, c["local"].read_text(encoding="utf-8", errors="ignore"))  # sayfaya özel maddeler
+        desc = build_description(theme, meta, pin_title, items)
         photo = fetch_pexels_photo(pexels_query(theme["app"], meta["title"]), PEXELS_KEY)
         img = build_pin_image(pin_title, theme["app"],
-                              subtitle=random.choice(theme["ctas"]), photo=photo)
+                              subtitle=random.choice(theme["ctas"]), photo=photo, bullets=items)
 
         store_link = theme["store"]
         print(f"\n• [{theme['app']}] {pin_title}")

@@ -131,7 +131,7 @@ def page_html(img_url, attr, title_html, sub_html=""):
 def build_story(theme, page_path, slug, source_url):
     htmlstr = Path(page_path).read_text(encoding="utf-8", errors="ignore")
     place = ms.place_of(theme, htmlstr)
-    points = ms.extract_points(htmlstr, theme["heading"], 7)
+    points = ms.points_for(theme, htmlstr, 7)
     if len(points) < 3:
         raise SystemExit("Yetersiz içerik")
     print(f"[{theme['label']}] {place} | {points}")
