@@ -1,0 +1,47 @@
+name: Bluesky daily
+
+on:
+  schedule:
+    - cron: "0 14 * * *"        # 17:00 TR / 10:00 EST — gündüz etkileşim (3 app: onebag/routevia/rentflow)
+  workflow_dispatch:
+    inputs:
+      apps:
+        description: "boş=3'ü de | 'onebag routevia rentflow'"
+        default: ""
+
+permissions:
+  contents: write
+
+concurrency:
+  group: bluesky-daily
+  cancel-in-progress: false
+
+jobs:
+  post:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Post to Bluesky
+        env:
+          BLUESKY_IDENTIFIER: ${{ secrets.BLUESKY_IDENTIFIER }}
+          BLUESKY_PASSWORD: ${{ secrets.BLUESKY_PASSWORD }}
+          BSKY_APPS: ${{ github.event.inputs.apps }}
+        run: python _automation/bluesky/post.py
+      - name: Commit state
+        run: |
+          F=_automation/bluesky/state.json
+          [ -n "$(git status --porcelain $F)" ] || { echo "değişiklik yok"; exit 0; }
+          git config user.name  "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          cp "$F" /tmp/ours.json
+          for i in 1 2 3 4 5; do
+            git fetch origin main && git reset --hard origin/main   # state-only; post zaten atıldı, reset güvenli
+            python3 -c "import json;f='$F';c=json.load(open(f));o=json.load(open('/tmp/ours.json'));c['posted']=list(dict.fromkeys(c.get('posted',[])+o.get('posted',[])))[-2000:];json.dump(c,open(f,'w'),ensure_ascii=False)"
+            git add "$F"
+            git commit -m "chore(bluesky): update posted state [skip ci]" || exit 0
+            git push && exit 0 || sleep $((RANDOM % 5 + 3))
+          done
+          echo "::warning::bluesky state push başarısız (tekrar paylaşabilir; ölümcül değil)"
