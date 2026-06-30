@@ -492,11 +492,19 @@ def pick_page(app):
     theme = THEMES[app]
     used = set(load_state()["used"])
     m = theme["match"]
-    cands = [u for u in sitemap_urls()
-             # HUB sayfalarını ATLA (match'ten sonra path yoksa = hub, ülke/içerik maddesi yok)
-             if m in u and u.split(m, 1)[1].strip("/") and u not in used and url_to_local(u).exists()]
+    # HUB sayfalarını ATLA (match'ten sonra path yoksa = hub, ülke/içerik maddesi yok)
+    all_pages = [u for u in sitemap_urls()
+                 if m in u and u.split(m, 1)[1].strip("/") and url_to_local(u).exists()]
+    cands = [u for u in all_pages if u not in used]
     if not cands:
-        raise SystemExit(f"{app}: pinlenecek yeni sayfa yok (hepsi kullanıldı).")
+        if not all_pages:
+            raise SystemExit(f"{app}: hiç uygun sayfa yok (sitemap/eşleşme sorunu).")
+        # hepsi kullanıldı → GERİ DÖNÜŞTÜR: bu app'in işaretlerini sıfırla, tekrar üretmeye devam et
+        st = load_state()
+        st["used"] = [u for u in st["used"] if m not in u]
+        STATE.write_text(json.dumps(st, ensure_ascii=False, indent=2), encoding="utf-8")
+        cands = all_pages
+        print(f"♻️ {app}: tüm sayfalar kullanılmıştı → geri dönüştürüldü, yeniden üretiliyor")
     rng = random.Random(os.environ.get("SHORTS_SEED") or None)
     return rng.choice(cands)
 
