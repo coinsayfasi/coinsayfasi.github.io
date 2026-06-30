@@ -27,7 +27,7 @@ def blog_urls():
     try:
         xml = fetch(SITEMAP)
         return [u for u in re.findall(r"<loc>\s*(.*?)\s*</loc>", xml)
-                if "/blog/" in u and u.rstrip("/").split("/blog/")[-1].strip("/")]  # /blog/ index hariç, slug olanlar
+                if re.search(r"/blog/[^/]+/?$", u)]  # sadece /blog/<slug>/ yazıları (/blog/ index HARİÇ)
     except Exception as e:
         print(f"sitemap alınamadı: {e}"); return []
 
