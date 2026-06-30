@@ -85,7 +85,8 @@ def _cover(img: Image.Image, w: int, h: int) -> Image.Image:
 
 
 def build_pin_image(title: str, app: str, subtitle: str = "",
-                    photo: Optional[Image.Image] = None, bullets: Optional[list] = None) -> bytes:
+                    photo: Optional[Image.Image] = None, bullets: Optional[list] = None,
+                    footer: str = "tabserve.com.tr") -> bytes:
     """Compose a 1000x1500 PNG. If `photo` given, it becomes a darkened backdrop.
     `bullets`: ülkeye/sayfaya özel maddeler → görselde ✓ liste (bilgi-zengini pin)."""
     brand = BRAND.get(app, BRAND["default"])
@@ -109,7 +110,7 @@ def build_pin_image(title: str, app: str, subtitle: str = "",
     draw.text((150, 78), brand["label"], font=_font(34, bold=True), fill=brand["accent"])
 
     # ── Alttan yukarı yerleşim: footer → bullets/subtitle → title ──
-    draw.text((70, PIN_H - 110), "tabserve.com.tr", font=_font(30, bold=False), fill=brand["accent"])
+    draw.text((70, PIN_H - 110), footer, font=_font(30, bold=False), fill=brand["accent"])
     cur = PIN_H - 140
     if bullets:
         bfont = _font(37, bold=False)

@@ -15,9 +15,9 @@ MAX_PER_RUN = int(os.environ.get("BLOG_PINS_PER_RUN", "2"))
 esc = html.unescape
 
 APP_CFG = {
-    "onebag":   {"board": "Travel Packing Tips",       "bdesc": "Smart packing guides — pack light, travel better.", "cta": "Read the guide", "pexels": "travel suitcase packing"},
-    "routevia": {"board": "Türkiye Gezilecek Yerler",  "bdesc": "Türkiye gezi rehberleri ve rotalar.",               "cta": "Keşfet",         "pexels": "turkey travel landscape"},
-    "rentflow": {"board": "Landlord & Rental Tips",    "bdesc": "Practical guides for landlords and rentals.",       "cta": "Read the guide", "pexels": "apartment house keys"},
+    "onebag":   {"board": "Travel Packing Tips",       "bdesc": "Smart packing guides — pack light, travel better.", "cta": "Get OneBag — free app",        "name": "OneBag",   "pexels": "travel suitcase packing"},
+    "routevia": {"board": "Türkiye Gezilecek Yerler",  "bdesc": "Türkiye gezi rehberleri ve rotalar.",               "cta": "Routevia — ücretsiz uygulama", "name": "Routevia", "pexels": "turkey travel landscape"},
+    "rentflow": {"board": "Landlord & Rental Tips",    "bdesc": "Practical guides for landlords and rentals.",       "cta": "Get RentFlow — free app",      "name": "RentFlow", "pexels": "apartment house keys"},
 }
 
 def fetch(url):
@@ -75,9 +75,9 @@ def main():
         app = detect_app(h); cfg = APP_CFG[app]
         bl = bullets(h)
         photo = fetch_pexels_photo(cfg["pexels"], pexels) if pexels else None
-        img = build_pin_image(title, app, subtitle=cfg["cta"], photo=photo, bullets=bl)
+        img = build_pin_image(title, app, subtitle=cfg["cta"], photo=photo, bullets=bl, footer="apps.tabserve.com.tr")
         tags = {"onebag": "#travel #packing #traveltips", "routevia": "#türkiye #gezi #seyahat", "rentflow": "#landlord #realestate #property"}[app]
-        pin_desc = f"{desc} {tags}"[:480]
+        pin_desc = f"{desc} 📲 Download {cfg['name']} free on iOS & Android. {tags}"[:480]
         print(f"\n• [{app}] {title}\n  board: {cfg['board']}")
         if dry:
             (HERE / f"preview-blog-{app}-{made}.png").write_bytes(img); print("  (DRY-RUN: önizleme yazıldı)")
