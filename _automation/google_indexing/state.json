@@ -2275,7 +2275,10 @@
   "https://coinsayfasi.github.io/routevia-app/gezilecek-yerler/usak/merkez/": "2026-07-08",
   "https://coinsayfasi.github.io/routevia-app/gezilecek-yerler/usak/ulubey/": "2026-07-08",
   "https://coinsayfasi.github.io/routevia-app/gezilecek-yerler/yozgat/merkez/": "2026-07-08",
-  "https://coinsayfasi.github.io/routevia-app/gezilecek-yerler/zonguldak/kilimli/": "2026-07-08"
+  "https://coinsayfasi.github.io/routevia-app/gezilecek-yerler/zonguldak/kilimli/": "2026-07-08",
+  "https://coinsayfasi.github.io/web-stories/onebag/packing-list-united-kingdom/": "2026-07-09",
+  "https://coinsayfasi.github.io/web-stories/rentflow/guides-rental-property-inspection-checklist/": "2026-07-09",
+  "https://coinsayfasi.github.io/web-stories/routevia/mersin-tarsus/": "2026-07-09"
  },
  "history": [
   {
@@ -2373,6 +2376,13 @@
    "date": "2026-07-08",
    "mode": "yeni",
    "ok": 73,
+   "quota_hit": false,
+   "errors": 0
+  },
+  {
+   "date": "2026-07-09",
+   "mode": "yeni",
+   "ok": 3,
    "quota_hit": false,
    "errors": 0
   }
