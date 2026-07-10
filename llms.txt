@@ -1,0 +1,13 @@
+# Tabserve — Apps & Guides Hub
+
+> Landing pages and SEO guides for Tabserve's mobile apps: OneBag (travel packing), Routevia (Türkiye trip planner), RentFlow (rental manager). Includes airline baggage guides, packing checklists, Türkiye destination pages and rental calculators.
+
+## Apps
+- [OneBag](https://coinsayfasi.github.io/onebag/): Smart carry-on packing lists + airline baggage rules.
+- [Routevia](https://coinsayfasi.github.io/routevia-app/): Discover places across Türkiye + AI trip routes.
+- [RentFlow](https://coinsayfasi.github.io/rentflow/): Rental manager + free yield/cash-flow calculators.
+
+## More
+- Türkiye travel guides: https://gezi.tabserve.com.tr/
+- English travel & app guides: https://apps.tabserve.com.tr/
+- Contact: teknopattv@gmail.com
