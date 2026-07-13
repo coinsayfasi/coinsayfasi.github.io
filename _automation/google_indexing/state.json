@@ -2287,7 +2287,9 @@
   "https://coinsayfasi.github.io/web-stories/routevia/sirnak-cizre/": "2026-07-11",
   "https://coinsayfasi.github.io/web-stories/onebag/packing-list-chile/": "2026-07-12",
   "https://coinsayfasi.github.io/web-stories/rentflow/guides-landlord-tax-deductions/": "2026-07-12",
-  "https://coinsayfasi.github.io/web-stories/routevia/gezilecek-yerler-kirikkale/": "2026-07-12"
+  "https://coinsayfasi.github.io/web-stories/routevia/gezilecek-yerler-kirikkale/": "2026-07-12",
+  "https://coinsayfasi.github.io/web-stories/onebag/packing-list-nepal/": "2026-07-13",
+  "https://coinsayfasi.github.io/web-stories/routevia/izmir-bergama/": "2026-07-13"
  },
  "history": [
   {
@@ -2413,6 +2415,13 @@
    "date": "2026-07-12",
    "mode": "yeni",
    "ok": 3,
+   "quota_hit": false,
+   "errors": 0
+  },
+  {
+   "date": "2026-07-13",
+   "mode": "yeni",
+   "ok": 2,
    "quota_hit": false,
    "errors": 0
   }
