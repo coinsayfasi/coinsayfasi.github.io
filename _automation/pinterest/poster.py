@@ -24,6 +24,7 @@ import random
 import time
 from datetime import datetime, timezone
 from pathlib import Path
+import urllib.request
 
 from pin_image import build_pin_image, fetch_pexels_photo
 from pinterest_api import PinterestClient, refresh_access_token
@@ -31,6 +32,8 @@ from pinterest_api import PinterestClient, refresh_access_token
 REPO_ROOT = Path(__file__).resolve().parents[2]
 HERE = Path(__file__).resolve().parent
 SITEMAP = REPO_ROOT / "sitemap.xml"
+REMOTE_SITEMAPS = ["https://rentflow.tabserve.com.tr/sitemap.xml"]
+CACHE_DIR = HERE / "_remote_cache"
 STATE_FILE = HERE / "state.json"
 PREVIEW_DIR = HERE / "preview"
 
@@ -59,6 +62,20 @@ PIN_APPS = {a.strip() for a in os.environ.get("PIN_APPS", "").split(",") if a.st
 
 # ── Theme config: URL prefix -> app, board name, CTA + hashtag strategy ──────
 THEMES = [
+    {
+        "match": "rentflow.tabserve.com.tr/blog/",
+        "app": "rentflow",
+        "store": "https://coinsayfasi.github.io/go/rentflow/",
+        "board": "Landlord & Rental Tips",
+        "board_desc": "Practical guides for landlords: rent, tenants, leases, taxes and more. Manage it all with RentFlow.",
+        "ctas": [
+            "Manage rent & tenants with RentFlow →",
+            "Get the free RentFlow app →",
+            "Track it all in RentFlow →",
+        ],
+        "tags": ["#landlord", "#realestate", "#propertymanagement", "#rentaltips", "#rentflow"],
+        "lang": "en",
+    },
     {
         "match": "/routevia-app/gezilecek-yerler/",
         "app": "routevia",
@@ -181,6 +198,12 @@ def sitemap_urls() -> list[str]:
     if not SITEMAP.exists():
         raise SystemExit(f"sitemap not found: {SITEMAP}")
     urls = re.findall(r"<loc>\s*(.*?)\s*</loc>", SITEMAP.read_text(encoding="utf-8"))
+    for sm in REMOTE_SITEMAPS:
+        try:
+            xml = urllib.request.urlopen(sm, timeout=20).read().decode("utf-8", "ignore")
+            urls += re.findall(r"<loc>\s*(.*?)\s*</loc>", xml)
+        except Exception as e:
+            print(f"remote sitemap skip {sm}: {e}")
     # çok dilli (/de//es//fr/) sayfaları pinleme dışı bırak → sadece kanonik TR/EN pinlenir
     return [u for u in urls if not re.search(r"://[^/]+/(de|es|fr)/", u)]
 
@@ -189,7 +212,24 @@ def theme_for(url: str) -> dict | None:
     return next((t for t in THEMES if t["match"] in url), None)
 
 
+def _fetch_remote(url: str) -> Path:
+    CACHE_DIR.mkdir(exist_ok=True)
+    slug = re.sub(r"[^a-z0-9]+", "-", url.lower()).strip("-")[:90]
+    fp = CACHE_DIR / (slug + ".html")
+    if fp.exists():
+        return fp
+    try:
+        html = urllib.request.urlopen(url, timeout=25).read().decode("utf-8", "ignore")
+        fp.write_text(html, encoding="utf-8")
+        return fp
+    except Exception as e:
+        print(f"remote fetch skip {url}: {e}")
+        return CACHE_DIR / "__missing__.html"  # yok → aday elenir
+
+
 def url_to_local(url: str) -> Path:
+    if "rentflow.tabserve.com.tr" in url:
+        return _fetch_remote(url)
     path = re.sub(r"^https?://[^/]+/", "", url).rstrip("/")
     return REPO_ROOT / (path + "/index.html" if path else "index.html")
 
