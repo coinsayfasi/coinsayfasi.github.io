@@ -4,20 +4,21 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Get RentFlow — Property Management for Landlords</title>
-<meta name="description" content="Download RentFlow: rent, tenants &amp; property management. Available on the App Store (Android coming soon).">
+<meta name="description" content="Download RentFlow: rent, tenants &amp; property management. Available on the App Store and Google Play.">
 <meta property="og:title" content="Get RentFlow — Property Management for Landlords">
-<meta property="og:description" content="Manage rent, tenants and leases. Download RentFlow on iOS.">
+<meta property="og:description" content="Manage rent, tenants and leases. Download RentFlow on iOS and Android.">
 <meta property="og:type" content="website">
 <link rel="canonical" href="https://coinsayfasi.github.io/go/rentflow/">
 <script>
   (function () {
-    // RentFlow is live on the App Store; Android is in closed testing (not public yet),
-    // so Android/desktop users see the buttons below instead of a broken Play link.
+    // RentFlow is live on both stores — send each visitor to the right one.
     var APPSTORE = "https://apps.apple.com/app/id6767179451";
+    var PLAY = "https://play.google.com/store/apps/details?id=com.tabserve.rentflow";
     var ua = navigator.userAgent || "";
     var ios = /iPad|iPhone|iPod/.test(ua) ||
               (navigator.platform === "MacIntel" && navigator.maxTouchPoints > 1);
     if (ios) location.replace(APPSTORE);
+    else if (/Android/.test(ua)) location.replace(PLAY);
   })();
 </script>
 <style>
@@ -36,7 +37,7 @@
     <h1>🏠 RentFlow</h1>
     <p>Property management for landlords — rent, tenants & more.</p>
     <a class="btn" href="https://apps.apple.com/app/id6767179451">Download on the App Store</a>
-    <p class="soon">Google Play — coming soon</p>
+    <a class="btn" href="https://play.google.com/store/apps/details?id=com.tabserve.rentflow">Get it on Google Play</a>
   </div>
 </body>
 </html>
