@@ -51,7 +51,7 @@ APPS_FOOTER = (
     "   Android: https://play.google.com/store/apps/details?id=com.onebag.travel\n\n"
     "🏠 RentFlow — rent & property manager\n"
     "   iOS: https://apps.apple.com/app/id6767179451\n"
-    "   (Android coming soon)"
+    "   Android: https://play.google.com/store/apps/details?id=com.tabserve.rentflow"
 )
 
 # ── App temaları ─────────────────────────────────────────────────────────────
