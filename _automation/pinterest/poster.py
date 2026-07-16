@@ -183,10 +183,39 @@ THEMES = [
 ]
 
 
+RECYCLE_DAYS = int(os.environ.get("PIN_RECYCLE_DAYS", "60"))
+
+
 def load_state() -> dict:
     if STATE_FILE.exists():
-        return json.loads(STATE_FILE.read_text(encoding="utf-8"))
-    return {"pinned": [], "last_run": None}
+        state = json.loads(STATE_FILE.read_text(encoding="utf-8"))
+    else:
+        state = {"pinned": [], "last_run": None}
+    # Eski format (düz liste, kalıcı kara liste) -> {url: iso-timestamp} sözlüğüne göç et.
+    # Böylece küçük hacimli temalar (örn. RentFlow'un 57 sayfası) tükendiğinde
+    # sonsuza dek devre dışı kalmak yerine RECYCLE_DAYS sonra havuza geri döner
+    # (evergreen içerik — yeniden pinlemek Pinterest'te normal bir pratik).
+    pinned = state.get("pinned", [])
+    if isinstance(pinned, list):
+        # Göç anında tarihi BİLİNMİYOR — hemen tekrar havuza girsinler diye
+        # cutoff'un az ötesine (RECYCLE_DAYS+1 gün önce) damgalıyoruz.
+        from datetime import timedelta
+        stale_iso = (datetime.now(timezone.utc) - timedelta(days=RECYCLE_DAYS + 1)).isoformat()
+        state["pinned"] = {u: stale_iso for u in pinned}
+    return state
+
+
+def active_pinned_urls(state: dict) -> set[str]:
+    cutoff = datetime.now(timezone.utc).timestamp() - RECYCLE_DAYS * 86400
+    out = set()
+    for u, ts in state.get("pinned", {}).items():
+        try:
+            t = datetime.fromisoformat(ts).timestamp()
+        except Exception:
+            t = 0
+        if t > cutoff:
+            out.add(u)
+    return out
 
 
 def save_state(state: dict) -> None:
@@ -444,8 +473,11 @@ def _clip_clean(text: str, limit: int) -> str:
 
 
 def pick_candidates(state: dict) -> list[dict]:
-    pinned = set(state.get("pinned", []))
-    by_app: dict[str, list[dict]] = {}
+    pinned = active_pinned_urls(state)
+    # (app, theme match) bazında grupla — büyük hacimli bir tema (örn. onebag/baggage
+    # 844 sayfa) diğerlerini (onebag/packing-list 288) ezmesin diye app YERİNE
+    # tema bazında round-robin yapıyoruz.
+    by_key: dict[tuple[str, str], list[dict]] = {}
     for url in sitemap_urls():
         if url in pinned:
             continue
@@ -459,21 +491,21 @@ def pick_candidates(state: dict) -> list[dict]:
         local = url_to_local(url)
         if not local.exists():
             continue
-        by_app.setdefault(theme["app"], []).append({"url": url, "theme": theme, "local": local})
+        by_key.setdefault((theme["app"], theme["match"]), []).append({"url": url, "theme": theme, "local": local})
 
     # Daily-seeded shuffle so the rotation differs each run.
     rng = random.Random(datetime.now(timezone.utc).strftime("%Y%m%d"))
-    for items in by_app.values():
+    for items in by_key.values():
         rng.shuffle(items)
 
-    # Round-robin across apps for a balanced feed.
-    chosen, apps = [], list(by_app.keys())
-    rng.shuffle(apps)
+    # Round-robin across (app, theme) grupları — her tema hacminden bağımsız eşit şans alır.
+    chosen, keys = [], list(by_key.keys())
+    rng.shuffle(keys)
     i = 0
-    while len(chosen) < PINS_PER_RUN and any(by_app.values()):
-        app = apps[i % len(apps)]
-        if by_app.get(app):
-            chosen.append(by_app[app].pop())
+    while len(chosen) < PINS_PER_RUN and any(by_key.values()):
+        key = keys[i % len(keys)]
+        if by_key.get(key):
+            chosen.append(by_key[key].pop())
         i += 1
         if i > 1000:
             break
@@ -524,7 +556,7 @@ def main() -> None:
                 pid = client.create_pin(board_ids[theme["board"]], pin_title, desc,
                                         store_link, img, alt_text=meta["desc"])
                 print(f"  ✓ pinned: {pid}")
-                state["pinned"].append(c["url"])
+                state["pinned"][c["url"]] = datetime.now(timezone.utc).isoformat()
                 posted += 1
                 time.sleep(4)  # be gentle with the API
             except Exception as e:  # noqa: BLE001
