@@ -2293,7 +2293,9 @@
   "https://coinsayfasi.github.io/web-stories/onebag/packing-list-austria/": "2026-07-14",
   "https://coinsayfasi.github.io/web-stories/routevia/gezilecek-yerler-igdir/": "2026-07-14",
   "https://coinsayfasi.github.io/web-stories/onebag/packing-list-malaysia/": "2026-07-15",
-  "https://coinsayfasi.github.io/web-stories/routevia/gezilecek-yerler-nigde/": "2026-07-15"
+  "https://coinsayfasi.github.io/web-stories/routevia/gezilecek-yerler-nigde/": "2026-07-15",
+  "https://coinsayfasi.github.io/web-stories/onebag/packing-list-new-zealand/": "2026-07-16",
+  "https://coinsayfasi.github.io/web-stories/routevia/antalya-aksu/": "2026-07-16"
  },
  "history": [
   {
@@ -2438,6 +2440,13 @@
   },
   {
    "date": "2026-07-15",
+   "mode": "yeni",
+   "ok": 2,
+   "quota_hit": false,
+   "errors": 0
+  },
+  {
+   "date": "2026-07-16",
    "mode": "yeni",
    "ok": 2,
    "quota_hit": false,
