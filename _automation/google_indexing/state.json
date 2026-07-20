@@ -2301,7 +2301,9 @@
   "https://coinsayfasi.github.io/web-stories/onebag/packing-list-czech-republic/": "2026-07-18",
   "https://coinsayfasi.github.io/web-stories/routevia/gezilecek-yerler-cankiri/": "2026-07-18",
   "https://coinsayfasi.github.io/web-stories/onebag/packing-list-mexico/": "2026-07-19",
-  "https://coinsayfasi.github.io/web-stories/routevia/nevsehir-derinkuyu/": "2026-07-19"
+  "https://coinsayfasi.github.io/web-stories/routevia/nevsehir-derinkuyu/": "2026-07-19",
+  "https://coinsayfasi.github.io/web-stories/onebag/packing-list-vietnam/": "2026-07-20",
+  "https://coinsayfasi.github.io/web-stories/routevia/balikesir-karesi/": "2026-07-20"
  },
  "history": [
   {
@@ -2474,6 +2476,13 @@
   },
   {
    "date": "2026-07-19",
+   "mode": "yeni",
+   "ok": 2,
+   "quota_hit": false,
+   "errors": 0
+  },
+  {
+   "date": "2026-07-20",
    "mode": "yeni",
    "ok": 2,
    "quota_hit": false,
