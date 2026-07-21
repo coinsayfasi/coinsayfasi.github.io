@@ -2303,7 +2303,9 @@
   "https://coinsayfasi.github.io/web-stories/onebag/packing-list-mexico/": "2026-07-19",
   "https://coinsayfasi.github.io/web-stories/routevia/nevsehir-derinkuyu/": "2026-07-19",
   "https://coinsayfasi.github.io/web-stories/onebag/packing-list-vietnam/": "2026-07-20",
-  "https://coinsayfasi.github.io/web-stories/routevia/balikesir-karesi/": "2026-07-20"
+  "https://coinsayfasi.github.io/web-stories/routevia/balikesir-karesi/": "2026-07-20",
+  "https://coinsayfasi.github.io/web-stories/onebag/packing-list-bali/": "2026-07-21",
+  "https://coinsayfasi.github.io/web-stories/routevia/nigde-merkez/": "2026-07-21"
  },
  "history": [
   {
@@ -2483,6 +2485,13 @@
   },
   {
    "date": "2026-07-20",
+   "mode": "yeni",
+   "ok": 2,
+   "quota_hit": false,
+   "errors": 0
+  },
+  {
+   "date": "2026-07-21",
    "mode": "yeni",
    "ok": 2,
    "quota_hit": false,
