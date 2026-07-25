@@ -2311,7 +2311,9 @@
   "https://coinsayfasi.github.io/web-stories/onebag/packing-list-panama/": "2026-07-23",
   "https://coinsayfasi.github.io/web-stories/routevia/agri-dogubayazit/": "2026-07-23",
   "https://coinsayfasi.github.io/web-stories/onebag/packing-list-costa-rica/": "2026-07-24",
-  "https://coinsayfasi.github.io/web-stories/routevia/denizli-pamukkale/": "2026-07-24"
+  "https://coinsayfasi.github.io/web-stories/routevia/denizli-pamukkale/": "2026-07-24",
+  "https://coinsayfasi.github.io/web-stories/onebag/packing-list-armenia/": "2026-07-25",
+  "https://coinsayfasi.github.io/web-stories/routevia/balikesir-ayvalik/": "2026-07-25"
  },
  "history": [
   {
@@ -2519,6 +2521,13 @@
   },
   {
    "date": "2026-07-24",
+   "mode": "yeni",
+   "ok": 2,
+   "quota_hit": false,
+   "errors": 0
+  },
+  {
+   "date": "2026-07-25",
    "mode": "yeni",
    "ok": 2,
    "quota_hit": false,
