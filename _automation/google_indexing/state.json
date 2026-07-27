@@ -2315,7 +2315,9 @@
   "https://coinsayfasi.github.io/web-stories/onebag/packing-list-armenia/": "2026-07-25",
   "https://coinsayfasi.github.io/web-stories/routevia/balikesir-ayvalik/": "2026-07-25",
   "https://coinsayfasi.github.io/web-stories/onebag/packing-list-slovenia/": "2026-07-26",
-  "https://coinsayfasi.github.io/web-stories/routevia/gezilecek-yerler-agri/": "2026-07-26"
+  "https://coinsayfasi.github.io/web-stories/routevia/gezilecek-yerler-agri/": "2026-07-26",
+  "https://coinsayfasi.github.io/web-stories/onebag/packing-list-france/": "2026-07-27",
+  "https://coinsayfasi.github.io/web-stories/routevia/gezilecek-yerler-sakarya/": "2026-07-27"
  },
  "history": [
   {
@@ -2537,6 +2539,13 @@
   },
   {
    "date": "2026-07-26",
+   "mode": "yeni",
+   "ok": 2,
+   "quota_hit": false,
+   "errors": 0
+  },
+  {
+   "date": "2026-07-27",
    "mode": "yeni",
    "ok": 2,
    "quota_hit": false,
