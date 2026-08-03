@@ -2330,7 +2330,9 @@
   "https://coinsayfasi.github.io/web-stories/onebag/packing-list-hungary/": "2026-08-01",
   "https://coinsayfasi.github.io/web-stories/routevia/usak-merkez/": "2026-08-01",
   "https://coinsayfasi.github.io/web-stories/onebag/packing-list-iceland/": "2026-08-02",
-  "https://coinsayfasi.github.io/web-stories/routevia/balikesir-bandirma/": "2026-08-02"
+  "https://coinsayfasi.github.io/web-stories/routevia/balikesir-bandirma/": "2026-08-02",
+  "https://coinsayfasi.github.io/web-stories/onebag/packing-list-bulgaria/": "2026-08-03",
+  "https://coinsayfasi.github.io/web-stories/routevia/gezilecek-yerler-bartin/": "2026-08-03"
  },
  "history": [
   {
@@ -2601,6 +2603,13 @@
   },
   {
    "date": "2026-08-02",
+   "mode": "yeni",
+   "ok": 2,
+   "quota_hit": false,
+   "errors": 0
+  },
+  {
+   "date": "2026-08-03",
    "mode": "yeni",
    "ok": 2,
    "quota_hit": false,
