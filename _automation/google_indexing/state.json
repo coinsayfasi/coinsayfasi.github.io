@@ -2338,7 +2338,9 @@
   "https://coinsayfasi.github.io/web-stories/onebag/packing-list-greece/": "2026-08-05",
   "https://coinsayfasi.github.io/web-stories/routevia/gezilecek-yerler-zonguldak/": "2026-08-05",
   "https://coinsayfasi.github.io/web-stories/onebag/packing-list-croatia/": "2026-08-06",
-  "https://coinsayfasi.github.io/web-stories/routevia/antalya-finike/": "2026-08-06"
+  "https://coinsayfasi.github.io/web-stories/routevia/antalya-finike/": "2026-08-06",
+  "https://coinsayfasi.github.io/web-stories/onebag/packing-list-cambodia/": "2026-08-07",
+  "https://coinsayfasi.github.io/web-stories/routevia/mugla-seydikemer/": "2026-08-07"
  },
  "history": [
   {
@@ -2637,6 +2639,13 @@
   },
   {
    "date": "2026-08-06",
+   "mode": "yeni",
+   "ok": 2,
+   "quota_hit": false,
+   "errors": 0
+  },
+  {
+   "date": "2026-08-07",
    "mode": "yeni",
    "ok": 2,
    "quota_hit": false,
