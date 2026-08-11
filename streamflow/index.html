@@ -1,0 +1,68 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>StreamFlow Player</title>
+<meta name="description" content="StreamFlow Player is an iOS media player for your own IPTV playlists (M3U / Xtream Codes). It does not provide, host, or sell any channels or content.">
+<style>
+  :root {
+    --bg: #0b0b0c;
+    --card: #17181a;
+    --text: #f5f5f7;
+    --muted: #a1a1aa;
+    --accent: #ff9f0a;
+  }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0;
+    background: var(--bg);
+    color: var(--text);
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+    line-height: 1.55;
+  }
+  .wrap { max-width: 720px; margin: 0 auto; padding: 64px 24px 96px; }
+  h1 { font-size: 2.2rem; margin: 0 0 8px; }
+  .tag { color: var(--accent); font-weight: 600; letter-spacing: .04em; text-transform: uppercase; font-size: .8rem; }
+  p { color: var(--muted); }
+  .card {
+    background: var(--card);
+    border: 1px solid rgba(255,255,255,.08);
+    border-radius: 16px;
+    padding: 24px;
+    margin-top: 32px;
+  }
+  .card h2 { margin-top: 0; font-size: 1.1rem; color: var(--text); }
+  ul { color: var(--muted); padding-left: 1.2em; }
+  li { margin-bottom: 6px; }
+  .status { display: inline-block; background: rgba(255,159,10,.15); color: var(--accent); padding: 4px 12px; border-radius: 999px; font-size: .85rem; font-weight: 600; }
+  footer { margin-top: 48px; color: #6b6b70; font-size: .85rem; }
+</style>
+</head>
+<body>
+  <div class="wrap">
+    <div class="tag">iOS · IPTV Player</div>
+    <h1>StreamFlow Player</h1>
+    <p>A native iOS media player for your own IPTV playlists. Add your own M3U, M3U8, or Xtream Codes source and watch — nothing more.</p>
+    <span class="status">In development · Coming to the App Store</span>
+
+    <div class="card">
+      <h2>What it is</h2>
+      <p>StreamFlow Player does not provide, host, sell, or distribute any IPTV subscriptions, channels, or media content of any kind.</p>
+      <ul>
+        <li>Xtream Codes API and M3U / M3U8 support</li>
+        <li>Native, embedded playback (no external app hand-off)</li>
+        <li>Favorites, search, and per-category browsing</li>
+        <li>EPG for supported providers</li>
+      </ul>
+    </div>
+
+    <div class="card">
+      <h2>Legal</h2>
+      <p>All content accessible through the app comes from third-party sources the user adds themselves. Users are solely responsible for the legality of any source they add. The developer accepts no liability for content obtained through user-added sources.</p>
+    </div>
+
+    <footer>© 2026 StreamFlow Player</footer>
+  </div>
+</body>
+</html>
