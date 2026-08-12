@@ -2348,7 +2348,9 @@
   "https://coinsayfasi.github.io/web-stories/onebag/packing-list-tunisia/": "2026-08-10",
   "https://coinsayfasi.github.io/web-stories/routevia/gezilecek-yerler-kahramanmaras/": "2026-08-10",
   "https://coinsayfasi.github.io/web-stories/onebag/packing-list-australia/": "2026-08-11",
-  "https://coinsayfasi.github.io/web-stories/routevia/gezilecek-yerler-kayseri/": "2026-08-11"
+  "https://coinsayfasi.github.io/web-stories/routevia/gezilecek-yerler-kayseri/": "2026-08-11",
+  "https://coinsayfasi.github.io/web-stories/onebag/packing-list-finland/": "2026-08-12",
+  "https://coinsayfasi.github.io/web-stories/routevia/tema-muzeler/": "2026-08-12"
  },
  "history": [
   {
@@ -2682,6 +2684,13 @@
   },
   {
    "date": "2026-08-11",
+   "mode": "yeni",
+   "ok": 2,
+   "quota_hit": false,
+   "errors": 0
+  },
+  {
+   "date": "2026-08-12",
    "mode": "yeni",
    "ok": 2,
    "quota_hit": false,
