@@ -2352,7 +2352,9 @@
   "https://coinsayfasi.github.io/web-stories/onebag/packing-list-finland/": "2026-08-12",
   "https://coinsayfasi.github.io/web-stories/routevia/tema-muzeler/": "2026-08-12",
   "https://coinsayfasi.github.io/web-stories/onebag/packing-list-malta/": "2026-08-13",
-  "https://coinsayfasi.github.io/web-stories/routevia/bayburt-merkez/": "2026-08-13"
+  "https://coinsayfasi.github.io/web-stories/routevia/bayburt-merkez/": "2026-08-13",
+  "https://coinsayfasi.github.io/web-stories/onebag/packing-list-lebanon/": "2026-08-14",
+  "https://coinsayfasi.github.io/web-stories/routevia/bursa-iznik/": "2026-08-14"
  },
  "history": [
   {
@@ -2700,6 +2702,13 @@
   },
   {
    "date": "2026-08-13",
+   "mode": "yeni",
+   "ok": 2,
+   "quota_hit": false,
+   "errors": 0
+  },
+  {
+   "date": "2026-08-14",
    "mode": "yeni",
    "ok": 2,
    "quota_hit": false,
