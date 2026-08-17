@@ -2358,7 +2358,9 @@
   "https://coinsayfasi.github.io/web-stories/onebag/packing-list-poland/": "2026-08-15",
   "https://coinsayfasi.github.io/web-stories/routevia/artvin-hopa/": "2026-08-15",
   "https://coinsayfasi.github.io/web-stories/onebag/packing-list-jordan/": "2026-08-16",
-  "https://coinsayfasi.github.io/web-stories/routevia/gezilecek-yerler-izmir/": "2026-08-16"
+  "https://coinsayfasi.github.io/web-stories/routevia/gezilecek-yerler-izmir/": "2026-08-16",
+  "https://coinsayfasi.github.io/web-stories/onebag/packing-list-singapore/": "2026-08-17",
+  "https://coinsayfasi.github.io/web-stories/routevia/gezilecek-yerler-bayburt/": "2026-08-17"
  },
  "history": [
   {
@@ -2727,6 +2729,13 @@
   },
   {
    "date": "2026-08-16",
+   "mode": "yeni",
+   "ok": 2,
+   "quota_hit": false,
+   "errors": 0
+  },
+  {
+   "date": "2026-08-17",
    "mode": "yeni",
    "ok": 2,
    "quota_hit": false,
