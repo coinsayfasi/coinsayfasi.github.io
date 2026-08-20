@@ -2364,7 +2364,9 @@
   "https://coinsayfasi.github.io/web-stories/onebag/packing-list-egypt/": "2026-08-18",
   "https://coinsayfasi.github.io/web-stories/routevia/adana-seyhan/": "2026-08-18",
   "https://coinsayfasi.github.io/web-stories/onebag/packing-list-brazil/": "2026-08-19",
-  "https://coinsayfasi.github.io/web-stories/routevia/bartin-amasra/": "2026-08-19"
+  "https://coinsayfasi.github.io/web-stories/routevia/bartin-amasra/": "2026-08-19",
+  "https://coinsayfasi.github.io/web-stories/onebag/packing-list-south-africa/": "2026-08-20",
+  "https://coinsayfasi.github.io/web-stories/routevia/antalya-alanya/": "2026-08-20"
  },
  "history": [
   {
@@ -2754,6 +2756,13 @@
   },
   {
    "date": "2026-08-19",
+   "mode": "yeni",
+   "ok": 2,
+   "quota_hit": false,
+   "errors": 0
+  },
+  {
+   "date": "2026-08-20",
    "mode": "yeni",
    "ok": 2,
    "quota_hit": false,
