@@ -2369,7 +2369,9 @@
   "https://coinsayfasi.github.io/web-stories/routevia/antalya-alanya/": "2026-08-20",
   "https://coinsayfasi.github.io/web-stories/onebag/packing-list-turkey/": "2026-08-21",
   "https://coinsayfasi.github.io/web-stories/routevia/gezilecek-yerler-bolu/": "2026-08-21",
-  "https://coinsayfasi.github.io/web-stories/routevia/istanbul-fatih/": "2026-08-22"
+  "https://coinsayfasi.github.io/web-stories/routevia/istanbul-fatih/": "2026-08-22",
+  "https://coinsayfasi.github.io/web-stories/onebag/packing-list-albania/": "2026-08-23",
+  "https://coinsayfasi.github.io/web-stories/routevia/antalya-kas/": "2026-08-23"
  },
  "history": [
   {
@@ -2782,6 +2784,13 @@
    "date": "2026-08-22",
    "mode": "yeni",
    "ok": 1,
+   "quota_hit": false,
+   "errors": 0
+  },
+  {
+   "date": "2026-08-23",
+   "mode": "yeni",
+   "ok": 2,
    "quota_hit": false,
    "errors": 0
   }
