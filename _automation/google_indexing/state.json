@@ -2375,16 +2375,11 @@
   "https://coinsayfasi.github.io/web-stories/onebag/packing-list-spain/": "2026-08-24",
   "https://coinsayfasi.github.io/web-stories/routevia/elazig-merkez/": "2026-08-24",
   "https://coinsayfasi.github.io/web-stories/onebag/packing-list-cyprus/": "2026-08-25",
-  "https://coinsayfasi.github.io/web-stories/routevia/gezilecek-yerler-kastamonu/": "2026-08-25"
+  "https://coinsayfasi.github.io/web-stories/routevia/gezilecek-yerler-kastamonu/": "2026-08-25",
+  "https://coinsayfasi.github.io/web-stories/onebag/packing-list-peru/": "2026-08-26",
+  "https://coinsayfasi.github.io/web-stories/routevia/gezilecek-yerler-mardin/": "2026-08-26"
  },
  "history": [
-  {
-   "date": "2026-06-27",
-   "mode": "yeni",
-   "ok": 1,
-   "quota_hit": true,
-   "errors": 0
-  },
   {
    "date": "2026-06-28",
    "mode": "yeni",
@@ -2793,6 +2788,13 @@
   },
   {
    "date": "2026-08-25",
+   "mode": "yeni",
+   "ok": 2,
+   "quota_hit": false,
+   "errors": 0
+  },
+  {
+   "date": "2026-08-26",
    "mode": "yeni",
    "ok": 2,
    "quota_hit": false,
