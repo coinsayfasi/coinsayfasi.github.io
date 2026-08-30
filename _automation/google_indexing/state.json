@@ -2383,16 +2383,11 @@
   "https://coinsayfasi.github.io/web-stories/onebag/packing-list-romania/": "2026-08-28",
   "https://coinsayfasi.github.io/web-stories/routevia/usak-ulubey/": "2026-08-28",
   "https://coinsayfasi.github.io/web-stories/onebag/packing-list-portugal/": "2026-08-29",
-  "https://coinsayfasi.github.io/web-stories/routevia/mugla-bodrum/": "2026-08-29"
+  "https://coinsayfasi.github.io/web-stories/routevia/mugla-bodrum/": "2026-08-29",
+  "https://coinsayfasi.github.io/web-stories/onebag/packing-list-usa/": "2026-08-30",
+  "https://coinsayfasi.github.io/web-stories/routevia/gezilecek-yerler-siirt/": "2026-08-30"
  },
  "history": [
-  {
-   "date": "2026-07-01",
-   "mode": "yeni",
-   "ok": 200,
-   "quota_hit": false,
-   "errors": 0
-  },
   {
    "date": "2026-07-02",
    "mode": "yeni",
@@ -2801,6 +2796,13 @@
   },
   {
    "date": "2026-08-29",
+   "mode": "yeni",
+   "ok": 2,
+   "quota_hit": false,
+   "errors": 0
+  },
+  {
+   "date": "2026-08-30",
    "mode": "yeni",
    "ok": 2,
    "quota_hit": false,
