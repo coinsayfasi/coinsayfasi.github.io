@@ -2388,16 +2388,10 @@
   "https://coinsayfasi.github.io/web-stories/routevia/gezilecek-yerler-siirt/": "2026-08-30",
   "https://coinsayfasi.github.io/web-stories/onebag/packing-list-maldives/": "2026-08-31",
   "https://coinsayfasi.github.io/web-stories/routevia/trabzon-yomra/": "2026-08-31",
-  "https://coinsayfasi.github.io/web-stories/routevia/gezilecek-yerler-adana/": "2026-09-01"
+  "https://coinsayfasi.github.io/web-stories/routevia/gezilecek-yerler-adana/": "2026-09-01",
+  "https://coinsayfasi.github.io/web-stories/routevia/gezilecek-yerler-gumushane/": "2026-09-02"
  },
  "history": [
-  {
-   "date": "2026-07-04",
-   "mode": "yeni",
-   "ok": 200,
-   "quota_hit": false,
-   "errors": 0
-  },
   {
    "date": "2026-07-05",
    "mode": "yeni",
@@ -2806,6 +2800,13 @@
   },
   {
    "date": "2026-09-01",
+   "mode": "yeni",
+   "ok": 1,
+   "quota_hit": false,
+   "errors": 0
+  },
+  {
+   "date": "2026-09-02",
    "mode": "yeni",
    "ok": 1,
    "quota_hit": false,
