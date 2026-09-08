@@ -2394,16 +2394,10 @@
   "https://coinsayfasi.github.io/web-stories/routevia/gezilecek-yerler-kutahya/": "2026-09-04",
   "https://coinsayfasi.github.io/web-stories/routevia/nevsehir-urgup/": "2026-09-05",
   "https://coinsayfasi.github.io/web-stories/routevia/aydin-didim/": "2026-09-06",
-  "https://coinsayfasi.github.io/web-stories/routevia/sanliurfa-harran/": "2026-09-07"
+  "https://coinsayfasi.github.io/web-stories/routevia/sanliurfa-harran/": "2026-09-07",
+  "https://coinsayfasi.github.io/web-stories/routevia/gezilecek-yerler-kilis/": "2026-09-08"
  },
  "history": [
-  {
-   "date": "2026-07-10",
-   "mode": "yeni",
-   "ok": 3,
-   "quota_hit": false,
-   "errors": 0
-  },
   {
    "date": "2026-07-11",
    "mode": "yeni",
@@ -2812,6 +2806,13 @@
   },
   {
    "date": "2026-09-07",
+   "mode": "yeni",
+   "ok": 1,
+   "quota_hit": false,
+   "errors": 0
+  },
+  {
+   "date": "2026-09-08",
    "mode": "yeni",
    "ok": 1,
    "quota_hit": false,
