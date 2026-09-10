@@ -2396,16 +2396,10 @@
   "https://coinsayfasi.github.io/web-stories/routevia/aydin-didim/": "2026-09-06",
   "https://coinsayfasi.github.io/web-stories/routevia/sanliurfa-harran/": "2026-09-07",
   "https://coinsayfasi.github.io/web-stories/routevia/gezilecek-yerler-kilis/": "2026-09-08",
-  "https://coinsayfasi.github.io/web-stories/routevia/sivas-merkez/": "2026-09-09"
+  "https://coinsayfasi.github.io/web-stories/routevia/sivas-merkez/": "2026-09-09",
+  "https://coinsayfasi.github.io/web-stories/routevia/erzincan-kemaliye/": "2026-09-10"
  },
  "history": [
-  {
-   "date": "2026-07-12",
-   "mode": "yeni",
-   "ok": 3,
-   "quota_hit": false,
-   "errors": 0
-  },
   {
    "date": "2026-07-13",
    "mode": "yeni",
@@ -2814,6 +2808,13 @@
   },
   {
    "date": "2026-09-09",
+   "mode": "yeni",
+   "ok": 1,
+   "quota_hit": false,
+   "errors": 0
+  },
+  {
+   "date": "2026-09-10",
    "mode": "yeni",
    "ok": 1,
    "quota_hit": false,
