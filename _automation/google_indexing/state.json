@@ -2401,16 +2401,10 @@
   "https://coinsayfasi.github.io/web-stories/routevia/izmir-tire/": "2026-09-11",
   "https://coinsayfasi.github.io/web-stories/routevia/siirt-merkez/": "2026-09-12",
   "https://coinsayfasi.github.io/web-stories/routevia/gezilecek-yerler-isparta/": "2026-09-13",
-  "https://coinsayfasi.github.io/web-stories/routevia/gezilecek-yerler-samsun/": "2026-09-14"
+  "https://coinsayfasi.github.io/web-stories/routevia/gezilecek-yerler-samsun/": "2026-09-14",
+  "https://coinsayfasi.github.io/web-stories/routevia/gezilecek-yerler-karaman/": "2026-09-15"
  },
  "history": [
-  {
-   "date": "2026-07-17",
-   "mode": "yeni",
-   "ok": 2,
-   "quota_hit": false,
-   "errors": 0
-  },
   {
    "date": "2026-07-18",
    "mode": "yeni",
@@ -2819,6 +2813,13 @@
   },
   {
    "date": "2026-09-14",
+   "mode": "yeni",
+   "ok": 1,
+   "quota_hit": false,
+   "errors": 0
+  },
+  {
+   "date": "2026-09-15",
    "mode": "yeni",
    "ok": 1,
    "quota_hit": false,
