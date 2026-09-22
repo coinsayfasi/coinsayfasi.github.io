@@ -2408,16 +2408,10 @@
   "https://coinsayfasi.github.io/web-stories/routevia/amasya-merkez/": "2026-09-18",
   "https://coinsayfasi.github.io/web-stories/routevia/gezilecek-yerler-aydin/": "2026-09-19",
   "https://coinsayfasi.github.io/web-stories/routevia/izmir-guzelbahce/": "2026-09-20",
-  "https://coinsayfasi.github.io/web-stories/routevia/gezilecek-yerler-usak/": "2026-09-21"
+  "https://coinsayfasi.github.io/web-stories/routevia/gezilecek-yerler-usak/": "2026-09-21",
+  "https://coinsayfasi.github.io/web-stories/routevia/gezilecek-yerler-amasya/": "2026-09-22"
  },
  "history": [
-  {
-   "date": "2026-07-24",
-   "mode": "yeni",
-   "ok": 2,
-   "quota_hit": false,
-   "errors": 0
-  },
   {
    "date": "2026-07-25",
    "mode": "yeni",
@@ -2826,6 +2820,13 @@
   },
   {
    "date": "2026-09-21",
+   "mode": "yeni",
+   "ok": 1,
+   "quota_hit": false,
+   "errors": 0
+  },
+  {
+   "date": "2026-09-22",
    "mode": "yeni",
    "ok": 1,
    "quota_hit": false,
