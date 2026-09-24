@@ -2410,16 +2410,10 @@
   "https://coinsayfasi.github.io/web-stories/routevia/izmir-guzelbahce/": "2026-09-20",
   "https://coinsayfasi.github.io/web-stories/routevia/gezilecek-yerler-usak/": "2026-09-21",
   "https://coinsayfasi.github.io/web-stories/routevia/gezilecek-yerler-amasya/": "2026-09-22",
-  "https://coinsayfasi.github.io/web-stories/routevia/balikesir-burhaniye/": "2026-09-23"
+  "https://coinsayfasi.github.io/web-stories/routevia/balikesir-burhaniye/": "2026-09-23",
+  "https://coinsayfasi.github.io/web-stories/routevia/adiyaman-kahta/": "2026-09-24"
  },
  "history": [
-  {
-   "date": "2026-07-26",
-   "mode": "yeni",
-   "ok": 2,
-   "quota_hit": false,
-   "errors": 0
-  },
   {
    "date": "2026-07-27",
    "mode": "yeni",
@@ -2828,6 +2822,13 @@
   },
   {
    "date": "2026-09-23",
+   "mode": "yeni",
+   "ok": 1,
+   "quota_hit": false,
+   "errors": 0
+  },
+  {
+   "date": "2026-09-24",
    "mode": "yeni",
    "ok": 1,
    "quota_hit": false,
