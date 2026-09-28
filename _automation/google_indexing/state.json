@@ -2414,16 +2414,10 @@
   "https://coinsayfasi.github.io/web-stories/routevia/adiyaman-kahta/": "2026-09-24",
   "https://coinsayfasi.github.io/web-stories/routevia/samsun-ilkadim/": "2026-09-25",
   "https://coinsayfasi.github.io/web-stories/routevia/kars-merkez/": "2026-09-26",
-  "https://coinsayfasi.github.io/web-stories/routevia/gezilecek-yerler-sinop/": "2026-09-27"
+  "https://coinsayfasi.github.io/web-stories/routevia/gezilecek-yerler-sinop/": "2026-09-27",
+  "https://coinsayfasi.github.io/web-stories/routevia/aydin-efeler/": "2026-09-28"
  },
  "history": [
-  {
-   "date": "2026-07-30",
-   "mode": "yeni",
-   "ok": 3,
-   "quota_hit": false,
-   "errors": 0
-  },
   {
    "date": "2026-07-31",
    "mode": "yeni",
@@ -2832,6 +2826,13 @@
   },
   {
    "date": "2026-09-27",
+   "mode": "yeni",
+   "ok": 1,
+   "quota_hit": false,
+   "errors": 0
+  },
+  {
+   "date": "2026-09-28",
    "mode": "yeni",
    "ok": 1,
    "quota_hit": false,
