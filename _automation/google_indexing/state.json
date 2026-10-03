@@ -2419,16 +2419,10 @@
   "https://coinsayfasi.github.io/web-stories/routevia/kahramanmaras-onikisubat/": "2026-09-29",
   "https://coinsayfasi.github.io/web-stories/routevia/antalya-kemer/": "2026-09-30",
   "https://coinsayfasi.github.io/web-stories/routevia/tokat-merkez/": "2026-10-01",
-  "https://coinsayfasi.github.io/web-stories/routevia/nevsehir-merkez/": "2026-10-02"
+  "https://coinsayfasi.github.io/web-stories/routevia/nevsehir-merkez/": "2026-10-02",
+  "https://coinsayfasi.github.io/web-stories/routevia/balikesir-havran/": "2026-10-03"
  },
  "history": [
-  {
-   "date": "2026-08-04",
-   "mode": "yeni",
-   "ok": 2,
-   "quota_hit": false,
-   "errors": 0
-  },
   {
    "date": "2026-08-05",
    "mode": "yeni",
@@ -2837,6 +2831,13 @@
   },
   {
    "date": "2026-10-02",
+   "mode": "yeni",
+   "ok": 1,
+   "quota_hit": false,
+   "errors": 0
+  },
+  {
+   "date": "2026-10-03",
    "mode": "yeni",
    "ok": 1,
    "quota_hit": false,
