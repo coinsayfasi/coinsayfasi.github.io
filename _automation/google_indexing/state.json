@@ -2421,16 +2421,10 @@
   "https://coinsayfasi.github.io/web-stories/routevia/tokat-merkez/": "2026-10-01",
   "https://coinsayfasi.github.io/web-stories/routevia/nevsehir-merkez/": "2026-10-02",
   "https://coinsayfasi.github.io/web-stories/routevia/balikesir-havran/": "2026-10-03",
-  "https://coinsayfasi.github.io/web-stories/routevia/tema-plajlar/": "2026-10-04"
+  "https://coinsayfasi.github.io/web-stories/routevia/tema-plajlar/": "2026-10-04",
+  "https://coinsayfasi.github.io/web-stories/routevia/ankara-altindag/": "2026-10-05"
  },
  "history": [
-  {
-   "date": "2026-08-06",
-   "mode": "yeni",
-   "ok": 2,
-   "quota_hit": false,
-   "errors": 0
-  },
   {
    "date": "2026-08-07",
    "mode": "yeni",
@@ -2839,6 +2833,13 @@
   },
   {
    "date": "2026-10-04",
+   "mode": "yeni",
+   "ok": 1,
+   "quota_hit": false,
+   "errors": 0
+  },
+  {
+   "date": "2026-10-05",
    "mode": "yeni",
    "ok": 1,
    "quota_hit": false,
