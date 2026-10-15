@@ -2431,16 +2431,10 @@
   "https://coinsayfasi.github.io/web-stories/routevia/istanbul-sisli/": "2026-10-11",
   "https://coinsayfasi.github.io/web-stories/routevia/istanbul-besiktas/": "2026-10-12",
   "https://coinsayfasi.github.io/web-stories/routevia/gezilecek-yerler-diyarbakir/": "2026-10-13",
-  "https://coinsayfasi.github.io/web-stories/routevia/afyonkarahisar-merkez/": "2026-10-14"
+  "https://coinsayfasi.github.io/web-stories/routevia/afyonkarahisar-merkez/": "2026-10-14",
+  "https://coinsayfasi.github.io/web-stories/routevia/aksaray-merkez/": "2026-10-15"
  },
  "history": [
-  {
-   "date": "2026-08-16",
-   "mode": "yeni",
-   "ok": 2,
-   "quota_hit": false,
-   "errors": 0
-  },
   {
    "date": "2026-08-17",
    "mode": "yeni",
@@ -2849,6 +2843,13 @@
   },
   {
    "date": "2026-10-14",
+   "mode": "yeni",
+   "ok": 1,
+   "quota_hit": false,
+   "errors": 0
+  },
+  {
+   "date": "2026-10-15",
    "mode": "yeni",
    "ok": 1,
    "quota_hit": false,
