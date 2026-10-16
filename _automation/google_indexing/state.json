@@ -2432,16 +2432,10 @@
   "https://coinsayfasi.github.io/web-stories/routevia/istanbul-besiktas/": "2026-10-12",
   "https://coinsayfasi.github.io/web-stories/routevia/gezilecek-yerler-diyarbakir/": "2026-10-13",
   "https://coinsayfasi.github.io/web-stories/routevia/afyonkarahisar-merkez/": "2026-10-14",
-  "https://coinsayfasi.github.io/web-stories/routevia/aksaray-merkez/": "2026-10-15"
+  "https://coinsayfasi.github.io/web-stories/routevia/aksaray-merkez/": "2026-10-15",
+  "https://coinsayfasi.github.io/web-stories/routevia/tema-dogal-guzellikler/": "2026-10-16"
  },
  "history": [
-  {
-   "date": "2026-08-17",
-   "mode": "yeni",
-   "ok": 2,
-   "quota_hit": false,
-   "errors": 0
-  },
   {
    "date": "2026-08-18",
    "mode": "yeni",
@@ -2850,6 +2844,13 @@
   },
   {
    "date": "2026-10-15",
+   "mode": "yeni",
+   "ok": 1,
+   "quota_hit": false,
+   "errors": 0
+  },
+  {
+   "date": "2026-10-16",
    "mode": "yeni",
    "ok": 1,
    "quota_hit": false,
