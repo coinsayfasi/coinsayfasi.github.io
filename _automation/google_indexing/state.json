@@ -2436,16 +2436,10 @@
   "https://coinsayfasi.github.io/web-stories/routevia/tema-dogal-guzellikler/": "2026-10-16",
   "https://coinsayfasi.github.io/web-stories/routevia/izmir-karaburun/": "2026-10-17",
   "https://coinsayfasi.github.io/web-stories/routevia/cankiri-merkez/": "2026-10-18",
-  "https://coinsayfasi.github.io/web-stories/routevia/aydin-kusadasi/": "2026-10-19"
+  "https://coinsayfasi.github.io/web-stories/routevia/aydin-kusadasi/": "2026-10-19",
+  "https://coinsayfasi.github.io/web-stories/routevia/bursa-osmangazi/": "2026-10-20"
  },
  "history": [
-  {
-   "date": "2026-08-21",
-   "mode": "yeni",
-   "ok": 2,
-   "quota_hit": false,
-   "errors": 0
-  },
   {
    "date": "2026-08-22",
    "mode": "yeni",
@@ -2854,6 +2848,13 @@
   },
   {
    "date": "2026-10-19",
+   "mode": "yeni",
+   "ok": 1,
+   "quota_hit": false,
+   "errors": 0
+  },
+  {
+   "date": "2026-10-20",
    "mode": "yeni",
    "ok": 1,
    "quota_hit": false,
