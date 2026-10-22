@@ -2438,16 +2438,10 @@
   "https://coinsayfasi.github.io/web-stories/routevia/cankiri-merkez/": "2026-10-18",
   "https://coinsayfasi.github.io/web-stories/routevia/aydin-kusadasi/": "2026-10-19",
   "https://coinsayfasi.github.io/web-stories/routevia/bursa-osmangazi/": "2026-10-20",
-  "https://coinsayfasi.github.io/web-stories/routevia/gezilecek-yerler-ardahan/": "2026-10-21"
+  "https://coinsayfasi.github.io/web-stories/routevia/gezilecek-yerler-ardahan/": "2026-10-21",
+  "https://coinsayfasi.github.io/web-stories/routevia/malatya-battalgazi/": "2026-10-22"
  },
  "history": [
-  {
-   "date": "2026-08-23",
-   "mode": "yeni",
-   "ok": 2,
-   "quota_hit": false,
-   "errors": 0
-  },
   {
    "date": "2026-08-24",
    "mode": "yeni",
@@ -2856,6 +2850,13 @@
   },
   {
    "date": "2026-10-21",
+   "mode": "yeni",
+   "ok": 1,
+   "quota_hit": false,
+   "errors": 0
+  },
+  {
+   "date": "2026-10-22",
    "mode": "yeni",
    "ok": 1,
    "quota_hit": false,
