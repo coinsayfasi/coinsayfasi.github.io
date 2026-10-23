@@ -2439,16 +2439,10 @@
   "https://coinsayfasi.github.io/web-stories/routevia/aydin-kusadasi/": "2026-10-19",
   "https://coinsayfasi.github.io/web-stories/routevia/bursa-osmangazi/": "2026-10-20",
   "https://coinsayfasi.github.io/web-stories/routevia/gezilecek-yerler-ardahan/": "2026-10-21",
-  "https://coinsayfasi.github.io/web-stories/routevia/malatya-battalgazi/": "2026-10-22"
+  "https://coinsayfasi.github.io/web-stories/routevia/malatya-battalgazi/": "2026-10-22",
+  "https://coinsayfasi.github.io/web-stories/routevia/izmir-aliaga/": "2026-10-23"
  },
  "history": [
-  {
-   "date": "2026-08-24",
-   "mode": "yeni",
-   "ok": 2,
-   "quota_hit": false,
-   "errors": 0
-  },
   {
    "date": "2026-08-25",
    "mode": "yeni",
@@ -2857,6 +2851,13 @@
   },
   {
    "date": "2026-10-22",
+   "mode": "yeni",
+   "ok": 1,
+   "quota_hit": false,
+   "errors": 0
+  },
+  {
+   "date": "2026-10-23",
    "mode": "yeni",
    "ok": 1,
    "quota_hit": false,
