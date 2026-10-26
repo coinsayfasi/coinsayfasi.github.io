@@ -2442,16 +2442,10 @@
   "https://coinsayfasi.github.io/web-stories/routevia/malatya-battalgazi/": "2026-10-22",
   "https://coinsayfasi.github.io/web-stories/routevia/izmir-aliaga/": "2026-10-23",
   "https://coinsayfasi.github.io/web-stories/routevia/tema-tarihi-yerler/": "2026-10-24",
-  "https://coinsayfasi.github.io/web-stories/routevia/gezilecek-yerler-bursa/": "2026-10-25"
+  "https://coinsayfasi.github.io/web-stories/routevia/gezilecek-yerler-bursa/": "2026-10-25",
+  "https://coinsayfasi.github.io/web-stories/routevia/erzincan-merkez/": "2026-10-26"
  },
  "history": [
-  {
-   "date": "2026-08-27",
-   "mode": "yeni",
-   "ok": 2,
-   "quota_hit": false,
-   "errors": 0
-  },
   {
    "date": "2026-08-28",
    "mode": "yeni",
@@ -2860,6 +2854,13 @@
   },
   {
    "date": "2026-10-25",
+   "mode": "yeni",
+   "ok": 1,
+   "quota_hit": false,
+   "errors": 0
+  },
+  {
+   "date": "2026-10-26",
    "mode": "yeni",
    "ok": 1,
    "quota_hit": false,
