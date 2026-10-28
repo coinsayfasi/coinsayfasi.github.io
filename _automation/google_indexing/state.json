@@ -2444,16 +2444,10 @@
   "https://coinsayfasi.github.io/web-stories/routevia/tema-tarihi-yerler/": "2026-10-24",
   "https://coinsayfasi.github.io/web-stories/routevia/gezilecek-yerler-bursa/": "2026-10-25",
   "https://coinsayfasi.github.io/web-stories/routevia/erzincan-merkez/": "2026-10-26",
-  "https://coinsayfasi.github.io/web-stories/routevia/mugla-marmaris/": "2026-10-27"
+  "https://coinsayfasi.github.io/web-stories/routevia/mugla-marmaris/": "2026-10-27",
+  "https://coinsayfasi.github.io/web-stories/routevia/gezilecek-yerler-tekirdag/": "2026-10-28"
  },
  "history": [
-  {
-   "date": "2026-08-29",
-   "mode": "yeni",
-   "ok": 2,
-   "quota_hit": false,
-   "errors": 0
-  },
   {
    "date": "2026-08-30",
    "mode": "yeni",
@@ -2862,6 +2856,13 @@
   },
   {
    "date": "2026-10-27",
+   "mode": "yeni",
+   "ok": 1,
+   "quota_hit": false,
+   "errors": 0
+  },
+  {
+   "date": "2026-10-28",
    "mode": "yeni",
    "ok": 1,
    "quota_hit": false,
