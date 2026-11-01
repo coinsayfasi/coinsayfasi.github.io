@@ -2448,16 +2448,10 @@
   "https://coinsayfasi.github.io/web-stories/routevia/gezilecek-yerler-tekirdag/": "2026-10-28",
   "https://coinsayfasi.github.io/web-stories/routevia/sanliurfa-eyyubiye/": "2026-10-29",
   "https://coinsayfasi.github.io/web-stories/routevia/eskisehir-odunpazari/": "2026-10-30",
-  "https://coinsayfasi.github.io/web-stories/routevia/gezilecek-yerler-sirnak/": "2026-10-31"
+  "https://coinsayfasi.github.io/web-stories/routevia/gezilecek-yerler-sirnak/": "2026-10-31",
+  "https://coinsayfasi.github.io/web-stories/routevia/gezilecek-yerler-hatay/": "2026-11-01"
  },
  "history": [
-  {
-   "date": "2026-09-02",
-   "mode": "yeni",
-   "ok": 1,
-   "quota_hit": false,
-   "errors": 0
-  },
   {
    "date": "2026-09-03",
    "mode": "yeni",
@@ -2866,6 +2860,13 @@
   },
   {
    "date": "2026-10-31",
+   "mode": "yeni",
+   "ok": 1,
+   "quota_hit": false,
+   "errors": 0
+  },
+  {
+   "date": "2026-11-01",
    "mode": "yeni",
    "ok": 1,
    "quota_hit": false,
