@@ -2450,16 +2450,10 @@
   "https://coinsayfasi.github.io/web-stories/routevia/eskisehir-odunpazari/": "2026-10-30",
   "https://coinsayfasi.github.io/web-stories/routevia/gezilecek-yerler-sirnak/": "2026-10-31",
   "https://coinsayfasi.github.io/web-stories/routevia/gezilecek-yerler-hatay/": "2026-11-01",
-  "https://coinsayfasi.github.io/web-stories/routevia/gezilecek-yerler-van/": "2026-11-02"
+  "https://coinsayfasi.github.io/web-stories/routevia/gezilecek-yerler-van/": "2026-11-02",
+  "https://coinsayfasi.github.io/web-stories/routevia/gaziantep-sehitkamil/": "2026-11-03"
  },
  "history": [
-  {
-   "date": "2026-09-04",
-   "mode": "yeni",
-   "ok": 1,
-   "quota_hit": false,
-   "errors": 0
-  },
   {
    "date": "2026-09-05",
    "mode": "yeni",
@@ -2868,6 +2862,13 @@
   },
   {
    "date": "2026-11-02",
+   "mode": "yeni",
+   "ok": 1,
+   "quota_hit": false,
+   "errors": 0
+  },
+  {
+   "date": "2026-11-03",
    "mode": "yeni",
    "ok": 1,
    "quota_hit": false,
