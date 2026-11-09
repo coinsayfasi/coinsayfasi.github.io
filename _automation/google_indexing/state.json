@@ -2456,16 +2456,10 @@
   "https://coinsayfasi.github.io/web-stories/routevia/izmir-urla/": "2026-11-05",
   "https://coinsayfasi.github.io/web-stories/routevia/mugla-yatagan/": "2026-11-06",
   "https://coinsayfasi.github.io/web-stories/routevia/aydin-nazilli/": "2026-11-07",
-  "https://coinsayfasi.github.io/web-stories/routevia/diyarbakir-sur/": "2026-11-08"
+  "https://coinsayfasi.github.io/web-stories/routevia/diyarbakir-sur/": "2026-11-08",
+  "https://coinsayfasi.github.io/web-stories/routevia/bitlis-ahlat/": "2026-11-09"
  },
  "history": [
-  {
-   "date": "2026-09-10",
-   "mode": "yeni",
-   "ok": 1,
-   "quota_hit": false,
-   "errors": 0
-  },
   {
    "date": "2026-09-11",
    "mode": "yeni",
@@ -2874,6 +2868,13 @@
   },
   {
    "date": "2026-11-08",
+   "mode": "yeni",
+   "ok": 1,
+   "quota_hit": false,
+   "errors": 0
+  },
+  {
+   "date": "2026-11-09",
    "mode": "yeni",
    "ok": 1,
    "quota_hit": false,
