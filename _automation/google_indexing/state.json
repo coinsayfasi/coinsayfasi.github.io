@@ -2459,16 +2459,10 @@
   "https://coinsayfasi.github.io/web-stories/routevia/diyarbakir-sur/": "2026-11-08",
   "https://coinsayfasi.github.io/web-stories/routevia/bitlis-ahlat/": "2026-11-09",
   "https://coinsayfasi.github.io/web-stories/routevia/gezilecek-yerler-gaziantep/": "2026-11-10",
-  "https://coinsayfasi.github.io/web-stories/routevia/gezilecek-yerler-tokat/": "2026-11-11"
+  "https://coinsayfasi.github.io/web-stories/routevia/gezilecek-yerler-tokat/": "2026-11-11",
+  "https://coinsayfasi.github.io/web-stories/routevia/mugla-ula/": "2026-11-12"
  },
  "history": [
-  {
-   "date": "2026-09-13",
-   "mode": "yeni",
-   "ok": 1,
-   "quota_hit": false,
-   "errors": 0
-  },
   {
    "date": "2026-09-14",
    "mode": "yeni",
@@ -2877,6 +2871,13 @@
   },
   {
    "date": "2026-11-11",
+   "mode": "yeni",
+   "ok": 1,
+   "quota_hit": false,
+   "errors": 0
+  },
+  {
+   "date": "2026-11-12",
    "mode": "yeni",
    "ok": 1,
    "quota_hit": false,
