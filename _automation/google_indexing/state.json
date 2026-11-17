@@ -2464,16 +2464,10 @@
   "https://coinsayfasi.github.io/web-stories/routevia/izmir-seferihisar/": "2026-11-13",
   "https://coinsayfasi.github.io/web-stories/routevia/gezilecek-yerler-mersin/": "2026-11-14",
   "https://coinsayfasi.github.io/web-stories/routevia/gezilecek-yerler-mus/": "2026-11-15",
-  "https://coinsayfasi.github.io/web-stories/routevia/istanbul-beykoz/": "2026-11-16"
+  "https://coinsayfasi.github.io/web-stories/routevia/istanbul-beykoz/": "2026-11-16",
+  "https://coinsayfasi.github.io/web-stories/routevia/denizli-merkezefendi/": "2026-11-17"
  },
  "history": [
-  {
-   "date": "2026-09-18",
-   "mode": "yeni",
-   "ok": 1,
-   "quota_hit": false,
-   "errors": 0
-  },
   {
    "date": "2026-09-19",
    "mode": "yeni",
@@ -2882,6 +2876,13 @@
   },
   {
    "date": "2026-11-16",
+   "mode": "yeni",
+   "ok": 1,
+   "quota_hit": false,
+   "errors": 0
+  },
+  {
+   "date": "2026-11-17",
    "mode": "yeni",
    "ok": 1,
    "quota_hit": false,
