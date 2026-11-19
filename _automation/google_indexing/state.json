@@ -2466,16 +2466,10 @@
   "https://coinsayfasi.github.io/web-stories/routevia/gezilecek-yerler-mus/": "2026-11-15",
   "https://coinsayfasi.github.io/web-stories/routevia/istanbul-beykoz/": "2026-11-16",
   "https://coinsayfasi.github.io/web-stories/routevia/denizli-merkezefendi/": "2026-11-17",
-  "https://coinsayfasi.github.io/web-stories/routevia/adiyaman-merkez/": "2026-11-18"
+  "https://coinsayfasi.github.io/web-stories/routevia/adiyaman-merkez/": "2026-11-18",
+  "https://coinsayfasi.github.io/web-stories/routevia/gezilecek-yerler-rize/": "2026-11-19"
  },
  "history": [
-  {
-   "date": "2026-09-20",
-   "mode": "yeni",
-   "ok": 1,
-   "quota_hit": false,
-   "errors": 0
-  },
   {
    "date": "2026-09-21",
    "mode": "yeni",
@@ -2884,6 +2878,13 @@
   },
   {
    "date": "2026-11-18",
+   "mode": "yeni",
+   "ok": 1,
+   "quota_hit": false,
+   "errors": 0
+  },
+  {
+   "date": "2026-11-19",
    "mode": "yeni",
    "ok": 1,
    "quota_hit": false,
