@@ -2470,16 +2470,10 @@
   "https://coinsayfasi.github.io/web-stories/routevia/gezilecek-yerler-rize/": "2026-11-19",
   "https://coinsayfasi.github.io/web-stories/routevia/ankara-beypazari/": "2026-11-20",
   "https://coinsayfasi.github.io/web-stories/routevia/izmir-dikili/": "2026-11-21",
-  "https://coinsayfasi.github.io/web-stories/routevia/kilis-merkez/": "2026-11-22"
+  "https://coinsayfasi.github.io/web-stories/routevia/kilis-merkez/": "2026-11-22",
+  "https://coinsayfasi.github.io/web-stories/routevia/mugla-datca/": "2026-11-23"
  },
  "history": [
-  {
-   "date": "2026-09-24",
-   "mode": "yeni",
-   "ok": 1,
-   "quota_hit": false,
-   "errors": 0
-  },
   {
    "date": "2026-09-25",
    "mode": "yeni",
@@ -2888,6 +2882,13 @@
   },
   {
    "date": "2026-11-22",
+   "mode": "yeni",
+   "ok": 1,
+   "quota_hit": false,
+   "errors": 0
+  },
+  {
+   "date": "2026-11-23",
    "mode": "yeni",
    "ok": 1,
    "quota_hit": false,
