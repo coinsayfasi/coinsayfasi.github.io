@@ -2472,16 +2472,10 @@
   "https://coinsayfasi.github.io/web-stories/routevia/izmir-dikili/": "2026-11-21",
   "https://coinsayfasi.github.io/web-stories/routevia/kilis-merkez/": "2026-11-22",
   "https://coinsayfasi.github.io/web-stories/routevia/mugla-datca/": "2026-11-23",
-  "https://coinsayfasi.github.io/web-stories/routevia/gezilecek-yerler-corum/": "2026-11-24"
+  "https://coinsayfasi.github.io/web-stories/routevia/gezilecek-yerler-corum/": "2026-11-24",
+  "https://coinsayfasi.github.io/web-stories/routevia/manisa-sehzadeler/": "2026-11-25"
  },
  "history": [
-  {
-   "date": "2026-09-26",
-   "mode": "yeni",
-   "ok": 1,
-   "quota_hit": false,
-   "errors": 0
-  },
   {
    "date": "2026-09-27",
    "mode": "yeni",
@@ -2890,6 +2884,13 @@
   },
   {
    "date": "2026-11-24",
+   "mode": "yeni",
+   "ok": 1,
+   "quota_hit": false,
+   "errors": 0
+  },
+  {
+   "date": "2026-11-25",
    "mode": "yeni",
    "ok": 1,
    "quota_hit": false,
