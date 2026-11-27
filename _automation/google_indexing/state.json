@@ -2474,16 +2474,10 @@
   "https://coinsayfasi.github.io/web-stories/routevia/mugla-datca/": "2026-11-23",
   "https://coinsayfasi.github.io/web-stories/routevia/gezilecek-yerler-corum/": "2026-11-24",
   "https://coinsayfasi.github.io/web-stories/routevia/manisa-sehzadeler/": "2026-11-25",
-  "https://coinsayfasi.github.io/web-stories/routevia/hatay-samandag/": "2026-11-26"
+  "https://coinsayfasi.github.io/web-stories/routevia/hatay-samandag/": "2026-11-26",
+  "https://coinsayfasi.github.io/web-stories/routevia/mugla-fethiye/": "2026-11-27"
  },
  "history": [
-  {
-   "date": "2026-09-28",
-   "mode": "yeni",
-   "ok": 1,
-   "quota_hit": false,
-   "errors": 0
-  },
   {
    "date": "2026-09-29",
    "mode": "yeni",
@@ -2892,6 +2886,13 @@
   },
   {
    "date": "2026-11-26",
+   "mode": "yeni",
+   "ok": 1,
+   "quota_hit": false,
+   "errors": 0
+  },
+  {
+   "date": "2026-11-27",
    "mode": "yeni",
    "ok": 1,
    "quota_hit": false,
